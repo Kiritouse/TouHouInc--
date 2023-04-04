@@ -1,6 +1,5 @@
 #pragma once
-#include "Music.h"
 #include "GameManager.h"
-IMAGE background, player;
+extern IMAGE background, player;
 void loadResources(void);
 

@@ -1,8 +1,8 @@
 #include "LoadResources.h"
+IMAGE background, player;
 void loadResources(void) {
-	loadimage(&player, _T("sources\\Background\\background.png"));//º”‘ÿ±≥æ∞Õº∆¨
-	loadimage()
-
+	loadimage(&background, _T("sources\\Background\\background.png"));//º”‘ÿ±≥æ∞Õº∆¨
+	loadimage(&player, _T("sources\\Players"));
 
 
 }
