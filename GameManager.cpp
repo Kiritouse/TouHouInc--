@@ -2,26 +2,25 @@
 #include "LoadResources.h"
 #include <graphics.h>
 #include <Windows.h>
-State state;
-double mapy = 0;
+#include "Interface.h"
+#include "Map.h"
+#include "Player.h"
+GameState gameState;
+Interface _inerface;
+Map _map;
+Player _player;
 void Awake() {
-	State state;
-	state = gaming;
-}
-void painting() {
-	//BeginBatchDraw();
-	//cleardevice();
-	putimage(0, mapy - HEIGHT_MAP, &background);
-	putimage(0, mapy, &background);//实现地图滚动
-}
-void moveMap() {
-	mapy++;
-	if (mapy >= HEIGHT_MAP) mapy = 0;
+
+	gameState = gaming;
+	_inerface.InitGraphInterface();
+
 }
 void Gaming() {
-	painting();
-	if (state != pause) {
-		moveMap();
-		Sleep(1);//防止地图滚动太快
-	}
+	BeginBatchDraw();
+	_map.updateMapPosition();
+	_map.updatePainting();
+	_player.updateImage();
+	EndBatchDraw();
+
+
 }

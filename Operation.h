@@ -1,9 +1,4 @@
 #pragma once
-class Operation
-{
-public:
-
-
-
-};
+#include <Windows.h>
+int GetInput();
 

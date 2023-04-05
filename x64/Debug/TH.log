@@ -1,6 +1,2 @@
-﻿  GAMEMAIN.cpp
-  GameManager.cpp
-D:\Codes\TouHouInc--\GameManager.cpp(14,19): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-D:\Codes\TouHouInc--\GameManager.cpp(15,14): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-  正在生成代码...
+﻿  Player.cpp
   TH.vcxproj -> D:\Codes\TouHouInc--\x64\Debug\TH.exe

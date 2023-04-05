@@ -38,8 +38,8 @@ void transparentimage(IMAGE* dstimg, int xt, int yt, int wt, int ht,
 	HDC dstDC = GetImageHDC(dstimg);
 	HDC srcDC = GetImageHDC(srcimg);
 	//int w = srcimg->getwidth();
-	//int h = srcimg->getheight(); 	// 结构体的第三个成员表示额外的透明度，0 表示全透明，255 表示不透明。 	
-	BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA }; 	// 使用 Windows GDI 函数实现半透明位图 	
+	//int h = srcimg->getheight(); 	// 结构体的第三个成员表示额外的透明度，0 表示全透明，255 表示不透明。
+	BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA }; 	// 使用 Windows GDI 函数实现半透明位图
 	AlphaBlend(dstDC, xt, yt, wt, ht, srcDC, xo, yo, wo, ho, bf);
 }
 
