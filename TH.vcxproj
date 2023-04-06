@@ -151,6 +151,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MathAndPhysics.cpp" />
     <ClCompile Include="Music.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
@@ -169,6 +170,7 @@
     <ClInclude Include="Interface.h" />
     <ClInclude Include="LoadResources.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MathAndPhysics.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="Operation.h" />
     <ClInclude Include="Player.h" />

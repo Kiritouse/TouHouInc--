@@ -14,15 +14,7 @@ extern GameState gameState;
 /// 初始化一些数据
 /// </summary>
 void Awake();
-/// <summary>
-/// 更新绘图
-/// </summary>
-void DrawImage();
-/// <summary>
-/// 计算FPS
-/// </summary>
-/// <param name="start_time"></param>
-void ctrlFps(int start_time);
+void Paint();
 
 /// <summary>
 ///这个函数调用GameManager中所有与游戏有关的函数

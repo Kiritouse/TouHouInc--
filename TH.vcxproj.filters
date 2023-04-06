@@ -41,6 +41,9 @@
     <Filter Include="帧数管理">
       <UniqueIdentifier>{6fd64c4b-02f5-430c-ab87-2ef8acab0c1b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MathAndPhysics">
+      <UniqueIdentifier>{0df34fc1-89be-47ce-8b0d-c45a26c49e52}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp">
@@ -79,6 +82,9 @@
     <ClCompile Include="FrameManager.cpp">
       <Filter>帧数管理</Filter>
     </ClCompile>
+    <ClCompile Include="MathAndPhysics.cpp">
+      <Filter>MathAndPhysics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h">
@@ -113,6 +119,9 @@
     </ClInclude>
     <ClInclude Include="FrameManager.h">
       <Filter>帧数管理</Filter>
+    </ClInclude>
+    <ClInclude Include="MathAndPhysics.h">
+      <Filter>MathAndPhysics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

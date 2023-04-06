@@ -8,9 +8,10 @@
 #include "Player.h"
 #include "Operation.h"
 #include "FrameManager.h"
+#include <iostream>
 GameState gameState;
 Interface _inerface;
-FrameManager _frameManager;
+
 Map _map;
 Player _player;
 
@@ -20,15 +21,31 @@ void Awake() {
 	_inerface.InitGraphInterface();
 
 }
-void DrawImage() {
-	_map.updateMapPosition();
+void Paint() {
+	BeginBatchDraw();
+	cleardevice();
 	_map.updatePainting();
-	_player.updatePosition(GetInput());
 	_player.updateImage();
-	_frameManager.ctrlFps();
-	FlushBatchDraw();
+	ctrlFps();
+	EndBatchDraw();
 }
 
 void Gaming() {
+	clock_t t0 = clock();
+	clock_t t1;
+	f_total = f_resume = f_zawarudo = f_pause = 0;
+	while (gameState == gaming) {
+		t1 = clock();
+		if (t1 - t0 >= 10) {
+			f_total++;
+		}
+		else continue;
+		Paint();
+		if (gameState != pause && gameState != gameOver) {
+			_map.updateMapPosition();
+			_player.updatePosition(GetInput());
+		}
+		Sleep(1);
 
+	}
 }

@@ -10,8 +10,6 @@ void Map::updateMapPosition() {
 }
 void Map::updatePainting() {
 	putimage(0, mapY - HEIGHT_MAP, &background);
-	Sleep(30);
 	putimage(0, mapY, &background);
-	//Sleep(1);
 }
 
