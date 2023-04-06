@@ -8,10 +8,8 @@ public:
 	Player();//构造函数，初始化数据
 	int health;
 	int speed;
-	void updatePosition();
+	void updatePosition(int _cmd);
 	void updateImage();
-	//void updatePosition();
-	//void hit();//被击中状态
 	struct Direction
 	{
 		int up;

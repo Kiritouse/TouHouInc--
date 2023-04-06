@@ -38,6 +38,9 @@
     <Filter Include="透明绘图">
       <UniqueIdentifier>{997a30f9-479a-4c5b-b491-7446d8269c19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="帧数管理">
+      <UniqueIdentifier>{6fd64c4b-02f5-430c-ab87-2ef8acab0c1b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp">
@@ -73,6 +76,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>玩家</Filter>
     </ClCompile>
+    <ClCompile Include="FrameManager.cpp">
+      <Filter>帧数管理</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h">
@@ -104,6 +110,9 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>玩家</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameManager.h">
+      <Filter>帧数管理</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

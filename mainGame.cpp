@@ -1,15 +1,18 @@
 #include "GameManager.h"
 #include "LoadResources.h"
 #include <iostream>
+
+void update() {
+	while (gameState == gaming) {
+
+		DrawImage();
+	}
+}
 int main() {
+
 	loadResources();
 	Awake();
-	while (gameState == gaming) {
-		Gaming();
-		//putimage(0, 0, &background);
-		//putimage(0, 0, &player);
-
-	}
-
-
+	BeginBatchDraw();
+	update();
+	EndBatchDraw();
 }

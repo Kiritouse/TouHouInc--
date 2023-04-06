@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Draw.h"
 #include "Operation.h"
+#include <iostream>
 #define WIDTH_PLAYER  28
 #define HEIGHT_PLAYER  50
 struct orimg {
@@ -16,14 +17,15 @@ Player::Player() {
 	position.y = 970;
 	health = 100;
 	playerState = Live;
-	playerObject.speed = 5;
+	playerObject.speed = 10;
 	direction.up = 0;
 	direction.down = 0;
 	direction.left = 0;
 	direction.right = 0;
 
 }
-void updatePosition(int _cmd) {
+void Player::updatePosition(int _cmd)
+{
 	if (_cmd & CMD_UP && position.y >= 0) {
 		direction.up = 1;
 		position.y -= playerObject.speed;
@@ -45,11 +47,11 @@ void updatePosition(int _cmd) {
 		position.x += playerObject.speed;
 	}
 	else direction.right = 0;
-
 }
+
 void Player::updateImage() {
 
 	transparentimage(NULL, position.x, position.y, WIDTH_PLAYER, HEIGHT_PLAYER, originPoint_img.x, originPoint_img.y, WIDTH_PLAYER, HEIGHT_PLAYER, &player);
-	//putimage(position.x, position.y, &RenderTexture);
+
 
 }
