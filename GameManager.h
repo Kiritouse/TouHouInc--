@@ -10,6 +10,8 @@ enum GameState
 	gaming, pause, gameOver
 };
 extern GameState gameState;
+extern BulletNode* ListBullet;
+extern Player _player;
 /// <summary>
 /// 初始化一些数据
 /// </summary>

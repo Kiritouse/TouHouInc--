@@ -1,4 +1,77 @@
-﻿  Interface.cpp
+﻿  Bullet.cpp
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\Codes\TouHouInc--\GameManager.h(13,30): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\Codes\TouHouInc--\Bullet.cpp(8,14): error C2065: “iterator”: 未声明的标识符
+D:\Codes\TouHouInc--\Bullet.cpp(9,9): error C2065: “iterator”: 未声明的标识符
+D:\Codes\TouHouInc--\Bullet.cpp(10,3): error C2065: “iterator”: 未声明的标识符
+D:\Codes\TouHouInc--\Bullet.cpp(11,3): error C2065: “iterator”: 未声明的标识符
+D:\Codes\TouHouInc--\Bullet.cpp(11,14): error C2065: “iterator”: 未声明的标识符
+D:\Codes\TouHouInc--\Bullet.cpp(15,14): error C2065: “iterator”: 未声明的标识符
+D:\Codes\TouHouInc--\Bullet.cpp(16,9): error C2065: “iterator”: 未声明的标识符
+D:\Codes\TouHouInc--\Bullet.cpp(17,31): error C2065: “iterator”: 未声明的标识符
+D:\Codes\TouHouInc--\Bullet.cpp(17,44): error C2065: “iterator”: 未声明的标识符
+D:\Codes\TouHouInc--\Bullet.cpp(17,3): error C2660: “transparentimage_half”: 函数不接受 9 个参数
+D:\Codes\TouHouInc--\Draw.h(54,6): message : 参见“transparentimage_half”的声明
+D:\Codes\TouHouInc--\Bullet.cpp(17,3): message : 尝试匹配参数列表“(int, int, int, int, int, int, int, IMAGE *, int)”时
+D:\Codes\TouHouInc--\Bullet.cpp(19,3): error C2065: “iterator”: 未声明的标识符
+D:\Codes\TouHouInc--\Bullet.cpp(19,14): error C2065: “iterator”: 未声明的标识符
+D:\Codes\TouHouInc--\Bullet.cpp(24,26): error C2275: “Frame”: 应为表达式而不是类型
+D:\Codes\TouHouInc--\Bullet.cpp(24,24): error C2440: “初始化”: 无法从“Frame”转换为“int”
+D:\Codes\TouHouInc--\Bullet.cpp(24,24): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+D:\Codes\TouHouInc--\Bullet.cpp(25,2): error C2143: 语法错误: 缺少“;”(在“}”的前面)
+  Draw.cpp
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\Codes\TouHouInc--\GameManager.h(13,30): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\Codes\TouHouInc--\Draw.cpp(67,39): warning C4838: 从“int”转换到“BYTE”需要收缩转换
+  Flyers.cpp
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\Codes\TouHouInc--\GameManager.h(13,30): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+  FrameManager.cpp
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\Codes\TouHouInc--\GameManager.h(13,30): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+  GameManager.cpp
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\Codes\TouHouInc--\GameManager.h(13,30): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\Codes\TouHouInc--\GameManager.cpp(15,11): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+D:\Codes\TouHouInc--\GameManager.cpp(15,11): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\Codes\TouHouInc--\GameManager.cpp(15,23): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\Codes\TouHouInc--\GameManager.cpp(15,13): error C2086: “int *ListBullet”: 重定义
+D:\Codes\TouHouInc--\GameManager.h(13,20): message : 参见“ListBullet”的声明
+D:\Codes\TouHouInc--\GameManager.cpp(34,19): error C2061: 语法错误: 标识符“BulletNode”
+D:\Codes\TouHouInc--\GameManager.cpp(39,14): error C2065: “pnext”: 未声明的标识符
+D:\Codes\TouHouInc--\GameManager.cpp(40,14): error C2065: “pInRule”: 未声明的标识符
+D:\Codes\TouHouInc--\GameManager.cpp(41,2): error C2065: “pnext”: 未声明的标识符
+D:\Codes\TouHouInc--\GameManager.cpp(42,2): error C2065: “pInRule”: 未声明的标识符
+D:\Codes\TouHouInc--\GameManager.cpp(48,10): error C2065: “pnext”: 未声明的标识符
+D:\Codes\TouHouInc--\GameManager.cpp(49,8): error C2065: “pnext”: 未声明的标识符
+D:\Codes\TouHouInc--\GameManager.cpp(49,21): error C2065: “pnext”: 未声明的标识符
+D:\Codes\TouHouInc--\GameManager.cpp(51,5): error C2065: “pInRule”: 未声明的标识符
+D:\Codes\TouHouInc--\GameManager.cpp(51,22): error C2065: “pnext”: 未声明的标识符
+D:\Codes\TouHouInc--\GameManager.cpp(52,10): error C2065: “pnext”: 未声明的标识符
+D:\Codes\TouHouInc--\GameManager.cpp(53,5): error C2065: “pnext”: 未声明的标识符
+D:\Codes\TouHouInc--\GameManager.cpp(55,9): error C2065: “pInRule”: 未声明的标识符
+D:\Codes\TouHouInc--\GameManager.cpp(55,19): error C2065: “pnext”: 未声明的标识符
+D:\Codes\TouHouInc--\GameManager.cpp(56,4): error C2065: “pnext”: 未声明的标识符
+D:\Codes\TouHouInc--\GameManager.cpp(56,12): error C2065: “pInRule”: 未声明的标识符
+  LoadResources.cpp
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\Codes\TouHouInc--\GameManager.h(13,30): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+  Map.cpp
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\Codes\TouHouInc--\GameManager.h(13,30): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
   Player.cpp
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\Codes\TouHouInc--\GameManager.h(13,30): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+  mainGame.cpp
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+D:\Codes\TouHouInc--\GameManager.h(13,18): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\Codes\TouHouInc--\GameManager.h(13,30): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
   正在生成代码...
-  TH.vcxproj -> D:\Codes\TouHouInc--\x64\Debug\TH.exe

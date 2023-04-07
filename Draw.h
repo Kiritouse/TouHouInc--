@@ -37,5 +37,20 @@ void transparentimage(IMAGE* dstimg, int xt, int yt, int wt, int ht,
 /// <param name="h">目标绘图区域绘制高度</param>
 /// <param name="srcimg">源图片指针</param>
 void transparentimage(IMAGE* dstimg, int x, int y, int w, int h, IMAGE* srcimg);
+/// <summary>
+/// 实现半透明效果
+/// </summary>
+/// <param name="dstimg"></param>
+/// <param name="xt"></param>
+/// <param name="yt"></param>
+/// <param name="wt"></param>
+/// <param name="ht"></param>
+/// <param name="xo"></param>
+/// <param name="yo"></param>
+/// <param name="wo"></param>
+/// <param name="ho"></param>
+/// <param name="srcimg"></param>
+/// <param name="weight">半透明权重值，0是全透明，255是透明</param>
+void transparentimage_half(IMAGE* dstimg, int xt, int yt, int wt, int ht,
+	int xo, int yo, int wo, int ho, IMAGE* srcimg, int weight);
 
-void deleteImage();

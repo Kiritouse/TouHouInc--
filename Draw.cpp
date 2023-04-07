@@ -55,3 +55,15 @@ void transparentimage(IMAGE* dstimg, int x, int y, int w, int h, IMAGE* srcimg)
 	// 使用 Windows GDI 函数实现半透明位图
 	AlphaBlend(dstDC, x, y, w, h, srcDC, 0, 0, wo, ho, bf);
 }
+void transparentimage_half(IMAGE* dstimg, int xt, int yt, int wt, int ht,
+	int xo, int yo, int wo, int ho, IMAGE* srcimg, int weight) {
+
+	//xt yt为目标窗口绘图坐标（绘制在哪里）,wt ht为绘制的宽高(要绘制多宽和多高),xo yo wo ho为源文件对应参数,
+	//xo源矩形左上角的 x 坐标，yo源矩形左上角的 y 坐标（在源图片中哪里开始绘制）,wo,ho要绘制多宽和多高
+	HDC dstDC = GetImageHDC(dstimg);
+	HDC srcDC = GetImageHDC(srcimg);
+	//int w = srcimg->getwidth();
+	//int h = srcimg->getheight(); 	// 结构体的第三个成员表示额外的透明度，0 表示全透明，255 表示不透明。
+	BLENDFUNCTION bf = { AC_SRC_OVER, 0, weight, AC_SRC_ALPHA }; 	// 使用 Windows GDI 函数实现半透明位图
+	AlphaBlend(dstDC, xt, yt, wt, ht, srcDC, xo, yo, wo, ho, bf);
+}

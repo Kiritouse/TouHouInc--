@@ -5,12 +5,7 @@
 #include "FrameManager.h"
 #include <iostream>
 #include <time.h>
-#define WIDTH_PLAYER  28
-#define HEIGHT_PLAYER  50
-#define WIDTH_PLAYER_RIGHT 28
-#define HEIGHT_PLAYER_RIGHT 47
-#define WIDTH_PLAYER_LEFT 28
-#define HEIGHT_PLAYER_LEFT 47
+
 struct orimg {
 	int x = 3, y = 0;
 }originPoint_img;
@@ -32,7 +27,7 @@ Player::Player() {
 }
 void Player::updatePosition(int _cmd)
 {
-	tempframe = f_total - f_pause;
+	tempframe = frame.f_total - frame.f_pause;
 	if (_cmd & CMD_UP && position.y >= 0) {
 		direction.up = 1;
 		position.y -= speed;
@@ -60,7 +55,7 @@ void Player::updatePosition(int _cmd)
 
 void Player::updateImage() {
 	if (health = 0) return;
-	int t2 = f_total - f_pause;
+	int t2 = frame.f_total - frame.f_pause;
 	int frameBuffer = t2 - tempframe;
 	transparentimage(NULL, position.x, position.y, WIDTH_PLAYER, HEIGHT_PLAYER,
 		originPoint_img.x, originPoint_img.y, WIDTH_PLAYER, HEIGHT_PLAYER, &player);
