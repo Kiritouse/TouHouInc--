@@ -1,6 +1,5 @@
 #pragma once
 #include "GameManager.h"
-
 #define WIDTH_MAP 500
 #define HEIGHT_MAP 720
 

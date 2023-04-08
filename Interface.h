@@ -1,5 +1,5 @@
 #pragma once
-#include <graphics.h>
+#include "GameManager.h"
 class Interface
 {
 public:

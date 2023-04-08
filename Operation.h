@@ -1,5 +1,5 @@
 #pragma once
-#include <Windows.h>
+#include "GameManager.h"
 #define CMD_NO_INPUT 0
 #define CMD_UP 1
 #define CMD_DOWN 2

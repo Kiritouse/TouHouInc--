@@ -25,8 +25,7 @@ Player::Player() {
 	direction.left = 0;
 	direction.right = 0;
 }
-void Player::updatePosition(int _cmd)
-{
+void Player::updatePosition(int _cmd) {
 	tempframe = frame.f_total - frame.f_pause;
 	if (_cmd & CMD_UP && position.y >= 0) {
 		direction.up = 1;

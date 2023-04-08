@@ -1,7 +1,4 @@
 #include "Bullet.h"
-#include "Operation.h"
-#include "FrameManager.h"
-#include "Player.h"
 #define NORMAL  0
 #define UPDATE 1
 
@@ -20,19 +17,34 @@ void paintBullet() {
 		iterator = iterator->pnext;//指向下一个子弹
 	}
 }
-void addBullet(int flag, int x, int y) {
+void addBulletPlayer(int flag, int x, int y) {//在子弹链表中插入子弹
+	BulletNode* pNew;
+	pNew = new BulletNode;//为生成的新子弹分配内存
+	pNew->pnext = ListBullet->pnext;
+	pNew->x = x;
+	pNew->y = y;
+	pNew->width = WIDTH_BULLET0;
+	pNew->height = HEIGHT_BULLET0;
+	ListBullet->pnext = pNew;
 
 }
-void addBulletManager(int command) {//控制所有子弹的生成
-	if (command & CMD_FIRE) {//如果说一直开火键位
+void addBulletManagerPlayer(int command) {//控制所有子弹的生成
+	//如果说一直开火键位
+	if (command & CMD_FIRE) {
 		int FrameData_Bullet = frame.f_total - frame.f_pause;
 		int xleft, xright, xmid;//定义子弹左右中间上下的坐标
 		int ymin, ymax;
 
-		xleft = _player.x + WIDTH_PLAYER / 2 - WIDTH_BULLET0 / 2 - 5;
-		xright = _player.x + WIDTH_PLAYER / 2 - WIDTH_BULLET0 / 2 + 5;
-		xmid = _player.x + WIDTH_PLAYER / 2 - WIDTH_BULLET0 / 2;
-
+		xleft = _player_position.x + WIDTH_PLAYER / 2 - WIDTH_BULLET0 / 2 - 5;
+		xright = _player_position.x + WIDTH_PLAYER / 2 - WIDTH_BULLET0 / 2 + 5;
+		xmid = _player_position.x + WIDTH_PLAYER / 2 - WIDTH_BULLET0 / 2;
+		ymax = _player_position.y - HEIGHT_BULLET0 + 5;
+		ymin = _player_position.y - HEIGHT_BULLET0;
+		if ((FrameData_Bullet & 17) == 0) {
+			addBulletPlayer(1, xmid, ymin);
+		}
 	}
 	else return;
+
 }
+

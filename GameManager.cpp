@@ -1,21 +1,10 @@
 #include "GameManager.h"
-#include "LoadResources.h"
-#include <graphics.h>
-#include <Windows.h>
-#include <time.h>
-#include "Interface.h"
-#include "Map.h"
-#include "Player.h"
-#include "Operation.h"
-#include "FrameManager.h"
-#include <iostream>
-#include "Bullet.h"
 GameState gameState;
 Interface _inerface;
 BulletNode* ListBullet;
 Map _map;
 Player _player;
-
+Player::Position _player_position;
 void Awake() {
 
 	gameState = gaming;
@@ -38,7 +27,7 @@ void CreateList() {
 void Delete(int flag) {
 	BulletNode* pnext;//指向
 	BulletNode* pInRule;//指向合法的节点
-	pnext = ListBullet->next;
+	pnext = ListBullet->pnext;
 	pInRule = ListBullet;
 	switch (flag) {
 	case 0:
@@ -77,6 +66,7 @@ void Gaming() {
 			command = GetInput();
 			_map.updateMapPosition();
 			_player.updatePosition(command);
+			moveBullet();//根据指令移动子弹
 
 		}
 		Sleep(1);

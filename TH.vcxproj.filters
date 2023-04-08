@@ -8,9 +8,6 @@
     <Filter Include="子弹">
       <UniqueIdentifier>{b89391a0-40d3-4ae8-b511-5bcaed889235}</UniqueIdentifier>
     </Filter>
-    <Filter Include="飞行物抽象类">
-      <UniqueIdentifier>{1c80ed65-7c74-4c89-8332-ef20a5ce9ffd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="游戏管理">
       <UniqueIdentifier>{b2f3676d-4969-4f5f-bf3d-53cc57d72695}</UniqueIdentifier>
     </Filter>
@@ -52,9 +49,6 @@
     <ClCompile Include="Draw.cpp">
       <Filter>透明绘图</Filter>
     </ClCompile>
-    <ClCompile Include="Flyers.cpp">
-      <Filter>飞行物抽象类</Filter>
-    </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>地图背景</Filter>
     </ClCompile>
@@ -92,9 +86,6 @@
     </ClInclude>
     <ClInclude Include="Draw.h">
       <Filter>透明绘图</Filter>
-    </ClInclude>
-    <ClInclude Include="Flyers.h">
-      <Filter>飞行物抽象类</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>地图背景</Filter>
