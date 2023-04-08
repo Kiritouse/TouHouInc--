@@ -17,16 +17,11 @@ enum GameState
 };
 struct BulletNode
 {
-	int x, y;//子弹坐标
-	int xo, yo;//子弹发射时的位置
-	int frame_create;//记录创建时的帧数
-	int fire_on, fire_off;//记录开火时的帧数间隔
-	int FireSwitch;//是否开火，对敌机实现间歇性射击
-	int dx, dy;//x和y方向上的速度，也就是增量,便于实现分叉
-	bool isExist;//判断子弹是否需要删除
-	int hit;
-	int width, height;
-	BulletNode* pnext;//指向下一个子弹节点的指针
+	float x, y;
+	float vx, vy;
+	int hitpoint;
+	int isExist;//判断子弹是否需要删除
+	BulletNode* pnext;
 };
 class Player {
 public:
@@ -54,9 +49,9 @@ public:
 	};
 };
 extern GameState gameState;
-extern BulletNode* ListBullet;
 extern Player _player;
 extern Player::Position _player_position;
+extern BulletNode* plane_bullet_list;
 /// <summary>
 /// 初始化一些数据
 /// </summary>

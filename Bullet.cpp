@@ -1,50 +1,87 @@
 #include "Bullet.h"
+#include "Player.h"
+#include <iostream>
 #define NORMAL  0
 #define UPDATE 1
-
-void moveBullet() {
-	BulletNode* iterator = ListBullet->pnext;//顶一个指针，指向子弹节点的下一个节点
-	while (iterator != NULL) {//遍历所有的节点
-		iterator->y -= 10;//每遍历一个子弹节点就更改一个子弹坐标
-		iterator = iterator->pnext;
+void listPushBack(BulletNode** pplist, BulletNode* newNode) {
+	if (*pplist == NULL)//如果链表为空，那么新增的节点就是第一个
+	{
+		*pplist = newNode;
+		return;
+	}
+	BulletNode* cur = *pplist;
+	while (cur->pnext != NULL)//找到最后一个节点
+	{
+		cur = cur->pnext;
+	}
+	cur->pnext = newNode;//插入新的节点
+}
+BulletNode* creatPlaneBullet(float vx, float vy) {
+	BulletNode* p = new BulletNode;
+	p->x = position.x + position.width / 2 + 10;//飞机头部的位置
+	p->y = position.y;
+	p->vx = vx;
+	p->vy = vy;//速度
+	p->hitpoint = 1;
+	p->isExist = 1;
+	p->pnext = NULL;
+	return p;
+}
+void listChangeXY(BulletNode** pplist)
+{
+	if (*pplist == NULL)//如果链表为空，那么新增的节点就是第一个
+		return;
+	BulletNode* cur = *pplist;//curret指向第一个节点
+	while (cur != NULL)//遍历链表
+	{
+		cur->x += cur->vx;
+		cur->y += cur->vy;
+		//判断子弹是否离开视野
+		if ((cur->y < -20) || (cur->y > HEIGHT_MAP) || (cur->x > WIDTH_MAP) || (cur->y < -20))
+			cur->isExist = 0;
+		cur = cur->pnext;//指向下一个节点
+	}
+}
+void listRemoveNode(BulletNode** pplist)
+{
+	if (*pplist == NULL)//如果链表为空，就没有可删除的节点了
+		return;
+	BulletNode* cur = *pplist;//curret先指向第一个节点
+	BulletNode* prev = NULL;  //previous指向上一个节点的指针
+	while (cur != NULL)//遍历链表
+	{
+		if (cur->isExist == 0)//判断节点是否需要删除
+		{
+			if (*pplist == cur)//如果删除的是第一个节点
+			{
+				*pplist = cur->pnext;  //更改链表的地址，让下一个节点作为头结点 ，如果没有节点，则链表为空
+				free(cur);             //释放当前节点（第一个节点的）空间
+				cur = *pplist;         //让cur指向下一个节点
+			}
+			else
+			{
+				prev->pnext = cur->pnext;  //记录下一个节点的地址
+				free(cur);                 //释放当前节点空间
+				cur = prev;                //当前节点变成前一个节点
+			}
+		}
+		else //如果不需要删除节点，储存当前节点为前一个节点，然后指向下一个节点
+		{
+			prev = cur;
+			cur = cur->pnext;
+		}
 	}
 }
 void paintBullet() {
-	BulletNode* iterator = ListBullet->pnext;
-	while (iterator != NULL) {
-		transparentimage_half(NULL, iterator->x, iterator->y, WIDTH_BULLET0, HEIGHT_BULLET0,
-			0, 0, WIDTH_BULLET0, HEIGHT_BULLET0, &normalBullets, 200);
-		iterator = iterator->pnext;//指向下一个子弹
+	listChangeXY(&plane_bullet_list);//计算子弹新的位置
+	listRemoveNode(&plane_bullet_list);//超出视野或者击中飞行器的子弹删除掉
+	for (BulletNode* cur = plane_bullet_list; cur != NULL; cur = cur->pnext)
+	{
+		transparentimage(NULL, cur->x, cur->y, WIDTH_BULLET0, HEIGHT_BULLET0,
+			0, 0, WIDTH_BULLET0, HEIGHT_BULLET0, &normalBullets);
 	}
-}
-void addBulletPlayer(int flag, int x, int y) {//在子弹链表中插入子弹
-	BulletNode* pNew;
-	pNew = new BulletNode;//为生成的新子弹分配内存
-	pNew->pnext = ListBullet->pnext;
-	pNew->x = x;
-	pNew->y = y;
-	pNew->width = WIDTH_BULLET0;
-	pNew->height = HEIGHT_BULLET0;
-	ListBullet->pnext = pNew;
 
 }
-void addBulletManagerPlayer(int command) {//控制所有子弹的生成
-	//如果说一直开火键位
-	if (command & CMD_FIRE) {
-		int FrameData_Bullet = frame.f_total - frame.f_pause;
-		int xleft, xright, xmid;//定义子弹左右中间上下的坐标
-		int ymin, ymax;
 
-		xleft = _player_position.x + WIDTH_PLAYER / 2 - WIDTH_BULLET0 / 2 - 5;
-		xright = _player_position.x + WIDTH_PLAYER / 2 - WIDTH_BULLET0 / 2 + 5;
-		xmid = _player_position.x + WIDTH_PLAYER / 2 - WIDTH_BULLET0 / 2;
-		ymax = _player_position.y - HEIGHT_BULLET0 + 5;
-		ymin = _player_position.y - HEIGHT_BULLET0;
-		if ((FrameData_Bullet & 17) == 0) {
-			addBulletPlayer(1, xmid, ymin);
-		}
-	}
-	else return;
 
-}
 

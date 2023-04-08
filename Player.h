@@ -9,5 +9,6 @@
 #define HEIGHT_PLAYER_RIGHT 47
 #define WIDTH_PLAYER_LEFT 28
 #define HEIGHT_PLAYER_LEFT 47
+extern Player::Position position;
 
 
