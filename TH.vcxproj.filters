@@ -114,5 +114,6 @@
     <ClInclude Include="MathAndPhysics.h">
       <Filter>MathAndPhysics</Filter>
     </ClInclude>
+    <ClInclude Include="Flyers.h" />
   </ItemGroup>
 </Project>

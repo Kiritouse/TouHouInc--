@@ -12,5 +12,4 @@ struct Frame
 		f_pause = pause;
 	}
 };
-extern Frame frame;
-void ctrlFps();
+void cal_FPS();

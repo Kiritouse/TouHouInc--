@@ -2,8 +2,8 @@
 #include <Windows.h>
 #include <graphics.h>
 #include "FrameManager.h"
-Frame frame(0, 0, 0, 0);
-void ctrlFps() {
+
+void cal_FPS() {
 	clock_t start_time = clock();
 	clock_t running_time = clock() - start_time;
 	if ((5 - running_time) >= 0)//防止睡眠函数使用负数

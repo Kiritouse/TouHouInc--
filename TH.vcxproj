@@ -163,6 +163,7 @@
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Draw.h" />
+    <ClInclude Include="Flyers.h" />
     <ClInclude Include="FrameManager.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Interface.h" />

@@ -4,12 +4,9 @@
 #include "GameManager.h"
 #include "Operation.h"
 #define NORMAL  0
-#define UPDATE 1
-void dealInput_Fire(int command, int frameBuffer) {
-	if (((command & CMD_FIRE) && ((frameBuffer & 1) == 0))) {
-		listPushBack(&plane_bullet_list, creatPlaneBullet(0, -10));
-	}
-}
+#define UPDATE 1 
+#define WIDTH_BULLET0 12
+#define HEIGHT_BULLET0 44
 void listPushBack(BulletNode** pplist, BulletNode* newNode) {
 	if (*pplist == NULL)//如果链表为空，那么新增的节点就是第一个
 	{
@@ -25,8 +22,8 @@ void listPushBack(BulletNode** pplist, BulletNode* newNode) {
 }
 BulletNode* creatPlaneBullet(float vx, float vy) {
 	BulletNode* p = new BulletNode;
-	p->x = position.x + WIDTH_PLAYER / 2 - 8;//飞机头部的位置
-	p->y = position.y;
+	p->x = E_TYPE_Position.x + WIDTH_PLAYER / 2 - 8;//飞机头部的位置
+	p->y = E_TYPE_Position.y;
 	p->vx = vx;
 	p->vy = vy;//速度
 	p->hitpoint = 1;
@@ -34,8 +31,12 @@ BulletNode* creatPlaneBullet(float vx, float vy) {
 	p->pnext = NULL;
 	return p;
 }
-void listChangeXY(BulletNode** pplist)
+void update_BulletPosition(BulletNode** pplist, int command, int frameBuffer)
 {
+	if (((command & CMD_FIRE) && ((frameBuffer & 1) == 0))) {
+		listPushBack(&Player_Bullet_List, creatPlaneBullet(0, -10));
+	}//处理射击操作
+
 	if (*pplist == NULL)//如果链表为空，那么新增的节点就是第一个
 		return;
 	BulletNode* cur = *pplist;//curret指向第一个节点
@@ -53,37 +54,35 @@ void listRemoveNode(BulletNode** pplist)
 {
 	if (*pplist == NULL)//如果链表为空，就没有可删除的节点了
 		return;
-	BulletNode* cur = *pplist;//curret先指向第一个节点
-	BulletNode* prev = NULL;  //previous指向上一个节点的指针
-	while (cur != NULL)//遍历链表
+	BulletNode* curP = *pplist;//curret先指向第一个节点
+	BulletNode* prevP = NULL;  //previous指向上一个节点的指针
+	while (curP != NULL)//遍历链表
 	{
-		if (cur->isExist == 0)//判断节点是否需要删除
+		if (curP->isExist == 0)
 		{
-			if (*pplist == cur)//如果删除的是第一个节点
+			if (*pplist == curP)
 			{
-				*pplist = cur->pnext;  //更改链表的地址，让下一个节点作为头结点 ，如果没有节点，则链表为空
-				free(cur);             //释放当前节点（第一个节点的）空间
-				cur = *pplist;         //让cur指向下一个节点
+				*pplist = curP->pnext;
+				free(curP);
+				curP = *pplist;
 			}
 			else
 			{
-				prev->pnext = cur->pnext;  //记录下一个节点的地址
-				free(cur);                 //释放当前节点空间
-				cur = prev;                //当前节点变成前一个节点
+				prevP->pnext = curP->pnext;
+				free(curP);
+				curP = prevP;
 			}
 		}
-		else //如果不需要删除节点，储存当前节点为前一个节点，然后指向下一个节点
+		else
 		{
-			prev = cur;
-			cur = cur->pnext;
+			prevP = curP;
+			curP = curP->pnext;
 		}
 	}
 }
 
-void paintBullet() {
-	listChangeXY(&plane_bullet_list);//计算子弹新的位置
-	listRemoveNode(&plane_bullet_list);//超出视野或者击中飞行器的子弹删除掉
-	for (BulletNode* cur = plane_bullet_list; cur != NULL; cur = cur->pnext)
+void update_BulletImage() {
+	for (BulletNode* cur = Player_Bullet_List; cur != NULL; cur = cur->pnext)
 	{
 		std::cout << cur->y << std::endl;
 		transparentimage_half(NULL, cur->x, cur->y, WIDTH_BULLET0, HEIGHT_BULLET0,

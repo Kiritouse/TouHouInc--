@@ -17,14 +17,15 @@ enum GameState
 };
 
 
-extern GameState gameState;
-extern Player _player;
-extern BulletNode* plane_bullet_list;
+extern GameState E_TYPE_GAMESTATE;
+extern Player OBJ_Player;
+extern BulletNode* Player_Bullet_List;
+extern Frame frame;
 /// <summary>
 /// 初始化一些数据
 /// </summary>
 void Awake();
-void Paint();
+void Update();
 
 /// <summary>
 ///这个函数调用GameManager中所有与游戏有关的函数

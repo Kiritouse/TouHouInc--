@@ -4,12 +4,12 @@
 Map::Map() {
 	mapY = 0;
 }
-void Map::updateMapPosition() {
+void Map::update_MapPosition() {
 	mapY++;
 	if (mapY >= HEIGHT_MAP)mapY = 0;
 
 }
-void Map::updatePainting() {
+void Map::update_MapImage() {
 	putimage(0, mapY - HEIGHT_MAP, &background);
 	putimage(0, mapY, &background);
 }

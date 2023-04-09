@@ -1,50 +1,51 @@
 #include "GameManager.h"
-GameState gameState;
-Interface _inerface;
-BulletNode* ListBullet;
-Map _map;
-Player _player;
-BulletNode* plane_bullet_list = NULL;//飞机子弹列表的头节点
+GameState E_TYPE_GAMESTATE;
+Interface OBJ_interface;
+Map OBJ_Map;
+Player OBJ_Player;
+Frame frame(0, 0, 0, 0);
+BulletNode* Player_Bullet_List = NULL;//飞机子弹列表的头节点
+clock_t t_begin = clock();
+clock_t t_update;
+int  n_command;//
 void Awake() {
 
-	gameState = gaming;
-	_inerface.InitGraphInterface();
+	E_TYPE_GAMESTATE = gaming;
+	OBJ_interface.InitGraphInterface();
 
 }
-void Paint() {
+void Update() {//帧更新
 
-	cleardevice();
+	while (E_TYPE_GAMESTATE == gaming) {
+		t_update = clock();
+		if (t_update - t_begin >= 10) {
+			frame.f_total++;//总帧数，10ms为一帧
+		}
+		else continue;
+		n_command = GetInput();
+
+		OBJ_Map.update_MapPosition();
+		OBJ_Player.update_PlayerPosition(n_command);
+		update_BulletPosition(&Player_Bullet_List, n_command, frame.f_total);//计算子弹新的位置
+		listRemoveNode(&Player_Bullet_List);//超出视野或者击中飞行器的子弹删除掉
 
 
+		OBJ_Map.update_MapImage();
+		OBJ_Player.update_PlayerImage();
+		update_BulletImage();
 
+		cal_FPS();
+
+		FlushBatchDraw();
+
+	}
 }
 
 
 
 void Gaming() {
-	clock_t t0 = clock();
-	clock_t t1;
-	int command;
 	BeginBatchDraw();
-	while (gameState == gaming) {
-		t1 = clock();
-		if (t1 - t0 >= 10) {
-			frame.f_total++;
-		}
-		else continue;
-		//if (gameState != pause && gameState != gameOver) {
-		_map.updatePainting();
-		_player.updateImage();
-		paintBullet();
-		ctrlFps();
-		command = GetInput();
-		_map.updateMapPosition();
-		_player.updatePosition(command);
-		dealInput_Fire(command, frame.f_total);
-		FlushBatchDraw();
-		//} 
-		Sleep(1);
-
-	}
+	Update();
+	Sleep(1);
 	EndBatchDraw();
 }

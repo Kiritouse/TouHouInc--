@@ -10,8 +10,8 @@ public:
 	Player();//构造函数，初始化数据
 	int health;
 	int speed;
-	void updatePosition(int _cmd);
-	void updateImage();
+	void update_PlayerPosition(int _cmd);
+	void update_PlayerImage();
 	struct Position
 	{
 		int x, y;
@@ -30,7 +30,7 @@ public:
 		int right;
 	};
 };
-extern Player::Position position;
+extern Player::Position E_TYPE_Position;
 
 
 

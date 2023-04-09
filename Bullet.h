@@ -1,6 +1,5 @@
 #pragma once
-#define WIDTH_BULLET0 12
-#define HEIGHT_BULLET0 44
+
 struct BulletNode
 {
 	float x, y;
@@ -14,6 +13,6 @@ struct BulletNode
 void dealInput_Fire(int command, int frameBuffer);
 void listPushBack(BulletNode** pplist, BulletNode* newNode);//尾插一个数据
 BulletNode* creatPlaneBullet(float vx, float vy);//飞机每发射一颗子弹增加一个节点
-void listChangeXY(BulletNode** pplist);//修改链表中所有节点的坐标
+void update_BulletPosition(BulletNode** pplist, int command, int framebuffer);//修改链表中所有节点的坐标
 void listRemoveNode(BulletNode** pplist);//删除链表中isExist为0的节点
-void paintBullet();
+void update_BulletImage();
