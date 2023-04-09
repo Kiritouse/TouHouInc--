@@ -1,5 +1,4 @@
 #pragma once
-#include "GameManager.h"
 struct Frame
 {
 	int f_total;

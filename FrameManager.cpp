@@ -1,3 +1,6 @@
+#include <time.h>
+#include <Windows.h>
+#include <graphics.h>
 #include "FrameManager.h"
 Frame frame(0, 0, 0, 0);
 void ctrlFps() {

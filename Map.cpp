@@ -1,5 +1,6 @@
 #include "Map.h"
-
+#include <graphics.h>
+#include "LoadResources.h"
 Map::Map() {
 	mapY = 0;
 }

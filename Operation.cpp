@@ -1,5 +1,5 @@
 #include "Operation.h"
-
+#include <Windows.h>
 int GetInput() {
 	int inputState = CMD_NO_INPUT;
 	if (GetAsyncKeyState(VK_LEFT) & 0x8000)		inputState |= CMD_LEFT;//更新为当前的状态

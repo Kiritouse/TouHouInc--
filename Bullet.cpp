@@ -1,8 +1,15 @@
 #include "Bullet.h"
 #include "Player.h"
-#include <iostream>
+#include <cstddef>
+#include "GameManager.h"
+#include "Operation.h"
 #define NORMAL  0
 #define UPDATE 1
+void dealInput_Fire(int command, int frameBuffer) {
+	if (((command & CMD_FIRE) && ((frameBuffer & 1) == 0))) {
+		listPushBack(&plane_bullet_list, creatPlaneBullet(0, -10));
+	}
+}
 void listPushBack(BulletNode** pplist, BulletNode* newNode) {
 	if (*pplist == NULL)//如果链表为空，那么新增的节点就是第一个
 	{
@@ -18,7 +25,7 @@ void listPushBack(BulletNode** pplist, BulletNode* newNode) {
 }
 BulletNode* creatPlaneBullet(float vx, float vy) {
 	BulletNode* p = new BulletNode;
-	p->x = position.x + position.width / 2 + 10;//飞机头部的位置
+	p->x = position.x + WIDTH_PLAYER / 2 - 8;//飞机头部的位置
 	p->y = position.y;
 	p->vx = vx;
 	p->vy = vy;//速度
@@ -72,15 +79,18 @@ void listRemoveNode(BulletNode** pplist)
 		}
 	}
 }
+
 void paintBullet() {
 	listChangeXY(&plane_bullet_list);//计算子弹新的位置
 	listRemoveNode(&plane_bullet_list);//超出视野或者击中飞行器的子弹删除掉
 	for (BulletNode* cur = plane_bullet_list; cur != NULL; cur = cur->pnext)
 	{
-		transparentimage(NULL, cur->x, cur->y, WIDTH_BULLET0, HEIGHT_BULLET0,
-			0, 0, WIDTH_BULLET0, HEIGHT_BULLET0, &normalBullets);
-	}
+		std::cout << cur->y << std::endl;
+		transparentimage_half(NULL, cur->x, cur->y, WIDTH_BULLET0, HEIGHT_BULLET0,
+			0, 0, WIDTH_BULLET0, HEIGHT_BULLET0, &normalBullets, 150);
 
+
+	}
 }
 
 

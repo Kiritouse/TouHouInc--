@@ -1,20 +1,19 @@
 #include "Player.h"
-#include "Draw.h"
-#include "Operation.h"
-#include <iostream>
+#include <graphics.h>
 #include "FrameManager.h"
-#include <iostream>
-#include <time.h>
-
+#include "Operation.h"
+#include "Map.h"
+#include "Draw.h"
+#include "LoadResources.h"
 struct orimg {
 	int x = 3, y = 0;
 }originPoint_img;
+
 Player::Position position;
 Player::Direction direction;
 Player::ObjectState playerState;
 int leftbuffer, rightbuffer, tempframe;
 Player::Player() {
-	Flyers Wingman[4]{};//4¸öÁÅ»ú
 	speed = 5;
 	position.x = 240;
 	position.y = 670;

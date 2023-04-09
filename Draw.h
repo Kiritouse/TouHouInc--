@@ -1,6 +1,6 @@
 #pragma once
 #include <conio.h>
-#include "GameManager.h"
+#include <graphics.h>
 #pragma comment(lib, "MSIMG32.LIB")
 #pragma comment(lib,"Winmm.lib") 
 /// <summary>
