@@ -37,7 +37,7 @@ void Update() {//帧更新
 		cal_FPS();
 
 		FlushBatchDraw();
-
+		Sleep(10);
 	}
 }
 
@@ -46,6 +46,6 @@ void Update() {//帧更新
 void Gaming() {
 	BeginBatchDraw();
 	Update();
-	Sleep(1);
+
 	EndBatchDraw();
 }
