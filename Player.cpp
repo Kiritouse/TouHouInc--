@@ -23,8 +23,8 @@ Player::Player() {
 	E_TYPE_Direction.left = 0;
 	E_TYPE_Direction.right = 0;
 }
-void Player::update_PlayerPosition(int _cmd) {
-	tempframe = frame.f_total - frame.f_pause;
+void Player::update_PlayerPosition(int _cmd, int f_total, int f_pause) {
+	tempframe = f_total - f_pause;
 	if (_cmd & CMD_UP && E_TYPE_Position.y >= 0) {
 		E_TYPE_Direction.up = 1;
 		E_TYPE_Position.y -= speed;
@@ -50,9 +50,9 @@ void Player::update_PlayerPosition(int _cmd) {
 	else E_TYPE_Direction.right = 0;
 }
 
-void Player::update_PlayerImage() {
+void Player::update_PlayerImage(int f_total, int f_pause) {
 	if (health = 0) return;
-	int t2 = frame.f_total - frame.f_pause;
+	int t2 = f_total - f_pause;
 	int frameBuffer = t2 - tempframe;
 	transparentimage(NULL, E_TYPE_Position.x, E_TYPE_Position.y, WIDTH_PLAYER, HEIGHT_PLAYER,
 		originPoint_img.x, originPoint_img.y, WIDTH_PLAYER, HEIGHT_PLAYER, &player);

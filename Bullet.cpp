@@ -7,13 +7,13 @@
 #define UPDATE 1 
 #define WIDTH_BULLET0 12
 #define HEIGHT_BULLET0 44
-void listPushBack(BulletNode** pplist, BulletNode* newNode) {
-	if (*pplist == NULL)//如果链表为空，那么新增的节点就是第一个
+void listPushBack(BulletNode** pp_Player_Bullet_List_Node, BulletNode* newNode) {
+	if (*pp_Player_Bullet_List_Node == NULL)//如果链表为空，那么新增的节点就是第一个
 	{
-		*pplist = newNode;
+		*pp_Player_Bullet_List_Node = newNode;
 		return;
 	}
-	BulletNode* cur = *pplist;
+	BulletNode* cur = *pp_Player_Bullet_List_Node;
 	while (cur->pnext != NULL)//找到最后一个节点
 	{
 		cur = cur->pnext;
@@ -31,15 +31,15 @@ BulletNode* creatPlaneBullet(float vx, float vy) {
 	p->pnext = NULL;
 	return p;
 }
-void update_BulletPosition(BulletNode** pplist, int command, int frameBuffer)
+void update_BulletPosition(BulletNode** pp_Player_Bullet_List_Node, int command, int frameBuffer)
 {
 	if (((command & CMD_FIRE) && ((frameBuffer & 1) == 0))) {
-		listPushBack(&Player_Bullet_List, creatPlaneBullet(0, -10));
+		listPushBack(pp_Player_Bullet_List_Node, creatPlaneBullet(0, -10));
 	}//处理射击操作
 
-	if (*pplist == NULL)//如果链表为空，那么新增的节点就是第一个
+	if (*pp_Player_Bullet_List_Node == NULL)//如果链表为空，那么新增的节点就是第一个
 		return;
-	BulletNode* cur = *pplist;//curret指向第一个节点
+	BulletNode* cur = *pp_Player_Bullet_List_Node;//curret指向第一个节点
 	while (cur != NULL)//遍历链表
 	{
 		cur->x += cur->vx;
@@ -50,21 +50,21 @@ void update_BulletPosition(BulletNode** pplist, int command, int frameBuffer)
 		cur = cur->pnext;//指向下一个节点
 	}
 }
-void listRemoveNode(BulletNode** pplist)
+void listRemoveNode(BulletNode** pp_Player_Bullet_List_Node)
 {
-	if (*pplist == NULL)//如果链表为空，就没有可删除的节点了
+	if (*pp_Player_Bullet_List_Node == NULL)//如果链表为空，就没有可删除的节点了
 		return;
-	BulletNode* curP = *pplist;//curret先指向第一个节点
+	BulletNode* curP = *pp_Player_Bullet_List_Node;//curret先指向第一个节点
 	BulletNode* prevP = NULL;  //previous指向上一个节点的指针
 	while (curP != NULL)//遍历链表
 	{
 		if (curP->isExist == 0)
 		{
-			if (*pplist == curP)
+			if (*pp_Player_Bullet_List_Node == curP)
 			{
-				*pplist = curP->pnext;
+				*pp_Player_Bullet_List_Node = curP->pnext;
 				free(curP);
-				curP = *pplist;
+				curP = *pp_Player_Bullet_List_Node;
 			}
 			else
 			{
@@ -81,8 +81,8 @@ void listRemoveNode(BulletNode** pplist)
 	}
 }
 
-void update_BulletImage() {
-	for (BulletNode* cur = Player_Bullet_List; cur != NULL; cur = cur->pnext)
+void update_BulletImage(BulletNode* p_Player_Bullet_List) {
+	for (BulletNode* cur = p_Player_Bullet_List; cur != NULL; cur = cur->pnext)
 	{
 		std::cout << cur->y << std::endl;
 		transparentimage_half(NULL, cur->x, cur->y, WIDTH_BULLET0, HEIGHT_BULLET0,

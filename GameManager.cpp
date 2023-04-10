@@ -4,7 +4,7 @@ Interface OBJ_interface;
 Map OBJ_Map;
 Player OBJ_Player;
 Frame frame(0, 0, 0, 0);
-BulletNode* Player_Bullet_List = NULL;//飞机子弹列表的头节点
+BulletNode* p_Player_Bullet_List_Node = NULL;//飞机子弹列表的头节点
 clock_t t_begin = clock();
 clock_t t_update;
 int  n_command;//
@@ -25,14 +25,14 @@ void Update() {//帧更新
 		n_command = GetInput();
 
 		OBJ_Map.update_MapPosition();
-		OBJ_Player.update_PlayerPosition(n_command);
-		update_BulletPosition(&Player_Bullet_List, n_command, frame.f_total);//计算子弹新的位置
-		listRemoveNode(&Player_Bullet_List);//超出视野或者击中飞行器的子弹删除掉
+		OBJ_Player.update_PlayerPosition(n_command, frame.f_total, frame.f_pause);
+		update_BulletPosition(&p_Player_Bullet_List_Node, n_command, frame.f_total);//计算子弹新的位置
+		listRemoveNode(&p_Player_Bullet_List_Node);//超出视野或者击中飞行器的子弹删除掉
 
 
 		OBJ_Map.update_MapImage();
-		OBJ_Player.update_PlayerImage();
-		update_BulletImage();
+		OBJ_Player.update_PlayerImage(frame.f_total, frame.f_pause);
+		update_BulletImage(p_Player_Bullet_List_Node);
 
 		cal_FPS();
 

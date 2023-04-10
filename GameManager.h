@@ -19,8 +19,7 @@ enum GameState
 
 extern GameState E_TYPE_GAMESTATE;
 extern Player OBJ_Player;
-extern BulletNode* Player_Bullet_List;
-extern Frame frame;
+
 /// <summary>
 /// 初始化一些数据
 /// </summary>
