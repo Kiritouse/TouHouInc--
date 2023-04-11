@@ -41,6 +41,9 @@
     <Filter Include="MathAndPhysics">
       <UniqueIdentifier>{0df34fc1-89be-47ce-8b0d-c45a26c49e52}</UniqueIdentifier>
     </Filter>
+    <Filter Include="敌人">
+      <UniqueIdentifier>{b9cbecc5-3897-4f01-b14f-60101c2cc12d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp">
@@ -79,6 +82,9 @@
     <ClCompile Include="MathAndPhysics.cpp">
       <Filter>MathAndPhysics</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>敌人</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h">
@@ -115,5 +121,8 @@
       <Filter>MathAndPhysics</Filter>
     </ClInclude>
     <ClInclude Include="Flyers.h" />
+    <ClInclude Include="Enemy.h">
+      <Filter>敌人</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

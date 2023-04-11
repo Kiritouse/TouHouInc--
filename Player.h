@@ -30,7 +30,7 @@ public:
 		int right;
 	};
 };
-extern Player::Position E_TYPE_Position;
+extern Player::Position Struct_Position;
 
 
 

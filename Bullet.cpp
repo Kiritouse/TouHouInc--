@@ -22,8 +22,8 @@ void listPushBack(BulletNode** pp_Player_Bullet_List_Node, BulletNode* newNode) 
 }
 BulletNode* creatPlaneBullet(float vx, float vy) {
 	BulletNode* p = new BulletNode;
-	p->x = E_TYPE_Position.x + WIDTH_PLAYER / 2 - 8;//飞机头部的位置
-	p->y = E_TYPE_Position.y;
+	p->x = Struct_Position.x + WIDTH_PLAYER / 2 - 8;//飞机头部的位置
+	p->y = Struct_Position.y;
 	p->vx = vx;
 	p->vy = vy;//速度
 	p->hitpoint = 1;

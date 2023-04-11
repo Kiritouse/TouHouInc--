@@ -134,6 +134,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FrameManager.cpp" />
     <ClCompile Include="mainGame.cpp" />
     <ClCompile Include="GameManager.cpp">
@@ -163,6 +164,7 @@
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Draw.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Flyers.h" />
     <ClInclude Include="FrameManager.h" />
     <ClInclude Include="GameManager.h" />
