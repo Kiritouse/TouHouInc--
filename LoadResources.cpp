@@ -1,5 +1,5 @@
 #include "LoadResources.h"
-IMAGE  background, player, playerRight, playerLeft, normalBullets;
+IMAGE  background, player, playerRight, playerLeft, normalBullets, enemy0, enemy1;
 void loadResources(void) {
 	//º”‘ÿ±≥æ∞Õº∆¨
 	loadimage(&background, _T("sources\\Background\\background.png"));
@@ -11,6 +11,11 @@ void loadResources(void) {
 
 	//º”‘ÿ◊”µØ
 	loadimage(&normalBullets, _T("sources\\Bullets\\Player\\normalBullets.png"));
+
+	//º”‘ÿµ–»À
+	loadimage(&enemy0, _T("sources\\Enemy\\Enemy0.png"));
+	loadimage(&enemy1, _T("sources\\Enemy\\Enemy1.png"));
+
 
 
 

@@ -3,10 +3,11 @@ D:\Codes\TouHouInc--\Bullet.cpp(25,46): warning C4244: “=”: 从“int”转�
 D:\Codes\TouHouInc--\Bullet.cpp(26,24): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
 D:\Codes\TouHouInc--\Bullet.cpp(88,42): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
 D:\Codes\TouHouInc--\Bullet.cpp(88,34): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  Enemy.cpp
+  mainGame.cpp
   GameManager.cpp
   LoadResources.cpp
   Map.cpp
   Player.cpp
-  mainGame.cpp
   正在生成代码...
   TH.vcxproj -> D:\Codes\TouHouInc--\x64\Debug\TH.exe

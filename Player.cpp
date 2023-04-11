@@ -10,7 +10,7 @@ struct orimg {
 }originPoint_img;
 Player::Position  Struct_Position;
 ;
-Player::Direction E_TYPE_Direction;
+Player::Direction Struct_Direction;
 Player::ObjectState E_TYPE_PlayerState;
 int leftbuffer, rightbuffer, tempframe;
 Player::Player() {
@@ -19,36 +19,36 @@ Player::Player() {
 	Struct_Position.y = 670;
 	health = 100;
 	E_TYPE_PlayerState = Live;
-	E_TYPE_Direction.up = 0;
-	E_TYPE_Direction.down = 0;
-	E_TYPE_Direction.left = 0;
-	E_TYPE_Direction.right = 0;
+	Struct_Direction.up = 0;
+	Struct_Direction.down = 0;
+	Struct_Direction.left = 0;
+	Struct_Direction.right = 0;
 }
 void Player::update_PlayerPosition(int _cmd, int f_total, int f_pause) {
 	tempframe = f_total - f_pause;
 	if (_cmd & CMD_UP && Struct_Position.y >= 0) {
-		E_TYPE_Direction.up = 1;
+		Struct_Direction.up = 1;
 		Struct_Position.y -= speed;
 	}
-	else E_TYPE_Direction.up = 0;
+	else Struct_Direction.up = 0;
 	if (_cmd & CMD_DOWN && Struct_Position.y < HEIGHT_MAP - HEIGHT_PLAYER) {
-		E_TYPE_Direction.down = 1;
+		Struct_Direction.down = 1;
 		Struct_Position.y += speed;
 	}
-	else E_TYPE_Direction.down = 0;
+	else Struct_Direction.down = 0;
 
 	if (_cmd & CMD_LEFT && Struct_Position.x >= 0) {
-		E_TYPE_Direction.left = 1;
+		Struct_Direction.left = 1;
 		Struct_Position.x -= speed;
 		leftbuffer = tempframe;
 	}
-	else E_TYPE_Direction.left = 0;
+	else Struct_Direction.left = 0;
 	if (_cmd & CMD_RIGHT && Struct_Position.x < WIDTH_MAP - WIDTH_PLAYER) {
-		E_TYPE_Direction.right = 1;
+		Struct_Direction.right = 1;
 		Struct_Position.x += speed;
 		rightbuffer = tempframe;
 	}
-	else E_TYPE_Direction.right = 0;
+	else Struct_Direction.right = 0;
 }
 
 void Player::update_PlayerImage(int f_total, int f_pause) {
@@ -57,7 +57,7 @@ void Player::update_PlayerImage(int f_total, int f_pause) {
 	int frameBuffer = t2 - tempframe;
 	transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER, HEIGHT_PLAYER,
 		originPoint_img.x, originPoint_img.y, WIDTH_PLAYER, HEIGHT_PLAYER, &player);
-	if (E_TYPE_Direction.up - E_TYPE_Direction.down > 0) {
+	if (Struct_Direction.up - Struct_Direction.down > 0) {
 		if (frameBuffer >= 0 && frameBuffer < 5)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER, HEIGHT_PLAYER,
 				36, 0, WIDTH_PLAYER, HEIGHT_PLAYER_RIGHT, &player);
@@ -80,7 +80,7 @@ void Player::update_PlayerImage(int f_total, int f_pause) {
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER, HEIGHT_PLAYER,
 				223, 0, WIDTH_PLAYER, HEIGHT_PLAYER, &player);
 	}
-	if (E_TYPE_Direction.right - E_TYPE_Direction.left > 0) {
+	if (Struct_Direction.right - Struct_Direction.left > 0) {
 		frameBuffer = t2 - rightbuffer;
 
 		if (frameBuffer >= 0 && frameBuffer < 5)
@@ -105,7 +105,7 @@ void Player::update_PlayerImage(int f_total, int f_pause) {
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT,
 				223, 0, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT, &playerRight);
 	}
-	else if (E_TYPE_Direction.right - E_TYPE_Direction.left) {
+	else if (Struct_Direction.right - Struct_Direction.left) {
 		frameBuffer = t2 - leftbuffer;
 		if (frameBuffer >= 0 && frameBuffer < 5)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_LEFT, HEIGHT_PLAYER_LEFT,

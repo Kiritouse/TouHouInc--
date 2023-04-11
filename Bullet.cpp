@@ -20,7 +20,7 @@ void listPushBack(BulletNode** pp_Player_Bullet_List_Node, BulletNode* newNode) 
 	}
 	cur->pnext = newNode;//插入新的节点
 }
-BulletNode* creatPlaneBullet(float vx, float vy) {
+BulletNode* creatPlayerBullet(float vx, float vy) {
 	BulletNode* p = new BulletNode;
 	p->x = Struct_Position.x + WIDTH_PLAYER / 2 - 8;//飞机头部的位置
 	p->y = Struct_Position.y;
@@ -34,7 +34,7 @@ BulletNode* creatPlaneBullet(float vx, float vy) {
 void update_BulletPosition(BulletNode** pp_Player_Bullet_List_Node, int command, int frameBuffer)
 {
 	if (((command & CMD_FIRE) && ((frameBuffer & 1) == 0))) {
-		listPushBack(pp_Player_Bullet_List_Node, creatPlaneBullet(0, -10));
+		listPushBack(pp_Player_Bullet_List_Node, creatPlayerBullet(0, -10));
 	}//处理射击操作
 
 	if (*pp_Player_Bullet_List_Node == NULL)//如果链表为空，那么新增的节点就是第一个
