@@ -11,6 +11,7 @@
 #include "FrameManager.h"
 #include "Draw.h"
 #include "Bullet.h"
+#include "Enemy.h"
 enum GameState
 {
 	gaming, pause, gameOver

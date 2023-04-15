@@ -1,4 +1,5 @@
 #pragma once
+#include <math.h>
 /// <summary>
 /// 插值函数,用于实现从初始值到目标值的平稳过渡
 /// </summary>
@@ -7,6 +8,8 @@
 /// <param name="weight">权重</param>
 /// <returns></returns>
 float lerp(float source, float target, float weight);
+
+
 
 
 
