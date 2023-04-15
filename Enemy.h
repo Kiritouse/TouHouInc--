@@ -1,9 +1,10 @@
 #pragma once
 #include "FrameManager.h"
 #define PI 3.1415926
-//几种最基础的方向，都是沿着坐标轴，通过不同的偏转角度组合成各种方向
-#define DEF_LINEMOVE 0
-#define DEF_CIRCLEMOVE 1
+#define DEF_MOVE_STOP 0
+#define DEF_MOVE_LINE 1//线性的移动方式
+#define DEF_MOVE_CIRCLE 2//圆弧形的移动方式
+
 struct  EnemyNode
 {
 	int x, y, x0, y0;
@@ -11,13 +12,13 @@ struct  EnemyNode
 	int health;//生命值
 
 	int moveMode;//初始的移动方式,沿着坐标轴
-	double angle;//偏转角
+	int radian;//偏转角
 
 
 	int width;//模型的宽高
 	int height;
 	int hitpoints;//伤害值
-	int vx, vy;//在x,y方向上的增量，实际上就是速度
+	double speed;
 	int weaponLevel;//武器的等级，其实就是子弹的种类
 	int isExist;//物体是否需要销毁
 
@@ -36,7 +37,7 @@ enum EnemyName {
 /// </summary>
 /// <param name="pp_Enemy_List_Node">二维指针，取一位表示链表节点，取二维可以访问节点中的数据</param>
 /// <param name="newNode">一维指针，新建的节点</param>
-EnemyNode* createEnemy(int x0, int y0, double angle, int vx, int vy, EnemyName name);
+EnemyNode* createEnemy(int x0, int y0, double radian, int speed, EnemyName name);
 void Enemy_listPushHead(EnemyNode** pp_Enemy_List_Node, EnemyNode* newNode);
 /// <summary>
 /// 更新敌机的位置
@@ -44,7 +45,9 @@ void Enemy_listPushHead(EnemyNode** pp_Enemy_List_Node, EnemyNode* newNode);
 /// <param name="pp_Enemy_List_Node_Head">所有敌机所构成的链表</param>
 /// <param name="name">敌机种类</param>
 /// <param name="frame">根据帧数我们会选择不同的移动方式</param>
-void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, EnemyName name, Frame frame);
+void update_EnemyPosition(EnemyNode* pp_Enemy_List_Node_Head, Frame frame);
+void moveLine(EnemyNode* cur, int x0, int y0, int speed, double radian, int frameBuffer);
+void moveCircle(EnemyNode* cur, int x0, int y0, int speed, double radian, int frameBuffer);
 void update_EnemyImage(EnemyName name);
 int num_Enemies();//获取在场敌机的数量
 

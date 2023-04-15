@@ -5,11 +5,13 @@ struct Frame
 	int f_zawarudo;
 	int f_resume;
 	int f_pause;
-	Frame(int total, int zawarudo, int resume, int pause) {
-		f_total = total;
-		f_zawarudo = zawarudo;
-		f_resume = resume;
-		f_pause = pause;
+	int f_create;
+	Frame(int f_total, int f_zawarudo, int f_resume, int f_pause, int f_create) {
+		this->f_total = f_total;
+		this->f_zawarudo = f_zawarudo;
+		this->f_resume = f_resume;
+		this->f_pause = f_pause;
+		this->f_create = f_create;
 	}
 };
 void cal_FPS();
