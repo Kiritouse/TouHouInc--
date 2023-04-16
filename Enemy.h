@@ -37,7 +37,7 @@ enum EnemyName {
 /// </summary>
 /// <param name="pp_Enemy_List_Node">二维指针，取一位表示链表节点，取二维可以访问节点中的数据</param>
 /// <param name="newNode">一维指针，新建的节点</param>
-EnemyNode* createEnemy(int x0, int y0, double radian, int speed, EnemyName name);
+EnemyNode* createEnemy(int health, int weaponLevel, int x0, int y0, double radian, int moveMode, int speed, EnemyName name, Frame frame);
 void Enemy_listPushHead(EnemyNode** pp_Enemy_List_Node, EnemyNode* newNode);
 /// <summary>
 /// 更新敌机的位置
@@ -45,11 +45,24 @@ void Enemy_listPushHead(EnemyNode** pp_Enemy_List_Node, EnemyNode* newNode);
 /// <param name="pp_Enemy_List_Node_Head">所有敌机所构成的链表</param>
 /// <param name="name">敌机种类</param>
 /// <param name="frame">根据帧数我们会选择不同的移动方式</param>
-void update_EnemyPosition(EnemyNode* pp_Enemy_List_Node_Head, Frame frame);
-void moveLine(EnemyNode* cur, int x0, int y0, int speed, double radian, int frameBuffer);
-void moveCircle(EnemyNode* cur, int x0, int y0, int speed, double radian, int frameBuffer);
-void update_EnemyImage(EnemyName name);
+void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame);
+void moveLine(EnemyNode* cur, int speed, double radian, int frameBuffer, EnemyName name);
+/// <summary>
+/// 进行近似于圆形的移动
+/// </summary>
+/// <param name="cur"></param>
+/// <param name="r"></param>
+/// <param name="xo">圆心位置</param>
+/// <param name="yo"></param>
+/// <param name="speed">步长</param>
+/// <param name="radian"></param>
+/// <param name="frameBuffer"></param>
+void moveCircle(EnemyNode* cur, int r, int xo, int yo, int speed, int frameBuffer, EnemyName name);
+void update_EnemyImage(EnemyNode** p_Enemy_List, EnemyName name);
 int num_Enemies();//获取在场敌机的数量
+void listRemoveNode_Enemy(EnemyNode** pp_Enemy_List_Node_Head);
+
+
 
 
 

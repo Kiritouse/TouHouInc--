@@ -14,5 +14,5 @@ BulletNode* creatPlayerBullet(float vx, float vy);//飞机每发射一颗子弹增加一个节
 void Bullet_listPushBack(BulletNode** pp_Player_Bullet_List_Node, BulletNode* newNode);//把新增节点的数据插入链表当中
 
 void update_BulletPosition(BulletNode** pp_Player_Bullet_List_Node, int command, int framebuffer);//修改链表中所有节点的坐标
-void listRemoveNode(BulletNode** pp_Player_Bullet_List_Node);//删除链表中isExist为0的节点
-void update_BulletImage(BulletNode* p_Player_Bullet_List_Node);
+void listRemoveNode_Bullet(BulletNode** pp_Player_Bullet_List_Node);//删除链表中isExist为0的节点
+void update_BulletImage(BulletNode** p_Player_Bullet_List_Node);

@@ -51,7 +51,7 @@ void update_BulletPosition(BulletNode** pp_Player_Bullet_List_Node_Head, int com
 		cur = cur->pnext;//指向下一个节点
 	}
 }
-void listRemoveNode(BulletNode** pp_Player_Bullet_List_Node_Head)
+void listRemoveNode_Bullet(BulletNode** pp_Player_Bullet_List_Node_Head)
 {
 	if (*pp_Player_Bullet_List_Node_Head == NULL)//如果链表为空，就没有可删除的节点了
 		return;
@@ -82,10 +82,10 @@ void listRemoveNode(BulletNode** pp_Player_Bullet_List_Node_Head)
 	}
 }
 
-void update_BulletImage(BulletNode* p_Player_Bullet_List) {
-	for (BulletNode* cur = p_Player_Bullet_List; cur != NULL; cur = cur->pnext)
+void update_BulletImage(BulletNode** p_Player_Bullet_List) {
+	for (BulletNode* cur = *p_Player_Bullet_List; cur != NULL; cur = cur->pnext)
 	{
-		std::cout << cur->y << std::endl;
+		//std::cout << cur->y << std::endl;
 		transparentimage_half(NULL, cur->x, cur->y, WIDTH_BULLET0, HEIGHT_BULLET0,
 			0, 0, WIDTH_BULLET0, HEIGHT_BULLET0, &normalBullets, 150);
 
