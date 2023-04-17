@@ -14,8 +14,14 @@ void AddItem(int framebuffer) {
 	switch (framebuffer)
 	{
 	case 200:
-		Enemy_listPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 0, 0, 0, DEF_MOVE_CIRCLE, 5, ENEMY0, frame));
-		std::cout << "yes" << std::endl;
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 0, 0, 0, DEF_MOVE_CIRCLE, 5, ENEMY0, frame));
+		break;
+	case 300:
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 100, 100, PI / 4, DEF_MOVE_LINE, 7, ENEMY0, frame));
+		break;
+	case 400:
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 200, 200, 0, DEF_MOVE_RAND, 7, ENEMY0, frame));
+		break;
 	default:
 		break;
 	}

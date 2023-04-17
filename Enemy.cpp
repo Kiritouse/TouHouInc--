@@ -48,7 +48,7 @@ EnemyNode* createEnemy(int health, int weaponLevel, int x0, int y0, double radia
 	pNew->pnext = NULL;
 	return pNew;
 }
-void Enemy_listPushHead(EnemyNode** pp_Enemy_List_Node_Head, EnemyNode* newNode) {
+void Enemy_ListPushHead(EnemyNode** pp_Enemy_List_Node_Head, EnemyNode* newNode) {
 	if (*pp_Enemy_List_Node_Head == NULL)//Èç¹ûÁ´±íÎª¿Õ£¬ÄÇÃ´ÐÂÔöµÄ½Úµã¾ÍÊÇµÚÒ»¸ö,Í·½Úµã
 	{
 		*pp_Enemy_List_Node_Head = newNode;
@@ -137,7 +137,7 @@ void div_circle(double x0, double y0, double r, double size) //xy¶ÔÓ¦Ô²ÐÄ×ø±ê,rÎ
 void moveCircle(EnemyNode* cur, int r, int x0, int y0, int xo, int yo, int speed, int frameBuffer, EnemyName name) {
 	double theta = 5 * PI / 4 - cur->speed * frameBuffer / 3 / (WIDTH_MAP / 2);
 	//int tempx, tempy;
-	std::cout << frameBuffer << std::endl;
+	//std::cout << frameBuffer << std::endl;
 	int xnext = WIDTH_MAP / 2 + (WIDTH_MAP / 2) * cos(theta) - (double)WIDTH_MAP / 10;
 	int ynext = (WIDTH_MAP / 2) * sin(theta);
 
