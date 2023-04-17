@@ -11,7 +11,15 @@ clock_t t_begin = clock();
 clock_t t_update;
 int  n_command;//
 void AddItem(int framebuffer) {
-	Enemy_listPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 0, 0, PI / 2, DEF_MOVE_LINE, 5, ENEMY0, frame));
+	switch (framebuffer)
+	{
+	case 200:
+		Enemy_listPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 0, 0, 0, DEF_MOVE_CIRCLE, 5, ENEMY0, frame));
+		std::cout << "yes" << std::endl;
+	default:
+		break;
+	}
+
 }
 void Awake() {
 
@@ -19,11 +27,12 @@ void Awake() {
 	OBJ_interface.InitGraphInterface();
 }
 void Update() {//帧更新
-	int framebuffer = frame.f_total - frame.f_pause;
+	int framebuffer;
 	while (E_TYPE_GAMESTATE == gaming) {
 		t_update = clock();
 		if (t_update - t_begin >= 10) {
 			frame.f_total++;//总帧数，10ms为一帧
+			framebuffer = frame.f_total - frame.f_pause;
 		}
 		else continue;
 		AddItem(framebuffer);
@@ -33,6 +42,7 @@ void Update() {//帧更新
 		OBJ_Map.update_MapPosition();
 		OBJ_Player.update_PlayerPosition(n_command, frame.f_total, frame.f_pause);
 
+		//移动敌人的位置
 		update_EnemyPosition(&p_Enemy_List_Node, frame);
 		listRemoveNode_Enemy(&p_Enemy_List_Node);
 

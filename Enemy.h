@@ -4,6 +4,8 @@
 #define DEF_MOVE_STOP 0
 #define DEF_MOVE_LINE 1//线性的移动方式
 #define DEF_MOVE_CIRCLE 2//圆弧形的移动方式
+#define DEF_MOVE_RAND 3//随机线性移动
+
 
 struct  EnemyNode
 {
@@ -12,7 +14,7 @@ struct  EnemyNode
 	int health;//生命值
 
 	int moveMode;//初始的移动方式,沿着坐标轴
-	int radian;//偏转角
+	double radian;//偏转角
 
 
 	int width;//模型的宽高
@@ -48,16 +50,19 @@ void Enemy_listPushHead(EnemyNode** pp_Enemy_List_Node, EnemyNode* newNode);
 void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame);
 void moveLine(EnemyNode* cur, int speed, double radian, int frameBuffer, EnemyName name);
 /// <summary>
-/// 进行近似于圆形的移动
+/// 进行圆弧形移动
 /// </summary>
 /// <param name="cur"></param>
-/// <param name="r"></param>
-/// <param name="xo">圆心位置</param>
-/// <param name="yo"></param>
-/// <param name="speed">步长</param>
-/// <param name="radian"></param>
+/// <param name="r">圆弧的半径</param>
+/// <param name="x0">起始点</param>
+/// <param name="y0">起始点</param>
+/// <param name="xo">移动的圆弧的圆心</param>
+/// <param name="yo">移动的圆弧的圆心</param>
+/// <param name="speed">每一帧的起点和终点的直线距离</param>
 /// <param name="frameBuffer"></param>
-void moveCircle(EnemyNode* cur, int r, int xo, int yo, int speed, int frameBuffer, EnemyName name);
+/// <param name="name"></param>
+void moveCircle(EnemyNode* cur, int r, int x0, int y0, int xo, int yo, int speed, int frameBuffer, EnemyName name);
+void moveRand(EnemyNode* cur, int speed, EnemyName name);
 void update_EnemyImage(EnemyNode** p_Enemy_List, EnemyName name);
 int num_Enemies();//获取在场敌机的数量
 void listRemoveNode_Enemy(EnemyNode** pp_Enemy_List_Node_Head);

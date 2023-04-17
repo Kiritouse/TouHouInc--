@@ -3,12 +3,18 @@
 #include "Map.h"
 #include "Draw.h"
 #include "LoadResources.h"
+#include "MathAndPhysics.h"
+#include <vector>
 #include <iostream>
 #include <math.h>
+#include <random>
 #define WIDTH_ENEMY0 40
 #define HEIGHT_ENEMY0 59
 #define WIDTH_ENEMY1 43
 #define HEIGHT_ENEMY1 58
+int maxNumsPoint;
+std::vector< double > vec_out_x;
+std::vector<double>vec_out_y;
 EnemyNode* createEnemy(int health, int weaponLevel, int x0, int y0, double radian, int moveMode, int speed, EnemyName name, Frame frame) {
 	EnemyNode* pNew = new EnemyNode;
 	switch (name)
@@ -65,9 +71,10 @@ void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//Ó
 			break;
 
 		case DEF_MOVE_CIRCLE:
-			moveCircle(cur, WIDTH_MAP / 2, 0, 0, cur->speed, frameBuffer, ENEMY0);
+			moveCircle(cur, WIDTH_MAP / 2, 0, 0, 0, 0, cur->speed, frameBuffer, ENEMY0);
 			break;
-		case DEF_MOVE_STOP:
+		case DEF_MOVE_RAND:
+			moveRand(cur, cur->speed, ENEMY0);
 
 
 			break;
@@ -78,46 +85,107 @@ void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//Ó
 	}
 }
 void moveLine(EnemyNode* cur, int speed, double radian, int frameBuffer, EnemyName name) {
-	int xnext = cur->x + speed * frameBuffer * cos(radian);
-	int ynext = cur->y + speed * frameBuffer * sin(radian);
+	int xnext = cur->x + speed * cos(radian);
+	int ynext = cur->y + speed * sin(radian);
+	//std::cout << "ynext = " << ynext << std::endl;
 	switch (name)
 	{
 	case ENEMY0:
 		if (xnext < WIDTH_MAP - WIDTH_ENEMY0 && ynext < HEIGHT_MAP - HEIGHT_ENEMY0) {
+
 			cur->x = xnext;
 			cur->y = ynext;
-			cur->isExist = 0;
+			//std::cout << cur->y << std::endl;
+
 		}
+		else cur->isExist = 0;
 		return;
 	case ENEMY1:
 		if (xnext < WIDTH_MAP - WIDTH_ENEMY1 && ynext < HEIGHT_MAP - HEIGHT_ENEMY1) {
 			cur->x = xnext;
 			cur->y = ynext;
-			cur->isExist = 0;
+
 		}
+		else cur->isExist = 0;
 		return;
 	default:
 		return;
 	}
 }
-void moveCircle(EnemyNode* cur, int r, int xo, int yo, int speed, int frameBuffer, EnemyName name) {
-	int xnext = speed * frameBuffer * (1 - ((int)pow(speed, 2) / 2 * (int)pow(r, 2))) + cur->x;
-	int ynext = sqrt(r * r - (cur->x) * (cur->x)) + cur->y;
+void div_circle(double x0, double y0, double r, double size) //xy¶ÔÓ¦Ô²ÐÄ×ø±ê,rÎª°ë¾¶,sizeÓÃÓÚÉèÖÃ»®·ÖµÄ¼ä¾à
+{
+	vec_out_x.clear();
+	vec_out_y.clear();
+	double angle_step = 0; //Ò»Ð¡²½µÄ»¡¶È
+	angle_step = size / r;
+	double x_out, y_out;
+	maxNumsPoint = 2 * PI / angle_step;
+	std::cout << maxNumsPoint << std::endl;
+	for (int i = 0; i < maxNumsPoint; i++)
+	{
+		x_out = x0 + r * cos(i * angle_step);
+		std::cout << "xout" << x_out << std::endl;
+		y_out = y0 + r * sin(i * angle_step);
+		if (x_out > 0 && y_out > 0) {
+			vec_out_x.push_back(x_out);
+			vec_out_y.push_back(y_out);
+
+		}
+
+	}
+}
+void moveCircle(EnemyNode* cur, int r, int x0, int y0, int xo, int yo, int speed, int frameBuffer, EnemyName name) {
+	double theta = 5 * PI / 4 - cur->speed * frameBuffer / 3 / (WIDTH_MAP / 2);
+	//int tempx, tempy;
+	std::cout << frameBuffer << std::endl;
+	int xnext = WIDTH_MAP / 2 + (WIDTH_MAP / 2) * cos(theta) - (double)WIDTH_MAP / 10;
+	int ynext = (WIDTH_MAP / 2) * sin(theta);
+
 	switch (name)
 	{
 	case ENEMY0:
 		if (xnext < WIDTH_MAP - WIDTH_ENEMY0 && ynext < HEIGHT_MAP - HEIGHT_ENEMY0) {
 			cur->x = xnext;
 			cur->y = ynext;
-			cur->isExist = 0;
+
+
 		}
+		else  cur->isExist = 0;;
 		return;
 	case ENEMY1:
 		if (xnext < WIDTH_MAP - WIDTH_ENEMY1 && ynext < HEIGHT_MAP - HEIGHT_ENEMY1) {
 			cur->x = xnext;
 			cur->y = ynext;
-			cur->isExist = 0;
 		}
+		else cur->isExist = 0;
+		return;
+	default:
+		return;
+	}
+
+}
+void moveRand(EnemyNode* cur, int speed, EnemyName name) {
+	srand(time(0));
+	int xnext = cur->x + rand() % speed - (speed / 2);
+	int ynext = cur->y + rand() % speed - (speed / 3);
+	switch (name)
+	{
+	case ENEMY0:
+		if (xnext < WIDTH_MAP - WIDTH_ENEMY0 && ynext < HEIGHT_MAP - HEIGHT_ENEMY0) {
+
+			cur->x = xnext;
+			cur->y = ynext;
+
+		}
+		else cur->isExist = 0;
+		return;
+	case ENEMY1:
+		if (xnext < WIDTH_MAP - WIDTH_ENEMY1 && ynext < HEIGHT_MAP - HEIGHT_ENEMY1) {
+			cur->x = xnext;
+			cur->y = ynext;
+
+		}
+		else cur->isExist = 0;
 		return;
 	default:
 		return;
@@ -128,6 +196,7 @@ void update_EnemyImage(EnemyNode** p_Enemy_List, EnemyName name) {
 	for (EnemyNode* cur = *p_Enemy_List; cur != NULL; cur = cur->pnext) {
 		transparentimage(NULL, cur->x, cur->y, WIDTH_ENEMY0, HEIGHT_ENEMY0,
 			0, 0, WIDTH_ENEMY0, HEIGHT_ENEMY0, &enemy0);
+
 	}
 }
 void listRemoveNode_Enemy(EnemyNode** pp_Enemy_List_Node_Head)
