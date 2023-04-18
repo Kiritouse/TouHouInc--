@@ -169,45 +169,42 @@ void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//Ó
 	int frameBuffer = frame.f_total - frame.f_pause - frame.f_create;
 	while (cur != NULL)
 	{
-		switch (cur->moveMode)
-		{
-		case DEF_MOVE_LINE:
-			moveLine(cur, cur->speed, cur->radian, frameBuffer, ENEMY0);
-			break;
+		if (cur->type_enemy0 == 1) {
+			switch (cur->moveMode)
+			{
+			case DEF_MOVE_LINE:
+				moveLine(cur, cur->speed, cur->radian, frameBuffer, ENEMY0);
+				break;
 
-		case DEF_MOVE_CIRCLE:
-			moveCircle(cur, WIDTH_MAP / 2, 0, 0, 0, 0, cur->speed, frameBuffer, ENEMY0);
-			break;
-		case DEF_MOVE_RAND:
-			moveRand(cur, cur->speed, ENEMY0);
-			break;
-		default:
-			break;
+			case DEF_MOVE_CIRCLE:
+				moveCircle(cur, WIDTH_MAP / 2, 0, 0, 0, 0, cur->speed, frameBuffer, ENEMY0);
+				break;
+			case DEF_MOVE_RAND:
+				moveRand(cur, cur->speed, ENEMY0);
+				break;
+			default:
+				break;
+			}
+		}
+		if (cur->type_enemy1 == 1) {
+			switch (cur->moveMode)
+			{
+			case DEF_MOVE_LINE:
+				moveLine(cur, cur->speed, cur->radian, frameBuffer, ENEMY1);
+				break;
+
+			case DEF_MOVE_CIRCLE:
+				moveCircle(cur, WIDTH_MAP / 2, 0, 0, 0, 0, cur->speed, frameBuffer, ENEMY1);
+				break;
+			case DEF_MOVE_RAND:
+				moveRand(cur, cur->speed, ENEMY1);
+				break;
+			default:
+				break;
+			}
 		}
 		cur = cur->pnext;
 	}
-}
-void update_EnemyImage(EnemyNode** p_Enemy_List, EnemyName name) {
-	switch (name)
-	{
-	case ENEMY0:
-		for (EnemyNode* cur = *p_Enemy_List; cur != NULL; cur = cur->pnext) {
-			transparentimage(NULL, cur->x, cur->y, WIDTH_ENEMY0, HEIGHT_ENEMY0,
-				0, 0, WIDTH_ENEMY0, HEIGHT_ENEMY0, &enemy0);
-		}
-		break;
-	case ENEMY1:
-		//std::cout << "12341q23" << std::endl;
-		for (EnemyNode* cur = *p_Enemy_List; cur != NULL; cur = cur->pnext) {
-			transparentimage(NULL, cur->x, cur->y, WIDTH_ENEMY1, HEIGHT_ENEMY1,
-				0, 0, WIDTH_ENEMY1, HEIGHT_ENEMY1, &enemy1);
-		}
-		break;
-	case BOSS:
-		break;
-
-	}
-
 }
 void listRemoveNode_Enemy(EnemyNode** pp_Enemy_List_Node_Head)
 {
@@ -239,8 +236,21 @@ void listRemoveNode_Enemy(EnemyNode** pp_Enemy_List_Node_Head)
 		}
 	}
 }
+void update_EnemyImage(EnemyNode** p_Enemy_List) {
+	for (EnemyNode* cur = *p_Enemy_List; cur != NULL; cur = cur->pnext) {
+		if (cur->type_enemy0 == 1) {
+			transparentimage(NULL, cur->x, cur->y, WIDTH_ENEMY0, HEIGHT_ENEMY0,
+				0, 0, WIDTH_ENEMY0, HEIGHT_ENEMY0, &enemy0);
+		}
+		else if (cur->type_enemy1 == 1) {
+			transparentimage(NULL, cur->x, cur->y, WIDTH_ENEMY1, HEIGHT_ENEMY1,
+				0, 0, WIDTH_ENEMY1, HEIGHT_ENEMY1, &enemy1);
+		}
+	}
+}
 void update_Enemy(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {
 	update_EnemyPosition(pp_Enemy_List_Node_Head, frame);
-	update_EnemyImage(pp_Enemy_List_Node_Head, ENEMY1);
 	listRemoveNode_Enemy(pp_Enemy_List_Node_Head);
+	update_EnemyImage(pp_Enemy_List_Node_Head);
+
 }

@@ -38,7 +38,6 @@ enum EnemyName {
 /// <param name="pp_Enemy_List_Node">二维指针，取一位表示链表节点，取二维可以访问节点中的数据</param>
 /// <param name="newNode">一维指针，新建的节点</param>
 EnemyNode* createEnemy(int health, int weaponLevel, int x0, int y0, double radian, int moveMode, int speed, EnemyName name, Frame frame);
-void Enemy_ListPushBack(EnemyNode** pp_Enemy_List_Node_Head, EnemyNode* newNode);
 void Enemy_ListPushHead(EnemyNode** pp_Enemy_List_Node, EnemyNode* newNode);
 void update_Enemy(EnemyNode** pp_Enemy_List_Node_Head, Frame frame);
 
