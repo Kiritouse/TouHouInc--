@@ -20,6 +20,7 @@ EnemyNode* createEnemy(int health, int weaponLevel, int x0, int y0, double radia
 	switch (name)
 	{
 	case ENEMY0:
+		pNew->type_enemy0 = 1;
 		pNew->health = health;
 		pNew->weaponLevel = weaponLevel;
 		pNew->x = x0;
@@ -32,7 +33,7 @@ EnemyNode* createEnemy(int health, int weaponLevel, int x0, int y0, double radia
 		frame.f_create = frame.f_total - frame.f_pause;
 		break;
 	case ENEMY1:
-		std::cout << "1234" << std::endl;
+		pNew->type_enemy1 = 1;
 		pNew->health = health;
 		pNew->weaponLevel = weaponLevel;
 		pNew->x = x0;
@@ -49,19 +50,6 @@ EnemyNode* createEnemy(int health, int weaponLevel, int x0, int y0, double radia
 	pNew->pnext = NULL;
 	return pNew;
 }
-void Enemy_ListPushBack(EnemyNode** pp_Enemy_List_Node_Head, EnemyNode* newNode) {
-	if (*pp_Enemy_List_Node_Head == NULL)//如果链表为空，那么新增的节点就是第一个
-	{
-		*pp_Enemy_List_Node_Head = newNode;
-		return;
-	}
-	EnemyNode* cur_Enemy = *pp_Enemy_List_Node_Head;
-	while (cur_Enemy->pnext != NULL)//找到最后一个节点
-	{
-		cur_Enemy = cur_Enemy->pnext;
-	}
-	cur_Enemy->pnext = newNode;//插入新的节点
-}
 void Enemy_ListPushHead(EnemyNode** pp_Enemy_List_Node_Head, EnemyNode* newNode) {
 	if (*pp_Enemy_List_Node_Head == NULL)//如果链表为空，那么新增的节点就是第一个,头节点
 	{
@@ -70,30 +58,6 @@ void Enemy_ListPushHead(EnemyNode** pp_Enemy_List_Node_Head, EnemyNode* newNode)
 	}
 	newNode->pnext = (*pp_Enemy_List_Node_Head)->pnext;//让新增节点指向原先头节点指向的数据
 	(*pp_Enemy_List_Node_Head)->pnext = newNode;//让原头节点指向新增节点
-}
-void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//用指针遍历每个飞机节点，根据飞机的初始位置,初始方向,选择不同的更新方式
-	if (*pp_Enemy_List_Node_Head == NULL) return;
-	EnemyNode* cur = *pp_Enemy_List_Node_Head;
-	int frameBuffer = frame.f_total - frame.f_pause - frame.f_create;
-	while (cur != NULL)
-	{
-		switch (cur->moveMode)
-		{
-		case DEF_MOVE_LINE:
-			moveLine(cur, cur->speed, cur->radian, frameBuffer, ENEMY0);
-			break;
-
-		case DEF_MOVE_CIRCLE:
-			moveCircle(cur, WIDTH_MAP / 2, 0, 0, 0, 0, cur->speed, frameBuffer, ENEMY0);
-			break;
-		case DEF_MOVE_RAND:
-			moveRand(cur, cur->speed, ENEMY0);
-			break;
-		default:
-			break;
-		}
-		cur = cur->pnext;
-	}
 }
 void moveLine(EnemyNode* cur, int speed, double radian, int frameBuffer, EnemyName name) {
 	int xnext = cur->x + speed * cos(radian);
@@ -199,6 +163,30 @@ void moveRand(EnemyNode* cur, int speed, EnemyName name) {
 	}
 
 }
+void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//用指针遍历每个飞机节点，根据飞机的初始位置,初始方向,选择不同的更新方式
+	if (*pp_Enemy_List_Node_Head == NULL) return;
+	EnemyNode* cur = *pp_Enemy_List_Node_Head;
+	int frameBuffer = frame.f_total - frame.f_pause - frame.f_create;
+	while (cur != NULL)
+	{
+		switch (cur->moveMode)
+		{
+		case DEF_MOVE_LINE:
+			moveLine(cur, cur->speed, cur->radian, frameBuffer, ENEMY0);
+			break;
+
+		case DEF_MOVE_CIRCLE:
+			moveCircle(cur, WIDTH_MAP / 2, 0, 0, 0, 0, cur->speed, frameBuffer, ENEMY0);
+			break;
+		case DEF_MOVE_RAND:
+			moveRand(cur, cur->speed, ENEMY0);
+			break;
+		default:
+			break;
+		}
+		cur = cur->pnext;
+	}
+}
 void update_EnemyImage(EnemyNode** p_Enemy_List, EnemyName name) {
 	switch (name)
 	{
@@ -209,7 +197,7 @@ void update_EnemyImage(EnemyNode** p_Enemy_List, EnemyName name) {
 		}
 		break;
 	case ENEMY1:
-		std::cout << "12341q23" << std::endl;
+		//std::cout << "12341q23" << std::endl;
 		for (EnemyNode* cur = *p_Enemy_List; cur != NULL; cur = cur->pnext) {
 			transparentimage(NULL, cur->x, cur->y, WIDTH_ENEMY1, HEIGHT_ENEMY1,
 				0, 0, WIDTH_ENEMY1, HEIGHT_ENEMY1, &enemy1);
@@ -250,4 +238,9 @@ void listRemoveNode_Enemy(EnemyNode** pp_Enemy_List_Node_Head)
 			curP_Enemy = curP_Enemy->pnext;
 		}
 	}
+}
+void update_Enemy(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {
+	update_EnemyPosition(pp_Enemy_List_Node_Head, frame);
+	update_EnemyImage(pp_Enemy_List_Node_Head, ENEMY1);
+	listRemoveNode_Enemy(pp_Enemy_List_Node_Head);
 }

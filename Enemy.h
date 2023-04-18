@@ -9,6 +9,7 @@
 
 struct  EnemyNode
 {
+	int type_enemy0 = 0, type_enemy1 = 0;
 	int x, y, x0, y0;
 
 	int health;//生命值
@@ -26,9 +27,6 @@ struct  EnemyNode
 
 	EnemyNode* pnext;//指向下一个节点的指针
 };
-
-
-
 enum EnemyName {
 	ENEMY0,
 	ENEMY1,
@@ -42,31 +40,8 @@ enum EnemyName {
 EnemyNode* createEnemy(int health, int weaponLevel, int x0, int y0, double radian, int moveMode, int speed, EnemyName name, Frame frame);
 void Enemy_ListPushBack(EnemyNode** pp_Enemy_List_Node_Head, EnemyNode* newNode);
 void Enemy_ListPushHead(EnemyNode** pp_Enemy_List_Node, EnemyNode* newNode);
-/// <summary>
-/// 更新敌机的位置
-/// </summary>
-/// <param name="pp_Enemy_List_Node_Head">所有敌机所构成的链表</param>
-/// <param name="name">敌机种类</param>
-/// <param name="frame">根据帧数我们会选择不同的移动方式</param>
-void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame);
-void moveLine(EnemyNode* cur, int speed, double radian, int frameBuffer, EnemyName name);
-/// <summary>
-/// 进行圆弧形移动
-/// </summary>
-/// <param name="cur"></param>
-/// <param name="r">圆弧的半径</param>
-/// <param name="x0">起始点</param>
-/// <param name="y0">起始点</param>
-/// <param name="xo">移动的圆弧的圆心</param>
-/// <param name="yo">移动的圆弧的圆心</param>
-/// <param name="speed">每一帧的起点和终点的直线距离</param>
-/// <param name="frameBuffer"></param>
-/// <param name="name"></param>
-void moveCircle(EnemyNode* cur, int r, int x0, int y0, int xo, int yo, int speed, int frameBuffer, EnemyName name);
-void moveRand(EnemyNode* cur, int speed, EnemyName name);
-void update_EnemyImage(EnemyNode** p_Enemy_List, EnemyName name);
-int num_Enemies();//获取在场敌机的数量
-void listRemoveNode_Enemy(EnemyNode** pp_Enemy_List_Node_Head);
+void update_Enemy(EnemyNode** pp_Enemy_List_Node_Head, Frame frame);
+
 
 
 

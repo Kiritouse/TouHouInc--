@@ -16,6 +16,12 @@ void AddItem(int framebuffer) {
 	case 200:
 		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 0, 0, 0, DEF_MOVE_CIRCLE, 5, ENEMY1, frame));
 		break;
+	case 210:
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 0, 0, 0, DEF_MOVE_LINE, 5, ENEMY1, frame));
+		break;
+	case 220:
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 0, 0, 0, DEF_MOVE_CIRCLE, 5, ENEMY1, frame));
+		break;
 	case 300:
 		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 100, 100, PI / 4, DEF_MOVE_LINE, 7, ENEMY0, frame));
 		break;
@@ -42,26 +48,12 @@ void Update() {//帧更新
 		}
 		else continue;
 		AddItem(framebuffer);
-
 		n_command = GetInput();
+		OBJ_Map.update_Map();
+		OBJ_Player.update_Player(n_command, framebuffer);
+		update_Bullet(&p_Player_Bullet_List_Node, n_command, framebuffer);
+		update_Enemy(&p_Enemy_List_Node, frame);
 
-		OBJ_Map.update_MapPosition();
-		OBJ_Player.update_PlayerPosition(n_command, frame.f_total, frame.f_pause);
-
-		//移动敌人的位置
-		update_EnemyPosition(&p_Enemy_List_Node, frame);
-		listRemoveNode_Enemy(&p_Enemy_List_Node);
-
-		update_BulletPosition(&p_Player_Bullet_List_Node, n_command, frame.f_total);//计算子弹新的位置
-		listRemoveNode_Bullet(&p_Player_Bullet_List_Node);//超出视野或者击中飞行器的子弹删除掉
-
-
-		OBJ_Map.update_MapImage();
-		OBJ_Player.update_PlayerImage(frame.f_total, frame.f_pause);
-		update_BulletImage(&p_Player_Bullet_List_Node);
-		update_EnemyImage(&p_Enemy_List_Node, ENEMY1);
-
-		
 		cal_FPS();
 
 		FlushBatchDraw();

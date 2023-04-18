@@ -8,6 +8,7 @@ public:
 	Map();
 	void update_MapPosition();
 	void update_MapImage();
+	void update_Map();
 
 
 

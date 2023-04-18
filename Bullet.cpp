@@ -82,8 +82,8 @@ void listRemoveNode_Bullet(BulletNode** pp_Player_Bullet_List_Node_Head)
 	}
 }
 
-void update_BulletImage(BulletNode** p_Player_Bullet_List) {
-	for (BulletNode* cur = *p_Player_Bullet_List; cur != NULL; cur = cur->pnext)
+void update_BulletImage(BulletNode** pp_Player_Bullet_List) {
+	for (BulletNode* cur = *pp_Player_Bullet_List; cur != NULL; cur = cur->pnext)
 	{
 		//std::cout << cur->y << std::endl;
 		transparentimage_half(NULL, cur->x, cur->y, WIDTH_BULLET0, HEIGHT_BULLET0,
@@ -91,6 +91,11 @@ void update_BulletImage(BulletNode** p_Player_Bullet_List) {
 
 
 	}
+}
+void update_Bullet(BulletNode** pp_Player_Bullet_List_Head, int command, int frameBuffer) {
+	update_BulletPosition(pp_Player_Bullet_List_Head, command, frameBuffer);
+	listRemoveNode_Bullet(pp_Player_Bullet_List_Head);//超出视野或者击中飞行器的子弹删除掉
+	update_BulletImage(pp_Player_Bullet_List_Head);
 }
 
 

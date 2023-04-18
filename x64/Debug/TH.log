@@ -1,14 +1,2 @@
-﻿  Enemy.cpp
-D:\Codes\TouHouInc--\Enemy.cpp(83,21): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-D:\Codes\TouHouInc--\Enemy.cpp(87,50): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-D:\Codes\TouHouInc--\Enemy.cpp(90,21): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-D:\Codes\TouHouInc--\Enemy.cpp(99,12): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-D:\Codes\TouHouInc--\Enemy.cpp(100,12): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-D:\Codes\TouHouInc--\Enemy.cpp(133,24): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
-D:\Codes\TouHouInc--\Enemy.cpp(150,12): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-D:\Codes\TouHouInc--\Enemy.cpp(151,12): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-D:\Codes\TouHouInc--\Enemy.cpp(175,12): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
-  mainGame.cpp
-  GameManager.cpp
-  正在生成代码...
+﻿  GameManager.cpp
   TH.vcxproj -> D:\Codes\TouHouInc--\x64\Debug\TH.exe

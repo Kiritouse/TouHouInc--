@@ -24,8 +24,7 @@ Player::Player() {
 	Struct_Direction.left = 0;
 	Struct_Direction.right = 0;
 }
-void Player::update_PlayerPosition(int _cmd, int f_total, int f_pause) {
-	tempframe = f_total - f_pause;
+void Player::update_PlayerPosition(int _cmd) {
 	if (_cmd & CMD_UP && Struct_Position.y >= 0) {
 		Struct_Direction.up = 1;
 		Struct_Position.y -= speed;
@@ -51,10 +50,9 @@ void Player::update_PlayerPosition(int _cmd, int f_total, int f_pause) {
 	else Struct_Direction.right = 0;
 }
 
-void Player::update_PlayerImage(int f_total, int f_pause) {
+void Player::update_PlayerImage(int frameBuffer) {
 	if (health = 0) return;
-	int t2 = f_total - f_pause;
-	int frameBuffer = t2 - tempframe;
+	frameBuffer = frameBuffer - tempframe;
 	transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER, HEIGHT_PLAYER,
 		originPoint_img.x, originPoint_img.y, WIDTH_PLAYER, HEIGHT_PLAYER, &player);
 	if (Struct_Direction.up - Struct_Direction.down > 0) {
@@ -81,7 +79,7 @@ void Player::update_PlayerImage(int f_total, int f_pause) {
 				223, 0, WIDTH_PLAYER, HEIGHT_PLAYER, &player);
 	}
 	if (Struct_Direction.right - Struct_Direction.left > 0) {
-		frameBuffer = t2 - rightbuffer;
+		frameBuffer = frameBuffer - rightbuffer;
 
 		if (frameBuffer >= 0 && frameBuffer < 5)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT,
@@ -106,7 +104,7 @@ void Player::update_PlayerImage(int f_total, int f_pause) {
 				223, 0, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT, &playerRight);
 	}
 	else if (Struct_Direction.right - Struct_Direction.left) {
-		frameBuffer = t2 - leftbuffer;
+		frameBuffer = frameBuffer - leftbuffer;
 		if (frameBuffer >= 0 && frameBuffer < 5)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_LEFT, HEIGHT_PLAYER_LEFT,
 				36, 0, WIDTH_PLAYER_LEFT, HEIGHT_PLAYER_LEFT, &playerLeft);
@@ -133,4 +131,9 @@ void Player::update_PlayerImage(int f_total, int f_pause) {
 
 
 
+}
+
+void Player::update_Player(int n_command, int framebuffer) {
+	update_PlayerPosition(n_command);
+	update_PlayerImage(framebuffer);
 }

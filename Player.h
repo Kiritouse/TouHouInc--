@@ -10,8 +10,9 @@ public:
 	Player();//构造函数，初始化数据
 	int health;
 	int speed;
-	void update_PlayerPosition(int _cmd, int f_total, int f_pause);
-	void update_PlayerImage(int f_total, int f_pause);
+	void update_PlayerPosition(int _cmd);
+	void update_PlayerImage(int frameBuffer);
+	void update_Player(int n_command, int framebuffer);
 	struct Position
 	{
 		int x, y;

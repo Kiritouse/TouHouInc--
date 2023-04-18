@@ -13,4 +13,8 @@ void Map::update_MapImage() {
 	putimage(0, mapY - HEIGHT_MAP, &background);
 	putimage(0, mapY, &background);
 }
+void Map::update_Map() {
+	update_MapPosition();
+	update_MapImage();
+}
 
