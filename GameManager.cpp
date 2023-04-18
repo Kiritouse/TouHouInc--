@@ -14,7 +14,7 @@ void AddItem(int framebuffer) {
 	switch (framebuffer)
 	{
 	case 200:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 0, 0, 0, DEF_MOVE_CIRCLE, 5, ENEMY0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 0, 0, 0, DEF_MOVE_CIRCLE, 5, ENEMY1, frame));
 		break;
 	case 300:
 		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 100, 100, PI / 4, DEF_MOVE_LINE, 7, ENEMY0, frame));
@@ -59,7 +59,9 @@ void Update() {//Ö¡¸üÐÂ
 		OBJ_Map.update_MapImage();
 		OBJ_Player.update_PlayerImage(frame.f_total, frame.f_pause);
 		update_BulletImage(&p_Player_Bullet_List_Node);
-		update_EnemyImage(&p_Enemy_List_Node, ENEMY0);
+		update_EnemyImage(&p_Enemy_List_Node, ENEMY1);
+
+		
 		cal_FPS();
 
 		FlushBatchDraw();

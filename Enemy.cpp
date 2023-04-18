@@ -32,6 +32,7 @@ EnemyNode* createEnemy(int health, int weaponLevel, int x0, int y0, double radia
 		frame.f_create = frame.f_total - frame.f_pause;
 		break;
 	case ENEMY1:
+		std::cout << "1234" << std::endl;
 		pNew->health = health;
 		pNew->weaponLevel = weaponLevel;
 		pNew->x = x0;
@@ -48,6 +49,19 @@ EnemyNode* createEnemy(int health, int weaponLevel, int x0, int y0, double radia
 	pNew->pnext = NULL;
 	return pNew;
 }
+void Enemy_ListPushBack(EnemyNode** pp_Enemy_List_Node_Head, EnemyNode* newNode) {
+	if (*pp_Enemy_List_Node_Head == NULL)//Èç¹ûÁ´±íÎª¿Õ£¬ÄÇÃ´ÐÂÔöµÄ½Úµã¾ÍÊÇµÚÒ»¸ö
+	{
+		*pp_Enemy_List_Node_Head = newNode;
+		return;
+	}
+	EnemyNode* cur_Enemy = *pp_Enemy_List_Node_Head;
+	while (cur_Enemy->pnext != NULL)//ÕÒµ½×îºóÒ»¸ö½Úµã
+	{
+		cur_Enemy = cur_Enemy->pnext;
+	}
+	cur_Enemy->pnext = newNode;//²åÈëÐÂµÄ½Úµã
+}
 void Enemy_ListPushHead(EnemyNode** pp_Enemy_List_Node_Head, EnemyNode* newNode) {
 	if (*pp_Enemy_List_Node_Head == NULL)//Èç¹ûÁ´±íÎª¿Õ£¬ÄÇÃ´ÐÂÔöµÄ½Úµã¾ÍÊÇµÚÒ»¸ö,Í·½Úµã
 	{
@@ -59,7 +73,6 @@ void Enemy_ListPushHead(EnemyNode** pp_Enemy_List_Node_Head, EnemyNode* newNode)
 }
 void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//ÓÃÖ¸Õë±éÀúÃ¿¸ö·É»ú½Úµã£¬¸ù¾Ý·É»úµÄ³õÊ¼Î»ÖÃ,³õÊ¼·½Ïò,Ñ¡Ôñ²»Í¬µÄ¸üÐÂ·½Ê½
 	if (*pp_Enemy_List_Node_Head == NULL) return;
-	//std::cout << "yes" << std::endl;
 	EnemyNode* cur = *pp_Enemy_List_Node_Head;
 	int frameBuffer = frame.f_total - frame.f_pause - frame.f_create;
 	while (cur != NULL)
@@ -75,13 +88,11 @@ void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//Ó
 			break;
 		case DEF_MOVE_RAND:
 			moveRand(cur, cur->speed, ENEMY0);
-
-
 			break;
 		default:
 			break;
 		}
-		break;
+		cur = cur->pnext;
 	}
 }
 void moveLine(EnemyNode* cur, int speed, double radian, int frameBuffer, EnemyName name) {
@@ -136,8 +147,6 @@ void div_circle(double x0, double y0, double r, double size) //xy¶ÔÓ¦Ô²ÐÄ×ø±ê,rÎ
 }
 void moveCircle(EnemyNode* cur, int r, int x0, int y0, int xo, int yo, int speed, int frameBuffer, EnemyName name) {
 	double theta = 5 * PI / 4 - cur->speed * frameBuffer / 3 / (WIDTH_MAP / 2);
-	//int tempx, tempy;
-	//std::cout << frameBuffer << std::endl;
 	int xnext = WIDTH_MAP / 2 + (WIDTH_MAP / 2) * cos(theta) - (double)WIDTH_MAP / 10;
 	int ynext = (WIDTH_MAP / 2) * sin(theta);
 
@@ -147,8 +156,6 @@ void moveCircle(EnemyNode* cur, int r, int x0, int y0, int xo, int yo, int speed
 		if (xnext < WIDTH_MAP - WIDTH_ENEMY0 && ynext < HEIGHT_MAP - HEIGHT_ENEMY0) {
 			cur->x = xnext;
 			cur->y = ynext;
-
-
 		}
 		else  cur->isExist = 0;;
 		return;
@@ -193,11 +200,26 @@ void moveRand(EnemyNode* cur, int speed, EnemyName name) {
 
 }
 void update_EnemyImage(EnemyNode** p_Enemy_List, EnemyName name) {
-	for (EnemyNode* cur = *p_Enemy_List; cur != NULL; cur = cur->pnext) {
-		transparentimage(NULL, cur->x, cur->y, WIDTH_ENEMY0, HEIGHT_ENEMY0,
-			0, 0, WIDTH_ENEMY0, HEIGHT_ENEMY0, &enemy0);
+	switch (name)
+	{
+	case ENEMY0:
+		for (EnemyNode* cur = *p_Enemy_List; cur != NULL; cur = cur->pnext) {
+			transparentimage(NULL, cur->x, cur->y, WIDTH_ENEMY0, HEIGHT_ENEMY0,
+				0, 0, WIDTH_ENEMY0, HEIGHT_ENEMY0, &enemy0);
+		}
+		break;
+	case ENEMY1:
+		std::cout << "12341q23" << std::endl;
+		for (EnemyNode* cur = *p_Enemy_List; cur != NULL; cur = cur->pnext) {
+			transparentimage(NULL, cur->x, cur->y, WIDTH_ENEMY1, HEIGHT_ENEMY1,
+				0, 0, WIDTH_ENEMY1, HEIGHT_ENEMY1, &enemy1);
+		}
+		break;
+	case BOSS:
+		break;
 
 	}
+
 }
 void listRemoveNode_Enemy(EnemyNode** pp_Enemy_List_Node_Head)
 {
