@@ -4,7 +4,7 @@ GameState E_TYPE_GAMESTATE;
 Interface OBJ_interface;
 Map OBJ_Map;
 Player OBJ_Player;
-Frame frame(0, 0, 0, 0, 0);
+Frame frame(0, 0, 0, 0);
 BulletNode* p_Player_Bullet_List_Node = NULL;//飞机子弹列表的头节点
 EnemyNode* p_Enemy_List_Node = NULL;
 clock_t t_begin = clock();
@@ -15,12 +15,11 @@ void AddItem(int framebuffer) {
 	{
 	case 200:
 		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 0, 0, 0, DEF_MOVE_CIRCLE, 5, ENEMY1, frame));
-		break;
-	case 210:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 0, 0, 0, DEF_MOVE_LINE, 5, ENEMY1, frame));
+		std::cout << "12312" << std::endl;
 		break;
 	case 220:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 0, 0, 0, DEF_MOVE_CIRCLE, 5, ENEMY1, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 100, 100, 0, DEF_MOVE_CIRCLE, 8, ENEMY0, frame));
+		std::cout << "asdwqe" << std::endl;
 		break;
 	case 300:
 		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 100, 100, PI / 4, DEF_MOVE_LINE, 7, ENEMY0, frame));

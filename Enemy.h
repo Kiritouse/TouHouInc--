@@ -17,6 +17,7 @@ struct  EnemyNode
 	int moveMode;//初始的移动方式,沿着坐标轴
 	double radian;//偏转角
 
+	int f_create;
 
 	int width;//模型的宽高
 	int height;

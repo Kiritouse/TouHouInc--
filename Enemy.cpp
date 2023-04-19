@@ -30,7 +30,7 @@ EnemyNode* createEnemy(int health, int weaponLevel, int x0, int y0, double radia
 		pNew->speed = speed;
 		pNew->radian = radian;
 		pNew->moveMode = moveMode;
-		frame.f_create = frame.f_total - frame.f_pause;
+		pNew->f_create = frame.f_total - frame.f_pause;
 		break;
 	case ENEMY1:
 		pNew->type_enemy1 = 1;
@@ -43,7 +43,7 @@ EnemyNode* createEnemy(int health, int weaponLevel, int x0, int y0, double radia
 		pNew->speed = speed;
 		pNew->radian = radian;
 		pNew->moveMode = moveMode;
-		frame.f_create = frame.f_total - frame.f_pause;
+		pNew->f_create = frame.f_total - frame.f_pause;
 		break;
 	}
 	pNew->isExist = 1;
@@ -110,9 +110,7 @@ void div_circle(double x0, double y0, double r, double size) //xy¶ÔÓ¦Ô²ÐÄ×ø±ê,rÎ
 	}
 }
 void moveCircle(EnemyNode* cur, int r, int x0, int y0, int xo, int yo, int speed, int frameBuffer, EnemyName name) {
-	double theta = 5 * PI / 4 - cur->speed * frameBuffer / 3 / (WIDTH_MAP / 2);
-	int xnext = WIDTH_MAP / 2 + (WIDTH_MAP / 2) * cos(theta) - (double)WIDTH_MAP / 10;
-	int ynext = (WIDTH_MAP / 2) * sin(theta);
+
 
 	switch (name)
 	{
@@ -166,7 +164,7 @@ void moveRand(EnemyNode* cur, int speed, EnemyName name) {
 void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//ÓÃÖ¸Õë±éÀúÃ¿¸ö·É»ú½Úµã£¬¸ù¾Ý·É»úµÄ³õÊ¼Î»ÖÃ,³õÊ¼·½Ïò,Ñ¡Ôñ²»Í¬µÄ¸üÐÂ·½Ê½
 	if (*pp_Enemy_List_Node_Head == NULL) return;
 	EnemyNode* cur = *pp_Enemy_List_Node_Head;
-	int frameBuffer = frame.f_total - frame.f_pause - frame.f_create;
+	int frameBuffer = frame.f_total - frame.f_pause - cur->f_create;
 	while (cur != NULL)
 	{
 		if (cur->type_enemy0 == 1) {
@@ -193,9 +191,6 @@ void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//Ó
 				moveLine(cur, cur->speed, cur->radian, frameBuffer, ENEMY1);
 				break;
 
-			case DEF_MOVE_CIRCLE:
-				moveCircle(cur, WIDTH_MAP / 2, 0, 0, 0, 0, cur->speed, frameBuffer, ENEMY1);
-				break;
 			case DEF_MOVE_RAND:
 				moveRand(cur, cur->speed, ENEMY1);
 				break;
