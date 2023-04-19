@@ -14,23 +14,20 @@ void AddItem(int framebuffer) {
 	switch (framebuffer)
 	{
 	case 200:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 0, 0, 0, DEF_MOVE_CIRCLE, 5, ENEMY1, frame));
-		std::cout << "12312" << std::endl;
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(10, HEIGHT_MAP/2, DEF_MOVE_CIRCLE, 1, 1, WIDTH_MAP / 2, 1, ENEMY1, 100, 0, frame));
 		break;
 	case 220:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 100, 100, 0, DEF_MOVE_CIRCLE, 8, ENEMY0, frame));
-		std::cout << "asdwqe" << std::endl;
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(20, 20, DEF_MOVE_LINE, PI / 2, 5, ENEMY0, 100, 0, frame));
 		break;
 	case 300:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 100, 100, PI / 4, DEF_MOVE_LINE, 7, ENEMY0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(15, 15, DEF_MOVE_LINE, PI / 4, 5, ENEMY0, 100, 0, frame));
 		break;
 	case 400:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(100, 0, 200, 200, 0, DEF_MOVE_RAND, 7, ENEMY0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(30, 30, DEF_MOVE_RAND, 5, ENEMY0, 100, 0, frame));
 		break;
 	default:
 		break;
 	}
-
 }
 void Awake() {
 
