@@ -14,16 +14,18 @@ void AddItem(int framebuffer) {
 	switch (framebuffer)
 	{
 	case 200:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(10, HEIGHT_MAP/2, DEF_MOVE_CIRCLE, 1, 1, WIDTH_MAP / 2, 1, ENEMY1, 100, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(300, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE, 200, 500, 100, 50, ENEMY1, 100, 0, frame));
 		break;
 	case 220:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(20, 20, DEF_MOVE_LINE, PI / 2, 5, ENEMY0, 100, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(20, 20, DEF_MOVE_LINE, PI / 2, 3, ENEMY0, 100, 0, frame));
 		break;
+		//case 250:
+			//Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(10, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE, 200, 10, WIDTH_MAP / 2, 5, ENEMY1, 100, 0, frame));
 	case 300:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(15, 15, DEF_MOVE_LINE, PI / 4, 5, ENEMY0, 100, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(15, 15, DEF_MOVE_LINE, PI / 4, 3, ENEMY0, 100, 0, frame));
 		break;
 	case 400:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(30, 30, DEF_MOVE_RAND, 5, ENEMY0, 100, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(30, 30, DEF_MOVE_RAND, 3, ENEMY0, 100, 0, frame));
 		break;
 	default:
 		break;
@@ -53,7 +55,6 @@ void Update() {//Ö¡¸üÐÂ
 		cal_FPS();
 
 		FlushBatchDraw();
-		Sleep(10);
 	}
 }
 

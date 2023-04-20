@@ -71,8 +71,11 @@ EnemyNode* createEnemy(int x0, int y0, int moveMode, int xo, int yo, int r, int 
 	pNew->x = x0;
 	pNew->y = y0;
 	pNew->moveMode = moveMode;
+	pNew->radian = atan2(y0 - yo, x0 - xo);
 	pNew->xo = xo;
 	pNew->yo = yo;
+	pNew->r = r;
+	std::cout << r << std::endl;
 
 	pNew->speed = speed;
 	pNew->health = health;
@@ -127,21 +130,18 @@ void moveLine(EnemyNode* cur) {
 	}
 
 }
-void moveCircle(EnemyNode* cur) {
-	//xo»¡ÐÎµÄÔ²µã
-	int xnext = cur->x;//¼Ì³ÐÉÏÒ»´ÎµÄÒÆ¶¯
-	int ynext = cur->y;//¼Ì³ÐÉÏÒ»´ÎµÄÒÆ¶¯
-	xnext += 1;
-	int ynext0 = ynext - cur->speed;
-	int ynext1 = ynext;
-	int ynext2 = ynext + cur->speed;
-	int d0 = abs((xnext - cur->xo) * (xnext - cur->xo) + (ynext0 - cur->yo) * (ynext0 - cur->yo) - cur->r * cur->r);
-	int d1 = abs((xnext - cur->xo) * (xnext - cur->xo) + (ynext1 - cur->yo) * (ynext1 - cur->yo) - cur->r * cur->r);
-	int d2 = abs((xnext - cur->xo) * (xnext - cur->xo) + (ynext2 - cur->yo) * (ynext2 - cur->yo) - cur->r * cur->r);
-	if (d0 < min(d1, d2)) ynext = ynext0;
-	else if (d1 < min(d0, d2)) ynext = ynext1;
-	else if (d2 < min(d0, d1))ynext = ynext2;
-	else ynext = ynext;
+void moveCircle(EnemyNode* cur, int framebuffer) {
+	int xnext, ynext;
+
+	xnext = cur->xo + cur->r * cos(cur->radian);
+	std::cout << "cur->xo =  " << cur->xo << std::endl;
+	std::cout << "cur->r = " << cur->r << std::endl;
+	std::cout << "cur->radian = " << cur->radian << std::endl;
+	std::cout << "xnext = " << xnext << std::endl;
+	ynext = cur->yo + cur->r * sin(cur->radian);
+	std::cout << "ynext = " << ynext << std::endl;
+
+	cur->radian = cur->radian + 0.05;
 	if (cur->type_enemy0 == 1) {
 		if (xnext < WIDTH_MAP - WIDTH_ENEMY0 && ynext < HEIGHT_MAP - HEIGHT_ENEMY0 && xnext > 1 && ynext > 1) {
 			cur->x = xnext;
@@ -153,7 +153,7 @@ void moveCircle(EnemyNode* cur) {
 		}
 	}
 	else if (cur->type_enemy1 == 1) {
-		std::cout << "ynext = " << ynext << std::endl;
+
 		if (xnext < WIDTH_MAP - WIDTH_ENEMY1 && ynext < HEIGHT_MAP - HEIGHT_ENEMY1 && xnext > 1 && ynext > 1) {
 			cur->x = xnext;
 			cur->y = ynext;
@@ -165,6 +165,7 @@ void moveCircle(EnemyNode* cur) {
 			return;
 		}
 	}
+
 }
 void moveRand(EnemyNode* cur) {
 	srand(time(0));
@@ -195,7 +196,7 @@ void moveRand(EnemyNode* cur) {
 void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//ÓÃÖ¸Õë±éÀúÃ¿¸ö·É»ú½Úµã£¬¸ù¾Ý·É»úµÄ³õÊ¼Î»ÖÃ,³õÊ¼·½Ïò,Ñ¡Ôñ²»Í¬µÄ¸üÐÂ·½Ê½
 	if (*pp_Enemy_List_Node_Head == NULL) return;
 	EnemyNode* cur = *pp_Enemy_List_Node_Head;
-	int frameBuffer = frame.f_total - frame.f_pause - cur->f_create;
+	int framebuffer = frame.f_total - frame.f_pause;
 	while (cur != NULL)
 	{
 		if (cur->isExist == 0) return;//Èç¹ûÒÑ¾­±»É¾³ýÁË¾Í²»ÐèÒªÔÙÒÆ¶¯ÁË
@@ -205,7 +206,7 @@ void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//Ó
 			moveLine(cur);
 			break;
 		case DEF_MOVE_CIRCLE:
-			moveCircle(cur);
+			moveCircle(cur, framebuffer);
 			break;
 		case DEF_MOVE_RAND:
 			moveRand(cur);

@@ -36,6 +36,7 @@ void update_BulletPosition(BulletNode** pp_Player_Bullet_List_Node_Head, int com
 {
 	if (((command & CMD_FIRE) && ((frameBuffer & 1) == 0))) {
 		Bullet_listPushBack(pp_Player_Bullet_List_Node_Head, creatPlayerBullet(0, -10));
+
 	}//处理射击操作
 
 	if (*pp_Player_Bullet_List_Node_Head == NULL)//如果链表为空，那么新增的节点就是第一个
