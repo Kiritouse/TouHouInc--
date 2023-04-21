@@ -12,7 +12,7 @@
 #define HEIGHT_ENEMY0 59
 #define WIDTH_ENEMY1 43
 #define HEIGHT_ENEMY1 58
-EnemyNode* createEnemy(int x0, int y0, int moveMode, double radian, int speed, EnemyName name, int health, int weaponLevel, Frame frame) {
+EnemyNode* createEnemy(int x0, int y0, int moveMode, double radian, double speed, EnemyName name, int health, int weaponLevel, Frame frame) {
 	EnemyNode* pNew = new EnemyNode;
 	switch (name)
 	{
@@ -25,6 +25,8 @@ EnemyNode* createEnemy(int x0, int y0, int moveMode, double radian, int speed, E
 	}
 	pNew->x = x0;
 	pNew->y = y0;
+	pNew->x0 = x0;
+	pNew->y0 = y0;
 	pNew->moveMode = moveMode;
 	pNew->radian = radian;
 	pNew->speed = speed;
@@ -35,7 +37,7 @@ EnemyNode* createEnemy(int x0, int y0, int moveMode, double radian, int speed, E
 	pNew->pnext = NULL;
 	return pNew;
 }
-EnemyNode* createEnemy(int x0, int y0, int moveMode, int speed, EnemyName name, int health, int weaponLevel, Frame frame) {
+EnemyNode* createEnemy(int x0, int y0, int moveMode, double speed, EnemyName name, int health, int weaponLevel, Frame frame) {
 	EnemyNode* pNew = new EnemyNode;
 	switch (name)
 	{
@@ -48,6 +50,8 @@ EnemyNode* createEnemy(int x0, int y0, int moveMode, int speed, EnemyName name, 
 	}
 	pNew->x = x0;
 	pNew->y = y0;
+	pNew->x0 = x0;
+	pNew->y0 = y0;
 	pNew->moveMode = moveMode;
 	pNew->speed = speed;
 	pNew->health = health;
@@ -57,7 +61,7 @@ EnemyNode* createEnemy(int x0, int y0, int moveMode, int speed, EnemyName name, 
 	pNew->pnext = NULL;
 	return pNew;
 }
-EnemyNode* createEnemy(int x0, int y0, int moveMode, int xo, int yo, int r, int speed, EnemyName name, int health, int weaponLevel, Frame frame) {
+EnemyNode* createEnemy(int x0, int y0, int moveMode, int xo, int yo, double radian, double speed, EnemyName name, int health, int weaponLevel, Frame frame) {
 	EnemyNode* pNew = new EnemyNode;
 	switch (name)
 	{
@@ -70,12 +74,13 @@ EnemyNode* createEnemy(int x0, int y0, int moveMode, int xo, int yo, int r, int 
 	}
 	pNew->x = x0;
 	pNew->y = y0;
+	pNew->x0 = x0;
+	pNew->y0 = y0;
 	pNew->moveMode = moveMode;
-	pNew->radian = atan2(y0 - yo, x0 - xo);
+	pNew->radian = radian;
 	pNew->xo = xo;
 	pNew->yo = yo;
-	pNew->r = r;
-	std::cout << r << std::endl;
+	pNew->r = y0 - yo;
 
 	pNew->speed = speed;
 	pNew->health = health;
@@ -133,15 +138,16 @@ void moveLine(EnemyNode* cur) {
 void moveCircle(EnemyNode* cur, int framebuffer) {
 	int xnext, ynext;
 
-	xnext = cur->xo + cur->r * cos(cur->radian);
+	xnext = cur->x0 + cur->r * sin(cur->radian);
 	std::cout << "cur->xo =  " << cur->xo << std::endl;
 	std::cout << "cur->r = " << cur->r << std::endl;
-	std::cout << "cur->radian = " << cur->radian << std::endl;
+	//std::cout << "cur->radian = " << cur->radian << std::endl;
 	std::cout << "xnext = " << xnext << std::endl;
-	ynext = cur->yo + cur->r * sin(cur->radian);
+	ynext = cur->y0 - (cur->r - cur->r * cos(cur->radian));
 	std::cout << "ynext = " << ynext << std::endl;
+	//std::cout << "ynext = " << ynext << std::endl;
 
-	cur->radian = cur->radian + 0.05;
+	cur->radian = cur->radian + cur->speed;
 	if (cur->type_enemy0 == 1) {
 		if (xnext < WIDTH_MAP - WIDTH_ENEMY0 && ynext < HEIGHT_MAP - HEIGHT_ENEMY0 && xnext > 1 && ynext > 1) {
 			cur->x = xnext;
@@ -169,8 +175,8 @@ void moveCircle(EnemyNode* cur, int framebuffer) {
 }
 void moveRand(EnemyNode* cur) {
 	srand(time(0));
-	int xnext = cur->x + rand() % cur->speed - (cur->speed / 2);
-	int ynext = cur->y + rand() % cur->speed - (cur->speed / 3);
+	int xnext = cur->x + rand() % (int)cur->speed - (cur->speed / 2);
+	int ynext = cur->y + rand() % (int)cur->speed - (cur->speed / 3);
 	if (cur->type_enemy0 == 1) {
 		if (xnext < WIDTH_MAP - WIDTH_ENEMY0 && ynext < HEIGHT_MAP - HEIGHT_ENEMY0 && xnext > 0 && ynext >0) {
 			cur->x = xnext;

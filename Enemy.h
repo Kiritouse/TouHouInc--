@@ -2,7 +2,7 @@
 #include "FrameManager.h"
 #define PI 3.1415926
 #define DEF_MOVE_STOP 0
-#define DEF_MOVE_LINE 1//线性的移动方式
+#define DEF_MOVE_LINE 1 //线性的移动方式
 #define DEF_MOVE_CIRCLE 2//圆弧形的移动方式
 #define DEF_MOVE_RAND 3//随机线性移动
 
@@ -10,7 +10,7 @@
 struct  EnemyNode
 {
 	int type_enemy0 = 0, type_enemy1 = 0;
-	int x, y;//初始创建角色的位置信息,x,y为每次移动的位置
+	int x, y, x0, y0;//初始创建角色的位置信息,x,y为每次移动的位置，x0和y0为初始位置
 
 	int moveMode;//初始的移动方式,沿着坐标轴
 	int xo, yo, r;//对于弧形移动的所需参数，xo和yo为圆心,r为半径
@@ -24,7 +24,7 @@ struct  EnemyNode
 	int height;
 
 	int hitpoints;//伤害值
-	int speed;
+	double speed;
 	int weaponLevel;//武器的等级，其实就是子弹的种类
 
 	int isExist;//物体是否需要销毁
@@ -49,7 +49,7 @@ enum EnemyName {
 /// <param name="weaponLevel"></param>
 /// <param name="frame"></param>
 /// <returns></returns>
-EnemyNode* createEnemy(int x0, int y0, int moveMode, double radian, int speed, EnemyName name, int health, int weaponLevel, Frame frame);
+EnemyNode* createEnemy(int x0, int y0, int moveMode, double radian, double speed, EnemyName name, int health, int weaponLevel, Frame frame);
 /// <summary>
 /// 随机移动时的初始化
 /// </summary>
@@ -62,23 +62,24 @@ EnemyNode* createEnemy(int x0, int y0, int moveMode, double radian, int speed, E
 /// <param name="weaponLevel"></param>
 /// <param name="frame"></param>
 /// <returns></returns>
-EnemyNode* createEnemy(int x0, int y0, int moveMode, int speed, EnemyName name, int health, int weaponLevel, Frame frame);
+EnemyNode* createEnemy(int x0, int y0, int moveMode, double speed, EnemyName name, int health, int weaponLevel, Frame frame);
 /// <summary>
 /// 弧形移动时的初始化
 /// </summary>
-/// <param name="x0">创建物体时的起始点</param>
-/// <param name="y0">创建物体时的起始点</param>
+/// <param name="x0">起点左边</param>
+/// <param name="y0">起点左边</param>
 /// <param name="moveMode">移动方式</param>
-/// <param name="xo">弧形移动时的圆心</param>
-/// <param name="yo">弧形移动时的圆心</param>
-/// <param name="r">圆形移动的半径</param>
-/// <param name="speed">每次移动的速度</param>
+/// <param name="xo">圆心坐标</param>
+/// <param name="yo">圆心坐标</param>
+/// <param name="radian">初始偏转角，记水平x轴的角度为0,逆时针旋转角度增加</param>
+/// <param name="r">移动半径</param>
+/// <param name="speed"></param>
 /// <param name="name"></param>
 /// <param name="health"></param>
 /// <param name="weaponLevel"></param>
 /// <param name="frame"></param>
 /// <returns></returns>
-EnemyNode* createEnemy(int x0, int y0, int moveMode, int xo, int yo, int r, int speed, EnemyName name, int health, int weaponLevel, Frame frame);
+EnemyNode* createEnemy(int x0, int y0, int moveMode, int xo, int yo, double radian, double speed, EnemyName name, int health, int weaponLevel, Frame frame);
 void Enemy_ListPushHead(EnemyNode** pp_Enemy_List_Node, EnemyNode* newNode);
 void update_Enemy(EnemyNode** pp_Enemy_List_Node_Head, Frame frame);
 

@@ -14,7 +14,7 @@ Player::Direction Struct_Direction;
 Player::ObjectState E_TYPE_PlayerState;
 int leftbuffer, rightbuffer, tempframe;
 Player::Player() {
-	speed = 4;
+	speed = 6;
 	Struct_Position.x = 240;
 	Struct_Position.y = 670;
 	health = 100;
