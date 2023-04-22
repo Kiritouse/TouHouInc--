@@ -3,13 +3,22 @@
 #define PI 3.1415926
 #define DEF_MOVE_STOP 0
 #define DEF_MOVE_LINE 1 //线性的移动方式
-#define DEF_MOVE_CIRCLE 2//圆弧形的移动方式
-#define DEF_MOVE_RAND 3//随机线性移动
+#define DEF_MOVE_CIRCLE_RIGHT 2//圆弧形的移动方式，向右边移动
+#define DEF_MOVE_CIRCLE_LEFT 3//圆弧形的移动方式，向左边移动
+#define DEF_MOVE_RAND 4//随机线性移动
 
+#define WIDTH_ENEMY0 40
+#define HEIGHT_ENEMY0 59
+
+#define WIDTH_ENEMY1 43
+#define HEIGHT_ENEMY1 58
+
+#define WIDTH_BOSS 36
+#define HEIGHT_BOSS 56
 
 struct  EnemyNode
 {
-	int type_enemy0 = 0, type_enemy1 = 0;
+	int type_enemy0 = 0, type_enemy1 = 0, type_boss = 0;
 	int x, y, x0, y0;//初始创建角色的位置信息,x,y为每次移动的位置，x0和y0为初始位置
 
 	int moveMode;//初始的移动方式,沿着坐标轴

@@ -5,9 +5,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="子弹">
-      <UniqueIdentifier>{b89391a0-40d3-4ae8-b511-5bcaed889235}</UniqueIdentifier>
-    </Filter>
     <Filter Include="游戏管理">
       <UniqueIdentifier>{b2f3676d-4969-4f5f-bf3d-53cc57d72695}</UniqueIdentifier>
     </Filter>
@@ -44,10 +41,16 @@
     <Filter Include="获取操作">
       <UniqueIdentifier>{876fecfc-7125-4a43-b2f7-da8643738e4c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="玩家\子弹">
+      <UniqueIdentifier>{b89391a0-40d3-4ae8-b511-5bcaed889235}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="敌人\敌人子弹">
+      <UniqueIdentifier>{ec8bf952-0c8c-429d-ad8c-d29b1c5ffb99}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp">
-      <Filter>子弹</Filter>
+      <Filter>玩家\子弹</Filter>
     </ClCompile>
     <ClCompile Include="Draw.cpp">
       <Filter>透明绘图</Filter>
@@ -85,10 +88,13 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>敌人</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyBullet.cpp">
+      <Filter>敌人\敌人子弹</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h">
-      <Filter>子弹</Filter>
+      <Filter>玩家\子弹</Filter>
     </ClInclude>
     <ClInclude Include="Draw.h">
       <Filter>透明绘图</Filter>
@@ -123,6 +129,9 @@
     <ClInclude Include="Flyers.h" />
     <ClInclude Include="Enemy.h">
       <Filter>敌人</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBullet.h">
+      <Filter>敌人\敌人子弹</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
