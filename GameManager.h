@@ -1,17 +1,7 @@
 #pragma once
 #include <iostream>
 #include <graphics.h>
-#include <Windows.h>
-#include <time.h>
-#include "LoadResources.h"
-#include "Interface.h"
-#include "Map.h"
-#include "Player.h"
-#include "Operation.h"
-#include "FrameManager.h"
-#include "Draw.h"
-#include "Bullet.h"
-#include "Enemy.h"
+#pragma
 enum GameState
 {
 	gaming, pause, gameOver
@@ -19,7 +9,6 @@ enum GameState
 
 
 extern GameState E_TYPE_GAMESTATE;
-extern Player OBJ_Player;
 
 /// <summary>
 /// 初始化一些数据

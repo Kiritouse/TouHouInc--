@@ -9,7 +9,7 @@
 #include <math.h>
 #include <random>
 
-EnemyNode* createEnemy(int x0, int y0, int moveMode, double radian, double speed, EnemyName name, int health, int weaponLevel, Frame frame) {
+EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode, double radian, double speed, EnemyName name, int health, int weaponLevel, Frame frame) {
 	EnemyNode* pNew = new EnemyNode;
 	switch (name)
 	{
@@ -31,10 +31,12 @@ EnemyNode* createEnemy(int x0, int y0, int moveMode, double radian, double speed
 	pNew->weaponLevel = weaponLevel;
 	pNew->f_create = frame.f_total - frame.f_pause;
 	pNew->isExist = 1;
+	pNew->FireSwitch = FireSwitch;
+	pNew->fire_on = fire_on;
 	pNew->pnext = NULL;
 	return pNew;
 }
-EnemyNode* createEnemy(int x0, int y0, int moveMode, double speed, EnemyName name, int health, int weaponLevel, Frame frame) {
+EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode, double speed, EnemyName name, int health, int weaponLevel, Frame frame) {
 	EnemyNode* pNew = new EnemyNode;
 	switch (name)
 	{
@@ -45,6 +47,8 @@ EnemyNode* createEnemy(int x0, int y0, int moveMode, double speed, EnemyName nam
 		pNew->type_enemy1 = 1;
 		break;
 	}
+	pNew->FireSwitch = FireSwitch;
+	pNew->fire_on = fire_on;
 	pNew->x = x0;
 	pNew->y = y0;
 	pNew->x0 = x0;
@@ -58,7 +62,7 @@ EnemyNode* createEnemy(int x0, int y0, int moveMode, double speed, EnemyName nam
 	pNew->pnext = NULL;
 	return pNew;
 }
-EnemyNode* createEnemy(int x0, int y0, int moveMode, int xo, int yo, double radian, double speed, EnemyName name, int health, int weaponLevel, Frame frame) {
+EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode, int xo, int yo, double radian, double speed, EnemyName name, int health, int weaponLevel, Frame frame) {
 	EnemyNode* pNew = new EnemyNode;
 	switch (name)
 	{
@@ -69,6 +73,8 @@ EnemyNode* createEnemy(int x0, int y0, int moveMode, int xo, int yo, double radi
 		pNew->type_enemy1 = 1;
 		break;
 	}
+	pNew->FireSwitch = FireSwitch;
+	pNew->fire_on = fire_on;
 	pNew->x = x0;
 	pNew->y = y0;
 	pNew->x0 = x0;
@@ -142,11 +148,6 @@ void moveCircle(EnemyNode* cur, int framebuffer, int type) {
 		xnext = cur->x0 + cur->r * sin(cur->radian);
 		ynext = cur->y0 - (cur->r - cur->r * cos(cur->radian));
 		cur->radian = cur->radian + cur->speed;
-		std::cout << "cur->xo =  " << cur->xo << std::endl;
-		std::cout << "cur->r = " << cur->r << std::endl;
-		std::cout << "cur->radian = " << cur->radian << std::endl;
-		std::cout << "xnext = " << xnext << std::endl;
-		std::cout << "ynext = " << ynext << std::endl;
 	}
 	else if (type == 1) {
 		xnext = cur->x0 - cur->r * sin(cur->radian);
@@ -279,10 +280,24 @@ void listRemoveNode_Enemy(EnemyNode** pp_Enemy_List_Node_Head)
 		}
 	}
 }
-
+int isFire(EnemyNode* cur, int framebuffer) {//判断是否应该开火
+	if (cur == NULL) return -1;
+	if (cur->FireSwitch == 1) {
+		if (framebuffer - cur->f_create == cur->fire_on)//如果帧数之差为一个fire_on就停止开火 {
+			cur->FireSwitch = 0;
+		cur->f_create = framebuffer;
+	}
+	else {
+		if (framebuffer - cur->f_create == cur->fire_on)//如果帧数之差为一个fire_on就继续开火 {
+			cur->FireSwitch = 1;
+		cur->f_create = framebuffer;
+	}
+	return cur->FireSwitch;
+}
 void update_Enemy(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {
 	update_EnemyPosition(pp_Enemy_List_Node_Head, frame);
 	listRemoveNode_Enemy(pp_Enemy_List_Node_Head);
 	update_EnemyImage(pp_Enemy_List_Node_Head);
+	isFire(*pp_Enemy_List_Node_Head, frame.f_total - frame.f_pause);
 
 }

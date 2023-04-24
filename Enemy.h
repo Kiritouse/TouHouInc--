@@ -18,6 +18,9 @@
 
 struct  EnemyNode
 {
+	int FireSwitch;//敌机开火键位
+	int fire_on;//如果总帧数与一个中间变量的插值为fire_on就切换开火状态，即每隔fire_on帧就开一次火
+
 	int type_enemy0 = 0, type_enemy1 = 0, type_boss = 0;
 	int x, y, x0, y0;//初始创建角色的位置信息,x,y为每次移动的位置，x0和y0为初始位置
 
@@ -45,50 +48,12 @@ enum EnemyName {
 	ENEMY1,
 	BOSS,
 };
-/// <summary>
-/// 直线移动时的初始化
-/// </summary>
-/// <param name="x0">创建物体时的起始点</param>
-/// <param name="y0">创建物体时的起始点</param>
-/// <param name="moveMode">移动方式</param>
-/// <param name="radian">直线移动的偏转角，以水平方向为起点，逆时针旋转</param>
-/// <param name="speed">速度</param>
-/// <param name="name"></param>
-/// <param name="health"></param>
-/// <param name="weaponLevel"></param>
-/// <param name="frame"></param>
-/// <returns></returns>
-EnemyNode* createEnemy(int x0, int y0, int moveMode, double radian, double speed, EnemyName name, int health, int weaponLevel, Frame frame);
-/// <summary>
-/// 随机移动时的初始化
-/// </summary>
-/// <param name="x0"></param>
-/// <param name="y0"></param>
-/// <param name="moveMode"></param>
-/// <param name="speed"></param>
-/// <param name="name"></param>
-/// <param name="health"></param>
-/// <param name="weaponLevel"></param>
-/// <param name="frame"></param>
-/// <returns></returns>
-EnemyNode* createEnemy(int x0, int y0, int moveMode, double speed, EnemyName name, int health, int weaponLevel, Frame frame);
-/// <summary>
-/// 弧形移动时的初始化
-/// </summary>
-/// <param name="x0">起点左边</param>
-/// <param name="y0">起点左边</param>
-/// <param name="moveMode">移动方式</param>
-/// <param name="xo">圆心坐标</param>
-/// <param name="yo">圆心坐标</param>
-/// <param name="radian">初始偏转角，记水平x轴的角度为0,逆时针旋转角度增加</param>
-/// <param name="r">移动半径</param>
-/// <param name="speed"></param>
-/// <param name="name"></param>
-/// <param name="health"></param>
-/// <param name="weaponLevel"></param>
-/// <param name="frame"></param>
-/// <returns></returns>
-EnemyNode* createEnemy(int x0, int y0, int moveMode, int xo, int yo, double radian, double speed, EnemyName name, int health, int weaponLevel, Frame frame);
+
+EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode, double radian, double speed, EnemyName name, int health, int weaponLevel, Frame frame);
+
+EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode, double speed, EnemyName name, int health, int weaponLevel, Frame frame);
+
+EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode, int xo, int yo, double radian, double speed, EnemyName name, int health, int weaponLevel, Frame frame);
 void Enemy_ListPushHead(EnemyNode** pp_Enemy_List_Node, EnemyNode* newNode);
 void update_Enemy(EnemyNode** pp_Enemy_List_Node_Head, Frame frame);
 

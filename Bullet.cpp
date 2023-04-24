@@ -1,7 +1,9 @@
 #include "Bullet.h"
 #include "Player.h"
+#include "Map.h"
+#include "Draw.h"
+#include "LoadResources.h"
 #include <cstddef>
-#include "GameManager.h"
 #include "Operation.h"
 #define NORMAL  0
 #define UPDATE 1 
@@ -35,6 +37,7 @@ void Bullet_listPushBack(BulletNode** pp_Player_Bullet_List_Node_Head, BulletNod
 void update_BulletPosition(BulletNode** pp_Player_Bullet_List_Node_Head, int command, int frameBuffer)
 {
 	if (((command & CMD_FIRE) && ((frameBuffer & 1) == 0))) {
+		//std::cout << "asdsa" << std::endl;
 		Bullet_listPushBack(pp_Player_Bullet_List_Node_Head, creatPlayerBullet(0, -10));
 
 	}//´¦ÀíÉä»÷²Ù×÷
@@ -86,11 +89,9 @@ void listRemoveNode_Bullet(BulletNode** pp_Player_Bullet_List_Node_Head)
 void update_BulletImage(BulletNode** pp_Player_Bullet_List) {
 	for (BulletNode* cur = *pp_Player_Bullet_List; cur != NULL; cur = cur->pnext)
 	{
-		//std::cout << cur->y << std::endl;
+
 		transparentimage_half(NULL, cur->x, cur->y, WIDTH_BULLET0, HEIGHT_BULLET0,
 			0, 0, WIDTH_BULLET0, HEIGHT_BULLET0, &normalBullets, 150);
-
-
 	}
 }
 void update_Bullet(BulletNode** pp_Player_Bullet_List_Head, int command, int frameBuffer) {
