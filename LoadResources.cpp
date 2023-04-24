@@ -10,7 +10,7 @@ void loadResources(void) {
 	loadimage(&playerLeft, _T("sources\\Players\\PlayerLeft.png"));
 
 	//加载子弹
-	loadimage(&normalBullets, _T("sources\\Bullets\\Player\\normalBullets.png"));
+	loadimage(&normalBullets, _T("sources\\Players\\Bullets\\Player\\normalBullets.png"));
 
 	//加载敌人
 	loadimage(&enemy0, _T("sources\\Enemy\\Enemy0.png"));

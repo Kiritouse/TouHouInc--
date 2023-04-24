@@ -37,7 +37,6 @@ void Bullet_listPushBack(BulletNode** pp_Player_Bullet_List_Node_Head, BulletNod
 void update_BulletPosition(BulletNode** pp_Player_Bullet_List_Node_Head, int command, int frameBuffer)
 {
 	if (((command & CMD_FIRE) && ((frameBuffer & 1) == 0))) {
-		//std::cout << "asdsa" << std::endl;
 		Bullet_listPushBack(pp_Player_Bullet_List_Node_Head, creatPlayerBullet(0, -10));
 
 	}//处理射击操作
@@ -89,7 +88,7 @@ void listRemoveNode_Bullet(BulletNode** pp_Player_Bullet_List_Node_Head)
 void update_BulletImage(BulletNode** pp_Player_Bullet_List) {
 	for (BulletNode* cur = *pp_Player_Bullet_List; cur != NULL; cur = cur->pnext)
 	{
-
+		std::cout << "执行了绘图函数" << std::endl;
 		transparentimage_half(NULL, cur->x, cur->y, WIDTH_BULLET0, HEIGHT_BULLET0,
 			0, 0, WIDTH_BULLET0, HEIGHT_BULLET0, &normalBullets, 150);
 	}

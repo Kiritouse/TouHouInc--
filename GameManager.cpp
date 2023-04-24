@@ -34,13 +34,13 @@ void AddItem(int framebuffer) {
 		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, WIDTH_MAP / 5 * 1, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
 		break;
 		/*case 120:
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1,2,WIDTH_MAP / 5 * 2, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
+			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, WIDTH_MAP / 5 * 2, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
 			break;
 		case 140:
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1,2,WIDTH_MAP / 5 * 3, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
+			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, WIDTH_MAP / 5 * 3, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
 			break;
 		case 160:
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1,2,WIDTH_MAP / 5 * 4, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
+			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, WIDTH_MAP / 5 * 4, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
 			break;
 			//左边出来敌机
 		case 300:
@@ -83,8 +83,7 @@ void AddItem(int framebuffer) {
 		case 720:
 			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(10, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_RIGHT, 10, 10, 0.0f, 0.00625, ENEMY1, 100, 0, frame));
 			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(400, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));
-			break;
-			*/
+			break;*/
 
 
 
@@ -115,7 +114,6 @@ void Update() {//帧更新
 		update_Enemy(&p_Enemy_List_Node, frame);
 		//update_EnemyBullet(&p_Enemy_List_Node, &p_Enemy_Bullet_List_Node, framebuffer, 0, 0, 2);
 		cal_FPS();
-
 		FlushBatchDraw();
 		Sleep(10);
 	}
