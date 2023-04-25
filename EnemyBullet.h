@@ -15,6 +15,6 @@ struct  EnemyBulletNode
 
 
 };
-void update_EnemyBullet(EnemyNode*)
+void update_EnemyBullet(EnemyNode** pp_Enemy_List_Head, EnemyBulletNode** pp_Enemy_Bullet_List_Head, float vx, float vy, int level, int hitpoint);
 
 

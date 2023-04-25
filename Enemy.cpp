@@ -280,8 +280,8 @@ void listRemoveNode_Enemy(EnemyNode** pp_Enemy_List_Node_Head)
 		}
 	}
 }
-int isFire(EnemyNode* cur, int framebuffer) {//判断是否应该开火
-	if (cur == NULL) return -1;
+void isFire(EnemyNode* cur, int framebuffer) {//判断是否应该开火
+	if (cur == NULL) return;
 	if (cur->FireSwitch == 1) {
 		if (framebuffer - cur->f_create == cur->fire_on)//如果帧数之差为一个fire_on就停止开火 {
 			cur->FireSwitch = 0;
@@ -292,12 +292,13 @@ int isFire(EnemyNode* cur, int framebuffer) {//判断是否应该开火
 			cur->FireSwitch = 1;
 		cur->f_create = framebuffer;
 	}
-	return cur->FireSwitch;
+
 }
 void update_Enemy(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {
 	update_EnemyPosition(pp_Enemy_List_Node_Head, frame);
+	isFire(*pp_Enemy_List_Node_Head, frame.f_total - frame.f_pause);
 	listRemoveNode_Enemy(pp_Enemy_List_Node_Head);
 	update_EnemyImage(pp_Enemy_List_Node_Head);
-	isFire(*pp_Enemy_List_Node_Head, frame.f_total - frame.f_pause);
+
 
 }

@@ -1,8 +1,2 @@
-﻿  Bullet.cpp
-D:\Codes\TouHouInc--\Bullet.cpp(14,46): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
-D:\Codes\TouHouInc--\Bullet.cpp(15,24): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
-D:\Codes\TouHouInc--\Bullet.cpp(92,42): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
-D:\Codes\TouHouInc--\Bullet.cpp(92,34): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
-  EnemyBullet.cpp
-  正在生成代码...
+﻿  GameManager.cpp
   TH.vcxproj -> D:\Codes\TouHouInc--\x64\Debug\TH.exe
