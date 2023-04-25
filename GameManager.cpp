@@ -29,60 +29,60 @@ void AddItem(int framebuffer) {
 	{
 		//开局先直线移动
 	case 100:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 100, WIDTH_MAP / 5 * 1, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP / 5 * 1, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
 		break;
-		case 120:
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, WIDTH_MAP / 5 * 2, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
-			break;
-		case 140:
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, WIDTH_MAP / 5 * 3, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
-			break;
-		case 160:
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, WIDTH_MAP / 5 * 4, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
-			break;
-			//左边出来敌机
-		case 300:
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, 3, HEIGHT_MAP / 7 * 1, DEF_MOVE_LINE, 0.0f, 2, ENEMY0, 1000, 0, frame));
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, 3, HEIGHT_MAP / 7 * 2, DEF_MOVE_LINE, 0.0f, 2, ENEMY0, 1000, 0, frame));
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, 3, HEIGHT_MAP / 7 * 3, DEF_MOVE_LINE, 0.0f, 2, ENEMY0, 1000, 0, frame));
-			break;
-			//右边出来敌机
-		case 500:
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, WIDTH_MAP - 50, HEIGHT_MAP / 7 * 4, DEF_MOVE_LINE, PI, 2, ENEMY0, 1000, 0, frame));
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, WIDTH_MAP - 50, HEIGHT_MAP / 7 * 5, DEF_MOVE_LINE, PI, 2, ENEMY0, 1000, 0, frame));
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, WIDTH_MAP - 50, HEIGHT_MAP / 7 * 6, DEF_MOVE_LINE, PI, 2, ENEMY0, 1000, 0, frame));
-			break;
+	case 120:
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP / 5 * 2, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
+		break;
+	case 140:
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP / 5 * 3, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
+		break;
+	case 160:
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP / 5 * 4, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
+		break;
+		//左边出来敌机
+	case 300:
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 3, HEIGHT_MAP / 7 * 1, DEF_MOVE_LINE, 0.0f, 2, ENEMY0, 1000, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 3, HEIGHT_MAP / 7 * 2, DEF_MOVE_LINE, 0.0f, 2, ENEMY0, 1000, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 3, HEIGHT_MAP / 7 * 3, DEF_MOVE_LINE, 0.0f, 2, ENEMY0, 1000, 0, frame));
+		break;
+		//右边出来敌机
+	case 500:
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP - 50, HEIGHT_MAP / 7 * 4, DEF_MOVE_LINE, PI, 2, ENEMY0, 1000, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP - 50, HEIGHT_MAP / 7 * 5, DEF_MOVE_LINE, PI, 2, ENEMY0, 1000, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP - 50, HEIGHT_MAP / 7 * 6, DEF_MOVE_LINE, PI, 2, ENEMY0, 1000, 0, frame));
+		break;
 
-			//飞机向右边弧形移动
-		case 600:
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, 10, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_RIGHT, 10, 10, 0.0f, 0.00625, ENEMY1, 100, 0, frame));
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, 400, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));
-			break;
-		case 620:
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, 10, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_RIGHT, 10, 10, 0.0f, 0.00625, ENEMY1, 100, 0, frame));
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, 400, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));
-			break;
-		case 640:
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, 10, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_RIGHT, 10, 10, 0.0f, 0.00625, ENEMY1, 100, 0, frame));
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, 400, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));
-			break;
-		case 660:
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, 10, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_RIGHT, 10, 10, 0.0f, 0.00625, ENEMY1, 100, 0, frame));
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, 400, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));
-			break;
-		case 680:
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, 10, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_RIGHT, 10, 10, 0.0f, 0.00625, ENEMY1, 100, 0, frame));
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, 400, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));
-			break;
-		case 700:
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, 10, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_RIGHT, 10, 10, 0.0f, 0.00625, ENEMY1, 100, 0, frame));
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, 400, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));
-			break;
-		case 720:
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, 10, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_RIGHT, 10, 10, 0.0f, 0.00625, ENEMY1, 100, 0, frame));
-			Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 2, 400, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));
-			break;
-			
+		//飞机向右边弧形移动
+	case 600:
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 10, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_RIGHT, 10, 10, 0.0f, 0.00625, ENEMY1, 100, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 400, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));
+		break;
+	case 620:
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 10, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_RIGHT, 10, 10, 0.0f, 0.00625, ENEMY1, 100, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 400, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));
+		break;
+	case 640:
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 10, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_RIGHT, 10, 10, 0.0f, 0.00625, ENEMY1, 100, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 400, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));
+		break;
+	case 660:
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 10, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_RIGHT, 10, 10, 0.0f, 0.00625, ENEMY1, 100, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 400, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));
+		break;
+	case 680:
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 10, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_RIGHT, 10, 10, 0.0f, 0.00625, ENEMY1, 100, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 400, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));
+		break;
+	case 700:
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 10, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_RIGHT, 10, 10, 0.0f, 0.00625, ENEMY1, 100, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 400, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));
+		break;
+	case 720:
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 10, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_RIGHT, 10, 10, 0.0f, 0.00625, ENEMY1, 100, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 400, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));
+		break;
+
 
 
 
@@ -110,7 +110,7 @@ void Update() {//帧更新
 		OBJ_Player.update_Player(n_command, framebuffer);
 		update_Bullet(&p_Player_Bullet_List_Node, n_command, framebuffer);
 		update_Enemy(&p_Enemy_List_Node, frame);
-		update_EnemyBullet(&p_Enemy_List_Node, &p_Enemy_Bullet_List_Node, 0, 10, 0, 100);
+		update_EnemyBullet(&p_Enemy_List_Node, &p_Enemy_Bullet_List_Node, 0, 1, 0, 100, framebuffer);
 		cal_FPS();
 		FlushBatchDraw();
 		Sleep(10);

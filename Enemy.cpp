@@ -20,6 +20,7 @@ EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode
 		pNew->type_enemy1 = 1;
 		break;
 	}
+	//std::cout << "asdasd" << std::endl;
 	pNew->x = x0;
 	pNew->y = y0;
 	pNew->x0 = x0;
@@ -280,23 +281,36 @@ void listRemoveNode_Enemy(EnemyNode** pp_Enemy_List_Node_Head)
 		}
 	}
 }
-void isFire(EnemyNode* cur, int framebuffer) {//判断是否应该开火
-	if (cur == NULL) return;
-	if (cur->FireSwitch == 1) {
-		if (framebuffer - cur->f_create == cur->fire_on)//如果帧数之差为一个fire_on就停止开火 {
-			cur->FireSwitch = 0;
-		cur->f_create = framebuffer;
-	}
-	else {
-		if (framebuffer - cur->f_create == cur->fire_on)//如果帧数之差为一个fire_on就继续开火 {
-			cur->FireSwitch = 1;
-		cur->f_create = framebuffer;
+void isFire(EnemyNode** pp_Enemy_List_Node_Head, int framebuffer) {//判断是否应该开火
+	if (*pp_Enemy_List_Node_Head == NULL) return;
+	EnemyNode* cur = *pp_Enemy_List_Node_Head;
+	//std::cout << "FireSwitch = " << cur->FireSwitch << std::endl;
+	while (cur != NULL) {
+		if (cur->FireSwitch == 1) {
+			/*std::cout << "framebuffer = " << framebuffer << std::endl;
+			std::cout << "cur->f_create = " << cur->f_create << std::endl;*/
+			if (framebuffer - cur->f_create == cur->fire_on)
+			{//如果帧数之差为一个fire_on就停止开火 
+				//std::cout << "yes" << std::endl;
+				cur->FireSwitch = 0;
+				cur->f_create = framebuffer;
+			}
+
+		}
+		else {
+			if (framebuffer - cur->f_create == cur->fire_on) {//如果帧数之差为一个fire_on就继续开火 {
+				cur->FireSwitch = 1;
+				cur->f_create = framebuffer;
+			}
+
+		}
+		cur = cur->pnext;
 	}
 
 }
 void update_Enemy(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {
 	update_EnemyPosition(pp_Enemy_List_Node_Head, frame);
-	isFire(*pp_Enemy_List_Node_Head, frame.f_total - frame.f_pause);
+	//isFire(pp_Enemy_List_Node_Head, frame.f_total - frame.f_pause);
 	listRemoveNode_Enemy(pp_Enemy_List_Node_Head);
 	update_EnemyImage(pp_Enemy_List_Node_Head);
 

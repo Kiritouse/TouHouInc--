@@ -10,7 +10,7 @@
 EnemyBulletNode* createEnemyBulletNode(EnemyNode** pp_Enemy_List_Head, float vx, float vy, int level, int hitpoint) {
 	EnemyBulletNode* newEnemyBulletNode = new EnemyBulletNode;
 	newEnemyBulletNode->x = (*pp_Enemy_List_Head)->x + WIDTH_ENEMY0 / 2 - 8;
-	newEnemyBulletNode->y = (*pp_Enemy_List_Head)->y+HEIGHT_ENEMY0/2-10;
+	newEnemyBulletNode->y = (*pp_Enemy_List_Head)->y + HEIGHT_ENEMY0 / 2 - 10;
 	newEnemyBulletNode->vx = vx;
 	newEnemyBulletNode->vy = vy;
 	newEnemyBulletNode->level = level;
@@ -30,16 +30,16 @@ void EnemyBulletListPushBack(EnemyBulletNode** pp_Enemy_Bullet_List_Head, EnemyB
 	}
 	cur->pnext = newNode;
 }
-void update_EnemyBulletPosition(EnemyNode** pp_Enemy_List_Head, EnemyBulletNode** pp_Enemy_Bullet_List_Head, float vx, float vy, int level, int hitpoint) {
+void update_EnemyBulletPosition(EnemyNode** pp_Enemy_List_Head, EnemyBulletNode** pp_Enemy_Bullet_List_Head, float vx, float vy, int level, int hitpoint, int framebuffer) {
 	if (*pp_Enemy_List_Head == NULL) {
 		return;
 	}
 	EnemyNode* curEnemy = *pp_Enemy_List_Head;
 	while (curEnemy != NULL) {
-		if (curEnemy->FireSwitch == 1)
+		if (framebuffer - curEnemy->f_create == curEnemy->fire_on) {
 			EnemyBulletListPushBack(pp_Enemy_Bullet_List_Head, createEnemyBulletNode(&curEnemy, vx, vy, level, hitpoint));
-		else return;
-
+			curEnemy->f_create = framebuffer;;
+		}
 		EnemyBulletNode* curEnemyBullet = *pp_Enemy_Bullet_List_Head;
 		while (curEnemyBullet != NULL) {
 			curEnemyBullet->x += curEnemyBullet->vx;
@@ -86,11 +86,11 @@ void update_EnemyBulletImage(EnemyBulletNode** pp_Enemy_Bullet_List_Head) {
 	for (EnemyBulletNode* curEnemyNode = *pp_Enemy_Bullet_List_Head; curEnemyNode != NULL; curEnemyNode = curEnemyNode->pnext)
 	{
 		transparentimage_half(NULL, curEnemyNode->x, curEnemyNode->y, WIDTH_ENEMYBULLET0, HEIGHT_ENEMYBULLET0,
-			0, 0, WIDTH_ENEMYBULLET0, HEIGHT_ENEMYBULLET0, &enemyBullet0, 150);
+			0, 0, WIDTH_ENEMYBULLET0, HEIGHT_ENEMYBULLET0, &enemyBullet0, 255);
 	}
 }
-void update_EnemyBullet(EnemyNode** pp_Enemy_List_Head, EnemyBulletNode** pp_Enemy_Bullet_List_Head, float vx, float vy, int level, int hitpoint) {
-	update_EnemyBulletPosition(pp_Enemy_List_Head, pp_Enemy_Bullet_List_Head, vx, vy, level, hitpoint);
+void update_EnemyBullet(EnemyNode** pp_Enemy_List_Head, EnemyBulletNode** pp_Enemy_Bullet_List_Head, float vx, float vy, int level, int hitpoint, int framebuffer) {
+	update_EnemyBulletPosition(pp_Enemy_List_Head, pp_Enemy_Bullet_List_Head, vx, vy, level, hitpoint, framebuffer);
 	listRemoveNodeEnemyBullet(pp_Enemy_Bullet_List_Head);
 	update_EnemyBulletImage(pp_Enemy_Bullet_List_Head);
 
