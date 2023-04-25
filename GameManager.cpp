@@ -10,7 +10,7 @@
 #include "Draw.h"
 #include "Bullet.h"
 #include "Enemy.h"
-//#include "EnemyBullet.h"
+#include "EnemyBullet.h"
 
 #define PI 3.1415926
 GameState E_TYPE_GAMESTATE;
@@ -19,14 +19,12 @@ Map OBJ_Map;
 Player OBJ_Player;
 Frame frame(0, 0, 0, 0);
 BulletNode* p_Player_Bullet_List_Node = NULL;//飞机子弹列表的头节点
-//EnemyBulletNode* p_Enemy_Bullet_List_Node = NULL;//敌机子弹列表头节点
+EnemyBulletNode* p_Enemy_Bullet_List_Node = NULL;//敌机子弹列表头节点
 EnemyNode* p_Enemy_List_Node = NULL;
 clock_t t_begin = clock();
 clock_t t_update;
 int  n_command;//
 void AddItem(int framebuffer) {
-	//std::cout << framebuffer << std::endl;
-
 	switch (framebuffer)
 	{
 		//开局先直线移动
@@ -112,7 +110,7 @@ void Update() {//帧更新
 		OBJ_Player.update_Player(n_command, framebuffer);
 		update_Bullet(&p_Player_Bullet_List_Node, n_command, framebuffer);
 		update_Enemy(&p_Enemy_List_Node, frame);
-		//update_EnemyBullet(&p_Enemy_List_Node, &p_Enemy_Bullet_List_Node, framebuffer, 0, 0, 2);
+		update_EnemyBullet(&p_Enemy_List_Node, &p_Enemy_Bullet_List_Node, framebuffer, 0, 0, 2);
 		cal_FPS();
 		FlushBatchDraw();
 		Sleep(10);

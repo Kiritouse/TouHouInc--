@@ -49,7 +49,7 @@ void update_BulletPosition(BulletNode** pp_Player_Bullet_List_Node_Head, int com
 		cur->x += cur->vx;
 		cur->y += cur->vy;
 		//判断子弹是否离开视野
-		if ((cur->y < -20) || (cur->y > HEIGHT_MAP) || (cur->x > WIDTH_MAP) || (cur->y < -20))
+		if ((cur->y < -20) || (cur->y > HEIGHT_MAP) || (cur->x > WIDTH_MAP) || (cur->x < -20))
 			cur->isExist = 0;
 		cur = cur->pnext;//指向下一个节点
 	}
@@ -88,7 +88,7 @@ void listRemoveNode_Bullet(BulletNode** pp_Player_Bullet_List_Node_Head)
 void update_BulletImage(BulletNode** pp_Player_Bullet_List) {
 	for (BulletNode* cur = *pp_Player_Bullet_List; cur != NULL; cur = cur->pnext)
 	{
-		std::cout << "执行了绘图函数" << std::endl;
+
 		transparentimage_half(NULL, cur->x, cur->y, WIDTH_BULLET0, HEIGHT_BULLET0,
 			0, 0, WIDTH_BULLET0, HEIGHT_BULLET0, &normalBullets, 150);
 	}
