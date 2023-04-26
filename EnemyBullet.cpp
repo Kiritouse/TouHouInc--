@@ -7,10 +7,10 @@
 #define DEF_TYPE_ENEMY1 1
 #define WIDTH_ENEMYBULLET0 22
 #define HEIGHT_ENEMYBULLET0 21
-EnemyBulletNode* createEnemyBulletNode(EnemyNode** pp_Enemy_List_Head, float vx, float vy, int level, int hitpoint) {
+EnemyBulletNode* createEnemyBulletNode(EnemyNode** pp_curEnemy, float vx, float vy, int level, int hitpoint) {
 	EnemyBulletNode* newEnemyBulletNode = new EnemyBulletNode;
-	newEnemyBulletNode->x = (*pp_Enemy_List_Head)->x + WIDTH_ENEMY0 / 2 - 8;
-	newEnemyBulletNode->y = (*pp_Enemy_List_Head)->y + HEIGHT_ENEMY0 / 2 - 10;
+	newEnemyBulletNode->x = (*pp_curEnemy)->x + WIDTH_ENEMY0 / 2 - 8;
+	newEnemyBulletNode->y = (*pp_curEnemy)->y + HEIGHT_ENEMY0 / 2 - 10;
 	newEnemyBulletNode->vx = vx;
 	newEnemyBulletNode->vy = vy;
 	newEnemyBulletNode->level = level;
