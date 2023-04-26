@@ -40,15 +40,16 @@ void update_EnemyBulletPosition(EnemyNode** pp_Enemy_List_Head, EnemyBulletNode*
 			EnemyBulletListPushBack(pp_Enemy_Bullet_List_Head, createEnemyBulletNode(&curEnemy, vx, vy, level, hitpoint));
 			curEnemy->f_create = framebuffer;;
 		}
-		EnemyBulletNode* curEnemyBullet = *pp_Enemy_Bullet_List_Head;
-		while (curEnemyBullet != NULL) {
-			curEnemyBullet->x += curEnemyBullet->vx;
-			curEnemyBullet->y += curEnemyBullet->vy;
-			if ((curEnemyBullet->y < -20) || (curEnemyBullet->y > HEIGHT_MAP) || (curEnemyBullet->x > WIDTH_MAP) || (curEnemyBullet->x < -20))
-				curEnemyBullet->isExist = 0;
-			curEnemyBullet = curEnemyBullet->pnext;//指向下一个节点
-		}
 		curEnemy = curEnemy->pnext;
+	}
+	EnemyBulletNode* curEnemyBullet = *pp_Enemy_Bullet_List_Head;
+	while (curEnemyBullet != NULL) {
+		curEnemyBullet->x += curEnemyBullet->vx;
+		curEnemyBullet->y += curEnemyBullet->vy;
+		//	std::cout << "y = " << curEnemyBullet->y << std::endl;
+		if ((curEnemyBullet->y < -20) || (curEnemyBullet->y > HEIGHT_MAP) || (curEnemyBullet->x > WIDTH_MAP) || (curEnemyBullet->x < -20))
+			curEnemyBullet->isExist = 0;
+		curEnemyBullet = curEnemyBullet->pnext;//指向下一个节点
 	}
 
 }
@@ -74,6 +75,7 @@ void listRemoveNodeEnemyBullet(EnemyBulletNode** p_Enemy_Bullet_List_Head)
 				free(curP);
 				curP = prevP;
 			}
+			//std::cout << "已经删除了" << std::endl;
 		}
 		else
 		{
