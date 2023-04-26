@@ -47,6 +47,9 @@
     <Filter Include="敌人\敌人子弹">
       <UniqueIdentifier>{ec8bf952-0c8c-429d-ad8c-d29b1c5ffb99}</UniqueIdentifier>
     </Filter>
+    <Filter Include="粒子">
+      <UniqueIdentifier>{63a6aa89-aa06-4332-91b7-70378553f1aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp">
@@ -91,6 +94,9 @@
     <ClCompile Include="EnemyBullet.cpp">
       <Filter>敌人\敌人子弹</Filter>
     </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>粒子</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h">
@@ -132,6 +138,9 @@
     </ClInclude>
     <ClInclude Include="EnemyBullet.h">
       <Filter>敌人\敌人子弹</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>粒子</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
