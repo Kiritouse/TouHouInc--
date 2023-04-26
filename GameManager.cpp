@@ -29,31 +29,31 @@ void AddItem(int framebuffer) {
 	{
 		//开局先直线移动
 	case 100:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP / 5 * 1, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP / 5 * 1, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 50, 0, frame));
 		break;
 	case 120:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP / 5 * 2, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP / 5 * 2, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 50, 0, frame));
 		break;
 	case 140:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP / 5 * 3, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP / 5 * 3, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 50, 0, frame));
 		break;
 	case 160:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP / 5 * 4, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 1000, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP / 5 * 4, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 50, 0, frame));
 		break;
 		//左边出来敌机
 	case 300:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 3, HEIGHT_MAP / 7 * 1, DEF_MOVE_LINE, 0.0f, 2, ENEMY0, 1000, 0, frame));
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 3, HEIGHT_MAP / 7 * 2, DEF_MOVE_LINE, 0.0f, 2, ENEMY0, 1000, 0, frame));
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 3, HEIGHT_MAP / 7 * 3, DEF_MOVE_LINE, 0.0f, 2, ENEMY0, 1000, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 3, HEIGHT_MAP / 7 * 1, DEF_MOVE_LINE, 0.0f, 2, ENEMY0, 50, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 3, HEIGHT_MAP / 7 * 2, DEF_MOVE_LINE, 0.0f, 2, ENEMY0, 50, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 3, HEIGHT_MAP / 7 * 3, DEF_MOVE_LINE, 0.0f, 2, ENEMY0, 50, 0, frame));
 		break;
 		//右边出来敌机
 	case 500:
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP - 50, HEIGHT_MAP / 7 * 4, DEF_MOVE_LINE, PI, 2, ENEMY0, 1000, 0, frame));
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP - 50, HEIGHT_MAP / 7 * 5, DEF_MOVE_LINE, PI, 2, ENEMY0, 1000, 0, frame));
-		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP - 50, HEIGHT_MAP / 7 * 6, DEF_MOVE_LINE, PI, 2, ENEMY0, 1000, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP - 50, HEIGHT_MAP / 7 * 4, DEF_MOVE_LINE, PI, 2, ENEMY0, 50, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP - 50, HEIGHT_MAP / 7 * 5, DEF_MOVE_LINE, PI, 2, ENEMY0, 50, 0, frame));
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, WIDTH_MAP - 50, HEIGHT_MAP / 7 * 6, DEF_MOVE_LINE, PI, 2, ENEMY0, 50, 0, frame));
 		break;
 
-		//飞机向右边弧形移动
+		//飞机向着右边和向着左边弧形移动
 	case 600:
 		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 10, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_RIGHT, 10, 10, 0.0f, 0.00625, ENEMY1, 100, 0, frame));
 		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 400, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));
@@ -83,10 +83,9 @@ void AddItem(int framebuffer) {
 		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 20, 400, HEIGHT_MAP / 2, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));
 		break;
 
-
-
-
-
+	case 800:
+		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, 50, WIDTH_MAP / 3, 20, DEF_MOVE_RAND, 6.0f, ENEMY0, 100, 0, frame));
+		break;
 	}
 }
 
@@ -108,12 +107,12 @@ void Update() {//帧更新
 		n_command = GetInput();
 		OBJ_Map.update_Map();
 		OBJ_Player.update_Player(n_command, framebuffer);
-		update_Bullet(&p_Player_Bullet_List_Node, n_command, framebuffer);
-		update_Enemy(&p_Enemy_List_Node, frame);
-		update_EnemyBullet(&p_Enemy_List_Node, &p_Enemy_Bullet_List_Node, 0, 6, 0, 100, framebuffer);
+		update_Bullet(&p_Enemy_List_Node, &p_Player_Bullet_List_Node, n_command, framebuffer, 0, -10, 10);
+		update_Enemy(100, &p_Enemy_List_Node, frame);
+		update_EnemyBullet(&p_Enemy_List_Node, &p_Enemy_Bullet_List_Node, 0, 6, 0, 10, framebuffer);
 		//cal_FPS();
 		FlushBatchDraw();
-		Sleep(30);
+		Sleep(20);
 	}
 }
 

@@ -55,7 +55,7 @@ EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode
 
 EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode, int xo, int yo, double radian, double speed, EnemyName name, int health, int weaponLevel, Frame frame);
 void Enemy_ListPushHead(EnemyNode** pp_Enemy_List_Node, EnemyNode* newNode);
-void update_Enemy(EnemyNode** pp_Enemy_List_Node_Head, Frame frame);
+void update_Enemy(int ylimit, EnemyNode** pp_Enemy_List_Node_Head, Frame frame);
 
 
 

@@ -8,7 +8,7 @@
 #include <iostream>
 #include <math.h>
 #include <random>
-
+const double MOVE_FACTOR = 0.1;
 EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode, double radian, double speed, EnemyName name, int health, int weaponLevel, Frame frame) {
 	EnemyNode* pNew = new EnemyNode;
 	switch (name)
@@ -181,11 +181,12 @@ void moveCircle(EnemyNode* cur, int framebuffer, int type) {
 	}
 
 }
-void moveRand(EnemyNode* cur) {
-	srand(time(0));
-	int xnext = cur->x + rand() % (int)cur->speed - (cur->speed / 2);
-	int ynext = cur->y + rand() % (int)cur->speed - (cur->speed / 3);
+void moveRand(EnemyNode* cur, int ylimit) {
+	srand(time(nullptr));
+	int xnext = cur->x + rand() % ((int)cur->speed + 1) - (cur->speed) / 2;
+	int ynext = cur->y + rand() % ((int)cur->speed + 1) - (cur->speed) / 10;
 	if (cur->type_enemy0 == 1) {
+
 		if (xnext < WIDTH_MAP - WIDTH_ENEMY0 && ynext < HEIGHT_MAP - HEIGHT_ENEMY0 && xnext > 0 && ynext >0) {
 			cur->x = xnext;
 			cur->y = ynext;
@@ -206,6 +207,7 @@ void moveRand(EnemyNode* cur) {
 		}
 
 	}
+
 }
 void moveBoss(EnemyNode* cur) {
 	if (cur->type_boss == 1) {
@@ -221,7 +223,7 @@ void moveBoss(EnemyNode* cur) {
 		}
 	}
 }
-void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//ÓÃÖ¸Õë±éÀúÃ¿¸ö·É»ú½Úµã£¬¸ù¾İ·É»úµÄ³õÊ¼Î»ÖÃ,³õÊ¼·½Ïò,Ñ¡Ôñ²»Í¬µÄ¸üĞÂ·½Ê½
+void update_EnemyPosition(int ylimit, EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//ÓÃÖ¸Õë±éÀúÃ¿¸ö·É»ú½Úµã£¬¸ù¾İ·É»úµÄ³õÊ¼Î»ÖÃ,³õÊ¼·½Ïò,Ñ¡Ôñ²»Í¬µÄ¸üĞÂ·½Ê½
 	if (*pp_Enemy_List_Node_Head == NULL) return;
 	EnemyNode* cur = *pp_Enemy_List_Node_Head;
 	int framebuffer = frame.f_total - frame.f_pause;
@@ -242,7 +244,7 @@ void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//Ó
 				moveCircle(cur, framebuffer, 1);
 				break;
 			case DEF_MOVE_RAND:
-				moveRand(cur);
+				moveRand(cur, ylimit);
 				break;
 			default:
 				break;
@@ -281,36 +283,9 @@ void listRemoveNode_Enemy(EnemyNode** pp_Enemy_List_Node_Head)
 		}
 	}
 }
-void isFire(EnemyNode** pp_Enemy_List_Node_Head, int framebuffer) {//ÅĞ¶ÏÊÇ·ñÓ¦¸Ã¿ª»ğ
-	if (*pp_Enemy_List_Node_Head == NULL) return;
-	EnemyNode* cur = *pp_Enemy_List_Node_Head;
-	//std::cout << "FireSwitch = " << cur->FireSwitch << std::endl;
-	while (cur != NULL) {
-		if (cur->FireSwitch == 1) {
-			/*std::cout << "framebuffer = " << framebuffer << std::endl;
-			std::cout << "cur->f_create = " << cur->f_create << std::endl;*/
-			if (framebuffer - cur->f_create == cur->fire_on)
-			{//Èç¹ûÖ¡ÊıÖ®²îÎªÒ»¸öfire_on¾ÍÍ£Ö¹¿ª»ğ 
-				//std::cout << "yes" << std::endl;
-				cur->FireSwitch = 0;
-				cur->f_create = framebuffer;
-			}
 
-		}
-		else {
-			if (framebuffer - cur->f_create == cur->fire_on) {//Èç¹ûÖ¡ÊıÖ®²îÎªÒ»¸öfire_on¾Í¼ÌĞø¿ª»ğ {
-				cur->FireSwitch = 1;
-				cur->f_create = framebuffer;
-			}
-
-		}
-		cur = cur->pnext;
-	}
-
-}
-void update_Enemy(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {
-	update_EnemyPosition(pp_Enemy_List_Node_Head, frame);
-	//isFire(pp_Enemy_List_Node_Head, frame.f_total - frame.f_pause);
+void update_Enemy(int ylimit, EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {
+	update_EnemyPosition(ylimit, pp_Enemy_List_Node_Head, frame);
 	listRemoveNode_Enemy(pp_Enemy_List_Node_Head);
 	update_EnemyImage(pp_Enemy_List_Node_Head);
 

@@ -1,4 +1,5 @@
 #include "LoadResources.h"
+#include "Bullet.h"
 IMAGE  background, player, playerRight, playerLeft, normalBullets, enemy0, enemyBullet0, enemy1, boss;
 void loadResources(void) {
 	//º”‘ÿ±≥æ∞Õº∆¨
