@@ -6,6 +6,7 @@ int main() {
 	Awake();
 	while (1) {
 		if (E_TYPE_GAMESTATE == gaming)
+
 			Gaming();
 	}
 

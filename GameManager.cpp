@@ -11,7 +11,7 @@
 #include "Bullet.h"
 #include "Enemy.h"
 #include "EnemyBullet.h"
-
+#include "Music.h"
 #define PI 3.1415926
 GameState E_TYPE_GAMESTATE;
 Interface OBJ_interface;
@@ -24,6 +24,7 @@ EnemyNode* p_Enemy_List_Node = NULL;
 clock_t t_begin = clock();
 clock_t t_update;
 int  n_command;//
+
 void AddItem(int framebuffer) {
 	switch (framebuffer)
 	{
@@ -97,12 +98,14 @@ void Awake() {
 void Update() {//帧更新
 	int framebuffer;
 	while (E_TYPE_GAMESTATE == gaming) {
+
 		t_update = clock();
 		if (t_update - t_begin >= 10) {
 			frame.f_total++;//总帧数，10ms为一帧
 			framebuffer = frame.f_total - frame.f_pause;
 		}
 		else continue;
+
 		AddItem(framebuffer);
 		n_command = GetInput();
 		OBJ_Map.update_Map();
@@ -120,6 +123,7 @@ void Update() {//帧更新
 
 void Gaming() {
 	BeginBatchDraw();
+	playsound(0, 1);
 	Update();
 
 	EndBatchDraw();

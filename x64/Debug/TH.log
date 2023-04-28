@@ -1,11 +1,9 @@
-﻿  Bullet.cpp
-D:\Codes\TouHouInc--\Bullet.cpp(14,46): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
-D:\Codes\TouHouInc--\Bullet.cpp(15,24): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
-D:\Codes\TouHouInc--\Bullet.cpp(40,78): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
-D:\Codes\TouHouInc--\Bullet.cpp(40,74): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
-D:\Codes\TouHouInc--\Bullet.cpp(93,42): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
-D:\Codes\TouHouInc--\Bullet.cpp(93,34): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
-  GameManager.cpp
-  LoadResources.cpp
+﻿  LoadResources.cpp
+  Music.cpp
+D:\Codes\TouHouInc--\Music.cpp(12,3): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Codes\TouHouInc--\Music.cpp(14,3): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Codes\TouHouInc--\Music.cpp(20,2): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Codes\TouHouInc--\Music.cpp(26,47): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\Codes\TouHouInc--\Music.cpp(29,2): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   正在生成代码...
   TH.vcxproj -> D:\Codes\TouHouInc--\x64\Debug\TH.exe
