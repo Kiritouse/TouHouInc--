@@ -15,6 +15,6 @@ void Map::update_MapImage() {
 }
 void Map::update_Map() {
 	update_MapPosition();
-	update_MapImage();
+	//update_MapImage();
 }
 

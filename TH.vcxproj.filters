@@ -94,10 +94,7 @@
     <ClCompile Include="EnemyBullet.cpp">
       <Filter>敌人\敌人子弹</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleSwarm.cpp">
-      <Filter>粒子</Filter>
-    </ClCompile>
-    <ClCompile Include="FireWorks.cpp">
+    <ClCompile Include="ParticleManager.cpp">
       <Filter>粒子</Filter>
     </ClCompile>
   </ItemGroup>
@@ -142,10 +139,7 @@
     <ClInclude Include="EnemyBullet.h">
       <Filter>敌人\敌人子弹</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleSwarm.h">
-      <Filter>粒子</Filter>
-    </ClInclude>
-    <ClInclude Include="FireWorks.h">
+    <ClInclude Include="ParticleManager.h">
       <Filter>粒子</Filter>
     </ClInclude>
   </ItemGroup>

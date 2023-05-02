@@ -287,7 +287,7 @@ void listRemoveNode_Enemy(EnemyNode** pp_Enemy_List_Node_Head)
 void update_Enemy(int ylimit, EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {
 	update_EnemyPosition(ylimit, pp_Enemy_List_Node_Head, frame);
 	listRemoveNode_Enemy(pp_Enemy_List_Node_Head);
-	update_EnemyImage(pp_Enemy_List_Node_Head);
+
 
 
 }

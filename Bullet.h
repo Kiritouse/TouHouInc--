@@ -16,3 +16,5 @@ struct BulletNode
 //一维指针相当于指向某一个节点，二维指针就相当于指向某一节点中的某一个数据
 
 void update_Bullet(EnemyNode** pp_Enemy_List_Head, BulletNode** pp_Player_Bullet_List_Head, int command, int frameBuffer, int vx, int vy, int hitpoint);
+
+void update_BulletImage(BulletNode** pp_Player_Bullet_List);

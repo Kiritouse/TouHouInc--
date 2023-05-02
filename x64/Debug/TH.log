@@ -1,9 +1,2 @@
-﻿  LoadResources.cpp
-  Music.cpp
-D:\Codes\TouHouInc--\Music.cpp(12,3): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Codes\TouHouInc--\Music.cpp(14,3): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Codes\TouHouInc--\Music.cpp(20,2): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Codes\TouHouInc--\Music.cpp(26,47): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-D:\Codes\TouHouInc--\Music.cpp(29,2): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  正在生成代码...
+﻿  ParticleManager.cpp
   TH.vcxproj -> D:\Codes\TouHouInc--\x64\Debug\TH.exe

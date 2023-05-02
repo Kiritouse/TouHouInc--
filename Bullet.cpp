@@ -8,6 +8,7 @@
 #include <graphics.h>
 #include <Windows.h>
 #include "Operation.h"
+#include "ParticleManager.h"
 
 BulletNode* creatPlayerBullet(float vx, float vy, int hitpoint) {
 	BulletNode* p = new BulletNode;
@@ -115,6 +116,7 @@ void bulletCrashEnemyCheck(EnemyNode** pp_Enemy_List_Head, BulletNode** pp_Playe
 					//std::cout << curEnemy->health << std::endl;
 					if (curEnemy->health <= 0) {
 						curEnemy->isExist = 0;
+						createFireworks(&curEnemy);
 					}
 					else {
 						std::cout << curBullet->hitpoint << std::endl;
@@ -137,7 +139,7 @@ void update_Bullet(EnemyNode** pp_Enemy_List_Head, BulletNode** pp_Player_Bullet
 	update_BulletPosition(pp_Player_Bullet_List_Head, command, frameBuffer, vx, vy, hitpoint);
 	bulletCrashEnemyCheck(pp_Enemy_List_Head, pp_Player_Bullet_List_Head);
 	listRemoveNode_Bullet(pp_Player_Bullet_List_Head);//超出视野或者击中飞行器的子弹删除掉
-	update_BulletImage(pp_Player_Bullet_List_Head);
+
 }
 
 

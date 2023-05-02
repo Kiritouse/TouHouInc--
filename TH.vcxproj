@@ -136,7 +136,6 @@
     </ClCompile>
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyBullet.cpp" />
-    <ClCompile Include="FireWorks.cpp" />
     <ClCompile Include="FrameManager.cpp" />
     <ClCompile Include="mainGame.cpp" />
     <ClCompile Include="GameManager.cpp">
@@ -161,7 +160,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Operation.cpp" />
-    <ClCompile Include="ParticleSwarm.cpp" />
+    <ClCompile Include="ParticleManager.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -169,7 +168,6 @@
     <ClInclude Include="Draw.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBullet.h" />
-    <ClInclude Include="FireWorks.h" />
     <ClInclude Include="Flyers.h" />
     <ClInclude Include="FrameManager.h" />
     <ClInclude Include="GameManager.h" />
@@ -179,7 +177,7 @@
     <ClInclude Include="MathAndPhysics.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="Operation.h" />
-    <ClInclude Include="ParticleSwarm.h" />
+    <ClInclude Include="ParticleManager.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

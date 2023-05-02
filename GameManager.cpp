@@ -12,6 +12,7 @@
 #include "Enemy.h"
 #include "EnemyBullet.h"
 #include "Music.h"
+#include "ParticleManager.h"
 #define PI 3.1415926
 GameState E_TYPE_GAMESTATE;
 Interface OBJ_interface;
@@ -95,6 +96,18 @@ void Awake() {
 	E_TYPE_GAMESTATE = gaming;
 	OBJ_interface.InitGraphInterface();
 }
+void update_Paintings(int framebuffer) {
+	BeginBatchDraw();
+	cleardevice();
+	OBJ_Map.update_MapImage();
+	OBJ_Player.update_PlayerImage(framebuffer);
+	update_BulletImage(&p_Player_Bullet_List_Node);
+	update_EnemyImage(&p_Enemy_List_Node);
+	update_EnemyBulletImage(&p_Enemy_Bullet_List_Node);
+	update_Particle();
+	EndBatchDraw();
+}
+
 void Update() {//帧更新
 	int framebuffer;
 	while (E_TYPE_GAMESTATE == gaming) {
@@ -113,8 +126,12 @@ void Update() {//帧更新
 		update_Bullet(&p_Enemy_List_Node, &p_Player_Bullet_List_Node, n_command, framebuffer, 0, -10, 10);
 		update_Enemy(100, &p_Enemy_List_Node, frame);
 		update_EnemyBullet(&p_Enemy_List_Node, &p_Enemy_Bullet_List_Node, 0, 6, 0, 10, framebuffer);
+
+		update_Paintings(framebuffer);
+
 		//cal_FPS();
-		FlushBatchDraw();
+
+		//FlushBatchDraw();
 		Sleep(20);
 	}
 }
