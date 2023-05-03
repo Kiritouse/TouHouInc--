@@ -72,7 +72,6 @@ void listRemoveNodeEnemyBullet(EnemyBulletNode** p_Enemy_Bullet_List_Head)
 				free(curP);
 				curP = prevP;
 			}
-			//std::cout << "ÒÑ¾­É¾³ýÁË" << std::endl;
 		}
 		else
 		{

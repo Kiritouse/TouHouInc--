@@ -119,7 +119,7 @@ void bulletCrashEnemyCheck(EnemyNode** pp_Enemy_List_Head, BulletNode** pp_Playe
 						createFireworks(&curEnemy);
 					}
 					else {
-						std::cout << curBullet->hitpoint << std::endl;
+						//std::cout << curBullet->hitpoint << std::endl;
 						curEnemy->health -= curBullet->hitpoint;
 					}
 					curBullet->isExist = 0;

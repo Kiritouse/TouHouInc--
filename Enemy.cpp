@@ -181,10 +181,10 @@ void moveCircle(EnemyNode* cur, int framebuffer, int type) {
 	}
 
 }
-void moveRand(EnemyNode* cur, int ylimit) {
-	srand(time(nullptr));
+void moveRand(EnemyNode* cur, int framebuffer) {
+	srand((unsigned int)time(NULL));
 	int xnext = cur->x + rand() % ((int)cur->speed + 1) - (cur->speed) / 2;
-	int ynext = cur->y + rand() % ((int)cur->speed + 1) - (cur->speed) / 10;
+	int ynext = cur->y + rand() % ((int)cur->speed + 1) - (cur->speed) / 20;
 	if (cur->type_enemy0 == 1) {
 
 		if (xnext < WIDTH_MAP - WIDTH_ENEMY0 && ynext < HEIGHT_MAP - HEIGHT_ENEMY0 && xnext > 0 && ynext >0) {
@@ -223,7 +223,7 @@ void moveBoss(EnemyNode* cur) {
 		}
 	}
 }
-void update_EnemyPosition(int ylimit, EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//用指针遍历每个飞机节点，根据飞机的初始位置,初始方向,选择不同的更新方式
+void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//用指针遍历每个飞机节点，根据飞机的初始位置,初始方向,选择不同的更新方式
 	if (*pp_Enemy_List_Node_Head == NULL) return;
 	EnemyNode* cur = *pp_Enemy_List_Node_Head;
 	int framebuffer = frame.f_total - frame.f_pause;
@@ -244,7 +244,7 @@ void update_EnemyPosition(int ylimit, EnemyNode** pp_Enemy_List_Node_Head, Frame
 				moveCircle(cur, framebuffer, 1);
 				break;
 			case DEF_MOVE_RAND:
-				moveRand(cur, ylimit);
+				moveRand(cur, framebuffer);
 				break;
 			default:
 				break;
@@ -284,8 +284,8 @@ void listRemoveNode_Enemy(EnemyNode** pp_Enemy_List_Node_Head)
 	}
 }
 
-void update_Enemy(int ylimit, EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {
-	update_EnemyPosition(ylimit, pp_Enemy_List_Node_Head, frame);
+void update_Enemy(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {
+	update_EnemyPosition(pp_Enemy_List_Node_Head, frame);
 	listRemoveNode_Enemy(pp_Enemy_List_Node_Head);
 
 
