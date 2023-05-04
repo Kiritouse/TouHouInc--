@@ -31,7 +31,12 @@ public:
 		int right;
 	};
 };
-extern Player::Position Struct_Position;
+struct PlayerCollider
+{
+	int xl, xr, yu, yd;
+};
+extern PlayerCollider playerCollider;
+extern Player::Position Struct_PlayerPosition;
 
 
 

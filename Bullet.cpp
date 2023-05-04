@@ -12,8 +12,8 @@
 
 BulletNode* creatPlayerBullet(float vx, float vy, int hitpoint) {
 	BulletNode* p = new BulletNode;
-	p->x = Struct_Position.x + WIDTH_PLAYER / 2 - 8;//飞机头部的位置
-	p->y = Struct_Position.y;
+	p->x = Struct_PlayerPosition.x + WIDTH_PLAYER / 2 - 8;//飞机头部的位置
+	p->y = Struct_PlayerPosition.y;
 	p->vx = vx;
 	p->vy = vy;//速度
 	p->hitpoint = hitpoint;

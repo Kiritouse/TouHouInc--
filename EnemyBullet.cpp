@@ -30,7 +30,7 @@ void EnemyBulletListPushBack(EnemyBulletNode** pp_Enemy_Bullet_List_Head, EnemyB
 	}
 	cur->pnext = newNode;
 }
-void update_EnemyBulletPosition(EnemyNode** pp_Enemy_List_Head, EnemyBulletNode** pp_Enemy_Bullet_List_Head, float vx, float vy, int level, int hitpoint, int framebuffer) {
+void update_EnemyBulletPosition(Player player, EnemyNode** pp_Enemy_List_Head, EnemyBulletNode** pp_Enemy_Bullet_List_Head, float vx, float vy, int level, int hitpoint, int framebuffer) {
 	EnemyNode* curEnemy = *pp_Enemy_List_Head;
 	while (curEnemy != NULL) {
 		if (framebuffer - curEnemy->f_create == curEnemy->fire_on) {
@@ -43,9 +43,15 @@ void update_EnemyBulletPosition(EnemyNode** pp_Enemy_List_Head, EnemyBulletNode*
 	while (curEnemyBullet != NULL) {
 		curEnemyBullet->x += curEnemyBullet->vx;
 		curEnemyBullet->y += curEnemyBullet->vy;
-		//	std::cout << "y = " << curEnemyBullet->y << std::endl;
+		//	判断是否越界
 		if ((curEnemyBullet->y < -20) || (curEnemyBullet->y > HEIGHT_MAP) || (curEnemyBullet->x > WIDTH_MAP) || (curEnemyBullet->x < -20))
 			curEnemyBullet->isExist = 0;
+		// 判断是否与玩家碰撞
+		//std::cout << playerCollider.xl << std::endl;
+		if (curEnemyBullet->x > Struct_PlayerPosition.x && curEnemyBullet->x < Struct_PlayerPosition.x+WIDTH_PLAYER &&
+			curEnemyBullet->y>Struct_PlayerPosition.y && curEnemyBullet->y < Struct_PlayerPosition.y + HEIGHT_PLAYER) {
+			player.health -= curEnemyBullet->hitpoint;
+		}
 		curEnemyBullet = curEnemyBullet->pnext;//指向下一个节点
 	}
 
@@ -87,8 +93,8 @@ void update_EnemyBulletImage(EnemyBulletNode** pp_Enemy_Bullet_List_Head) {
 			0, 0, WIDTH_ENEMYBULLET0, HEIGHT_ENEMYBULLET0, &enemyBullet0, 255);
 	}
 }
-void update_EnemyBullet(EnemyNode** pp_Enemy_List_Head, EnemyBulletNode** pp_Enemy_Bullet_List_Head, float vx, float vy, int level, int hitpoint, int framebuffer) {
-	update_EnemyBulletPosition(pp_Enemy_List_Head, pp_Enemy_Bullet_List_Head, vx, vy, level, hitpoint, framebuffer);
+void update_EnemyBullet(Player player, EnemyNode** pp_Enemy_List_Head, EnemyBulletNode** pp_Enemy_Bullet_List_Head, float vx, float vy, int level, int hitpoint, int framebuffer) {
+	update_EnemyBulletPosition(player, pp_Enemy_List_Head, pp_Enemy_Bullet_List_Head, vx, vy, level, hitpoint, framebuffer);
 	listRemoveNodeEnemyBullet(pp_Enemy_Bullet_List_Head);
 
 }

@@ -156,7 +156,7 @@ void Update() {//Ö¡¸üÐÂ
 		OBJ_Player.update_Player(n_command, framebuffer);
 		update_Bullet(&p_Enemy_List_Node, &p_Player_Bullet_List_Node, n_command, framebuffer, 0, -10, 10);
 		update_Enemy(&p_Enemy_List_Node, frame);
-		update_EnemyBullet(&p_Enemy_List_Node, &p_Enemy_Bullet_List_Node, 0, 6, 0, 10, framebuffer);
+		update_EnemyBullet(OBJ_Player, &p_Enemy_List_Node, &p_Enemy_Bullet_List_Node, 0, 6, 0, 10, framebuffer);
 
 		update_Paintings(framebuffer);
 
