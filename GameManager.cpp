@@ -40,7 +40,7 @@ void AddItem(int framebuffer) {
 		tempFrame_LineMove = framebuffer;
 		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, randFireOn, rand() % (WIDTH_MAP / 5 * 4 - WIDTH_MAP / 5 + 1) + WIDTH_MAP / 5, 3, DEF_MOVE_LINE, PI / 2, 2, ENEMY0, 50, 0, frame));
 	}
-	if (deltaFrame_CircleMove == 10) {
+	if (deltaFrame_CircleMove == 100) {
 		tempFrame_CircleMove = framebuffer;
 		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, randFireOn, 10, randHeight, DEF_MOVE_CIRCLE_RIGHT, 10, 10, 0.0f, 0.00625, ENEMY1, 100, 0, frame));
 		Enemy_ListPushHead(&p_Enemy_List_Node, createEnemy(1, randFireOn, 400, randHeight + randDelta, DEF_MOVE_CIRCLE_LEFT, 400, 10, 0.0f, PI / 500, ENEMY1, 100, 0, frame));

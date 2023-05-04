@@ -5,6 +5,7 @@
 #include "Map.h"
 #include "Draw.h"
 #include "LoadResources.h"
+int lastLeftState = 0;
 struct orimg {
 	int x = 3, y = 0;
 }originPoint_img;
@@ -25,31 +26,53 @@ Player::Player() {
 	Struct_Direction.right = 0;
 }
 void Player::update_PlayerPosition(int _cmd, int framebuffer) {
+	static int stateRightStop = 1, stateLeftStop = 1, stateRight = 0, stateLeft = 0;
 	if (_cmd & CMD_UP && Struct_Position.y >= 0) {
 		Struct_Direction.up = 1;
 		Struct_Position.y -= speed;
-		upOpFramebuffer = framebuffer;//记录下当前按下左键操作的时间
+		upOpFramebuffer = framebuffer;//记录下当前按下上键操作的时间
 	}
 	else Struct_Direction.up = 0;
 	if (_cmd & CMD_DOWN && Struct_Position.y < HEIGHT_MAP - HEIGHT_PLAYER) {
 		Struct_Direction.down = 1;
 		Struct_Position.y += speed;
-		downOpFramebuffer = framebuffer;
+		downOpFramebuffer = framebuffer;//记录下当前按下下键的时间
 	}
 	else Struct_Direction.down = 0;
+	if (_cmd & CMD_RIGHT && Struct_Position.x < WIDTH_MAP - WIDTH_PLAYER) {
+		Struct_Direction.right = 1;
+		Struct_Position.x += speed;
+		if (stateRightStop == 1) {//保证长按右键的时候只会记录一次的时间
+			rightOpFramebuffer = framebuffer;//记录下当前按下右键操作的时间
+			stateRightStop = 0;
+		}
+		stateRight = 1;
+	}
+	else {
+		if (stateRight == 1) {//如果之前的操作是右移动状态
+			Struct_Direction.right = 0;
+			stateRight = 0;
+		}
+		stateRightStop = 1;
+	}
 
 	if (_cmd & CMD_LEFT && Struct_Position.x >= 0) {
 		Struct_Direction.left = 1;
 		Struct_Position.x -= speed;
-		leftOpFramebuffer = framebuffer;//记录下当前按下左键操作的时间
+		if (stateLeftStop == 1) {
+			leftOpFramebuffer = framebuffer;//记录下当前按下左键操作的时间
+			stateLeftStop = 0;
+		}
+		stateLeft = 1;//进入左移动状态
 	}
-	else Struct_Direction.left = 0;
-	if (_cmd & CMD_RIGHT && Struct_Position.x < WIDTH_MAP - WIDTH_PLAYER) {
-		Struct_Direction.right = 1;
-		Struct_Position.x += speed;
-		rightOpFramebuffer = framebuffer;
+	else {
+		if (stateLeft == 1) {
+			Struct_Direction.left = 0;
+			stateLeft = 0;//
+		}
+		stateLeftStop = 1;
 	}
-	else Struct_Direction.right = 0;
+
 }
 
 void Player::update_PlayerImage(int frameBuffer) {//
@@ -82,50 +105,49 @@ void Player::update_PlayerImage(int frameBuffer) {//
 	}
 	if (Struct_Direction.right - Struct_Direction.left > 0) {
 		frameBuffer = frameBuffer - rightOpFramebuffer;
-
-		if (frameBuffer >= 0 && frameBuffer < 10)
+		if (frameBuffer >= 0 && frameBuffer < 5)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT,
 				33, 0, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT, &playerRight);
-		if (frameBuffer >= 10 && frameBuffer < 20)
+		if (frameBuffer >= 5 && frameBuffer < 10)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT,
 				64, 0, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT, &playerRight);
-		if (frameBuffer >= 20 && frameBuffer < 30)
+		if (frameBuffer >= 10 && frameBuffer < 15)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT,
 				96, 0, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT, &playerRight);
-		if (frameBuffer >= 30 && frameBuffer < 40)
+		if (frameBuffer >= 15 && frameBuffer < 20)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT,
 				128, 0, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT, &playerRight);
-		if (frameBuffer >= 40 && frameBuffer < 50)
+		if (frameBuffer >= 20 && frameBuffer < 25)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT,
 				160, 0, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT, &playerRight);
-		if (frameBuffer >= 50 && frameBuffer < 60)
+		if (frameBuffer >= 25 && frameBuffer < 30)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT,
 				192, 0, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT, &playerRight);
-		if (frameBuffer >= 60)
+		if (frameBuffer >= 30)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT,
 				223, 0, WIDTH_PLAYER_RIGHT, HEIGHT_PLAYER_RIGHT, &playerRight);
 	}
-	else if (Struct_Direction.right - Struct_Direction.left) {
+	else if (Struct_Direction.right - Struct_Direction.left < 0) {
 		frameBuffer = frameBuffer - leftOpFramebuffer;
-		if (frameBuffer >= 0 && frameBuffer < 10)
+		if (frameBuffer >= 0 && frameBuffer < 5)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_LEFT, HEIGHT_PLAYER_LEFT,
 				36, 0, WIDTH_PLAYER_LEFT, HEIGHT_PLAYER_LEFT, &playerLeft);
-		if (frameBuffer >= 10 && frameBuffer < 20)
+		if (frameBuffer >= 5 && frameBuffer < 10)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_LEFT, HEIGHT_PLAYER_LEFT,
 				68, 0, WIDTH_PLAYER_LEFT, HEIGHT_PLAYER_LEFT, &playerLeft);
-		if (frameBuffer >= 20 && frameBuffer < 30)
+		if (frameBuffer >= 10 && frameBuffer < 15)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_LEFT, HEIGHT_PLAYER_LEFT,
 				99, 0, WIDTH_PLAYER_LEFT, HEIGHT_PLAYER_LEFT, &playerLeft);
-		if (frameBuffer >= 30 && frameBuffer < 40)
+		if (frameBuffer >= 15 && frameBuffer < 20)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_LEFT, HEIGHT_PLAYER_LEFT,
 				132, 0, WIDTH_PLAYER_LEFT, HEIGHT_PLAYER_LEFT, &playerLeft);
-		if (frameBuffer >= 40 && frameBuffer < 50)
+		if (frameBuffer >= 20 && frameBuffer < 25)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_LEFT, HEIGHT_PLAYER_LEFT,
 				164, 0, WIDTH_PLAYER_LEFT, HEIGHT_PLAYER_LEFT, &playerLeft);
-		if (frameBuffer >= 50 && frameBuffer < 60)
+		if (frameBuffer >= 25 && frameBuffer < 30)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_LEFT, HEIGHT_PLAYER_LEFT,
 				196, 0, WIDTH_PLAYER_LEFT, HEIGHT_PLAYER_LEFT, &playerLeft);
-		if (frameBuffer >= 60)
+		if (frameBuffer >= 30)
 			transparentimage(NULL, Struct_Position.x, Struct_Position.y, WIDTH_PLAYER_LEFT, HEIGHT_PLAYER_LEFT,
 				228, 0, WIDTH_PLAYER_LEFT, HEIGHT_PLAYER_LEFT, &playerLeft);
 
