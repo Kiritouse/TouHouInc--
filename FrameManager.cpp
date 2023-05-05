@@ -11,6 +11,7 @@ void cal_FPS() {
 	TCHAR time_text[50];
 	int FPS = 1000 / (clock() - start_time);
 	_stprintf_s(time_text, _T("FPS:%d"), FPS);
-	settextstyle(40, 0, _T("黑体")); //为了演示，显示fps字体大小不宜太大
+	settextcolor(RGB(255, 255, 255));
+	//settextstyle(40, 0, _T("黑体")); //为了演示，显示fps字体大小不宜太大
 	outtextxy(370, 0, time_text);
 }

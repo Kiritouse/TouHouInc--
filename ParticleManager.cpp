@@ -51,7 +51,7 @@ ParticleSwarm::ParticleSwarm(int x, int y, float colorh = float(rand() % 256))
 	double vy = vm * sin(radian_xy); //向量在Y轴的投影
 
 	//len表示粒子运动轨迹的长度，也可以认为是装填粒子的数量
-	int len = rand() % 30 + 100;//rand() % 30 + 50这个是源代码的数值，数值越大，烟花爆炸的范围，散开的范围就越大。
+	int len = rand() % 30 + 20;//rand() % 30 + 50这个是源代码的数值，数值越大，烟花爆炸的范围，散开的范围就越大。
 	//这一段刻画的是爆炸花束粒子中的其中一条线
 	while (len)
 	{

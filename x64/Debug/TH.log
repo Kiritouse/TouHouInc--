@@ -1,18 +1,4 @@
-﻿  Bullet.cpp
-D:\Codes\TouHouInc--\Bullet.cpp(15,52): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
-D:\Codes\TouHouInc--\Bullet.cpp(16,30): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
-D:\Codes\TouHouInc--\Bullet.cpp(41,78): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
-D:\Codes\TouHouInc--\Bullet.cpp(41,74): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
-D:\Codes\TouHouInc--\Bullet.cpp(94,42): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
-D:\Codes\TouHouInc--\Bullet.cpp(94,34): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
-  EnemyBullet.cpp
-D:\Codes\TouHouInc--\EnemyBullet.cpp(12,63): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
-D:\Codes\TouHouInc--\EnemyBullet.cpp(13,64): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
-D:\Codes\TouHouInc--\EnemyBullet.cpp(93,60): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
-D:\Codes\TouHouInc--\EnemyBullet.cpp(93,43): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
-  GameManager.cpp
-  Player.cpp
-D:\Codes\TouHouInc--\Player.cpp(31,71): warning C4554: “>>”: 检查运算符优先级是否存在的可能的错误；使用括号阐明优先级
-D:\Codes\TouHouInc--\Player.cpp(33,72): warning C4554: “>>”: 检查运算符优先级是否存在的可能的错误；使用括号阐明优先级
+﻿  LoadResources.cpp
+  Prop.cpp
   正在生成代码...
   TH.vcxproj -> D:\Codes\TouHouInc--\x64\Debug\TH.exe

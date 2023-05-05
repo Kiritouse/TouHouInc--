@@ -50,6 +50,9 @@
     <Filter Include="粒子">
       <UniqueIdentifier>{d6367aa5-4f76-48ee-88ff-5e82cd77fdb7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="P点">
+      <UniqueIdentifier>{cf260f83-a9fe-4e88-b6a9-1a8f9eb1839a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp">
@@ -97,6 +100,9 @@
     <ClCompile Include="ParticleManager.cpp">
       <Filter>粒子</Filter>
     </ClCompile>
+    <ClCompile Include="Prop.cpp">
+      <Filter>P点</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h">
@@ -141,6 +147,9 @@
     </ClInclude>
     <ClInclude Include="ParticleManager.h">
       <Filter>粒子</Filter>
+    </ClInclude>
+    <ClInclude Include="Prop.h">
+      <Filter>P点</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

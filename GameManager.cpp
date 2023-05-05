@@ -24,6 +24,7 @@ EnemyBulletNode* p_Enemy_Bullet_List_Node = NULL;//敌机子弹列表头节点
 EnemyNode* p_Enemy_List_Node = NULL;
 clock_t t_begin = clock();
 clock_t t_update;
+
 int  n_command;//获取操作
 int deltaFrame_LineMove = 0;
 int deltaFrame_CircleMove = 0;
@@ -124,7 +125,7 @@ void AddItem(int framebuffer) {
 
 void Awake() {
 
-	E_TYPE_GAMESTATE = gaming;
+	E_TYPE_GAMESTATE = startUI;
 	OBJ_interface.InitGraphInterface();
 }
 void update_Paintings(int framebuffer) {
@@ -136,6 +137,7 @@ void update_Paintings(int framebuffer) {
 	update_EnemyImage(&p_Enemy_List_Node);
 	update_EnemyBulletImage(&p_Enemy_Bullet_List_Node);
 	update_Particle();
+	cal_FPS();
 	EndBatchDraw();
 }
 
@@ -160,7 +162,7 @@ void Update() {//帧更新
 
 		update_Paintings(framebuffer);
 
-		//cal_FPS();
+
 
 		//FlushBatchDraw();
 		Sleep(20);

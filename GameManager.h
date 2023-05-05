@@ -1,14 +1,16 @@
 #pragma once
+#include "Interface.h"
 #include <iostream>
 #include <graphics.h>
 #pragma
 enum GameState
 {
-	gaming, pause, gameOver
+	gaming, pause, gameOver, startUI
 };
 
 
 extern GameState E_TYPE_GAMESTATE;
+extern Interface OBJ_interface;
 
 /// <summary>
 /// 初始化一些数据

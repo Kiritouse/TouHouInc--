@@ -7,4 +7,4 @@
 #define CMD_FIRE 16
 #define CMD_SKILL 32
 int GetInput();
-
+void MouseLisenter();

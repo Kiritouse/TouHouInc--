@@ -1,13 +1,18 @@
 #include "LoadResources.h"
 #include "Bullet.h"
 #include "Music.h"
-IMAGE  background, player, playerRight, playerLeft, normalBullets, enemy0, enemyBullet0, enemy1, boss;
+IMAGE  startbackground, background, player, playerRight, playerLeft, normalBullets, enemy0, enemyBullet0, enemy1, boss, enterbutton, powerProp;
 SOUND bgm;
 
 void loadResources(void) {
 	//加载背景图片
 	loadimage(&background, _T("sources\\Background\\background.png"));
+	loadimage(&startbackground, _T("sources\\Background\\ui.png"));
 
+	//加载Ui
+	loadimage(&enterbutton, _T("sources\\Ui\\Button\\button-enter.png"));
+
+	//加载道具
 
 	//加载人物动画
 	loadimage(&player, _T("sources\\Players\\PlayerUpAndDown.png"));
@@ -25,6 +30,9 @@ void loadResources(void) {
 
 	//加载背景音乐
 	loadsound(&bgm, _T("sources\\Music\\BGM\\Weight_of_the_World.mp3"));
+
+
+
 
 
 
