@@ -53,6 +53,9 @@
     <Filter Include="P点">
       <UniqueIdentifier>{cf260f83-a9fe-4e88-b6a9-1a8f9eb1839a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="存档管理">
+      <UniqueIdentifier>{ac2cb42b-fc0d-4a7c-8454-be1c2851ecb4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp">
@@ -103,6 +106,9 @@
     <ClCompile Include="Prop.cpp">
       <Filter>P点</Filter>
     </ClCompile>
+    <ClCompile Include="DataManager.cpp">
+      <Filter>存档管理</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h">
@@ -150,6 +156,9 @@
     </ClInclude>
     <ClInclude Include="Prop.h">
       <Filter>P点</Filter>
+    </ClInclude>
+    <ClInclude Include="DataManager.h">
+      <Filter>存档管理</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

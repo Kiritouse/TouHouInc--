@@ -14,7 +14,7 @@
 #include "Music.h"
 #include "ParticleManager.h"
 #define PI 3.1415926
-GameState E_TYPE_GAMESTATE;
+GameState gameState;
 Interface OBJ_interface;
 Map OBJ_Map;
 Player OBJ_Player;
@@ -30,6 +30,9 @@ int deltaFrame_LineMove = 0;
 int deltaFrame_CircleMove = 0;
 int tempFrame_LineMove = 0;
 int tempFrame_CircleMove = 0;
+
+
+
 void AddItem(int framebuffer) {
 	srand(framebuffer);
 	int randFireOn = rand() % 31 + 20;
@@ -125,13 +128,13 @@ void AddItem(int framebuffer) {
 
 void Awake() {
 
-	E_TYPE_GAMESTATE = startUI;
 	OBJ_interface.InitGraphInterface();
 }
 void update_Paintings(int framebuffer) {
 	BeginBatchDraw();
 	cleardevice();
 	OBJ_Map.update_MapImage();
+	OBJ_interface.paintGameInterface();
 	OBJ_Player.update_PlayerImage(framebuffer);
 	update_BulletImage(&p_Player_Bullet_List_Node);
 	update_EnemyImage(&p_Enemy_List_Node);
@@ -143,24 +146,32 @@ void update_Paintings(int framebuffer) {
 
 void Update() {//帧更新
 	int framebuffer;
-	while (E_TYPE_GAMESTATE == gaming) {
+	while (gameState.gaming == 1) {
 
 		t_update = clock();
 		if (t_update - t_begin >= 10) {
+			t_begin = t_update;
 			frame.f_total++;//总帧数，10ms为一帧
 			framebuffer = frame.f_total - frame.f_pause;
 		}
 		else continue;
+		MouseLisenter();//获取鼠标事件
+		if (!gameState.pause) {
+			update_Paintings(framebuffer);
+			AddItem(framebuffer);
+			n_command = GetInput();
+			OBJ_Map.update_Map();
+			OBJ_Player.update_Player(n_command, framebuffer);
+			update_Bullet(&p_Enemy_List_Node, &p_Player_Bullet_List_Node, n_command, framebuffer, 0, -10, 10);
+			update_Enemy(&p_Enemy_List_Node, frame);
+			update_EnemyBullet(OBJ_Player, &p_Enemy_List_Node, &p_Enemy_Bullet_List_Node, 0, 6, 0, 10, framebuffer);
+		}
+		else {
+			OBJ_interface.paintPauseInterface();//读取存档文件
+		}
 
-		AddItem(framebuffer);
-		n_command = GetInput();
-		OBJ_Map.update_Map();
-		OBJ_Player.update_Player(n_command, framebuffer);
-		update_Bullet(&p_Enemy_List_Node, &p_Player_Bullet_List_Node, n_command, framebuffer, 0, -10, 10);
-		update_Enemy(&p_Enemy_List_Node, frame);
-		update_EnemyBullet(OBJ_Player, &p_Enemy_List_Node, &p_Enemy_Bullet_List_Node, 0, 6, 0, 10, framebuffer);
 
-		update_Paintings(framebuffer);
+
 
 
 

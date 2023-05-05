@@ -5,10 +5,10 @@ int main() {
 	loadResources();
 	Awake();
 	while (1) {
-		if (E_TYPE_GAMESTATE == startUI)
+		if (gameState.startUI)
 			update_StartUI();
 
-		if (E_TYPE_GAMESTATE == gaming)
+		if (gameState.gaming)
 			Gaming();
 	}
 

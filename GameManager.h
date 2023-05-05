@@ -1,17 +1,21 @@
 #pragma once
 #include "Interface.h"
+#include "Player.h"
+#include "GameManager.h"
+#include "FrameManager.h"
 #include <iostream>
 #include <graphics.h>
 #pragma
-enum GameState
+struct GameState
 {
-	gaming, pause, gameOver, startUI
+	int gaming = 0, pause = 0, gameOver = 0, startUI = 1;
 };
 
 
-extern GameState E_TYPE_GAMESTATE;
+extern GameState gameState;
 extern Interface OBJ_interface;
-
+extern Player OBJ_Player;
+extern Frame frame;
 /// <summary>
 /// 初始化一些数据
 /// </summary>

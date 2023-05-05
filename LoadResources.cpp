@@ -1,7 +1,7 @@
 #include "LoadResources.h"
 #include "Bullet.h"
 #include "Music.h"
-IMAGE  startbackground, background, player, playerRight, playerLeft, normalBullets, enemy0, enemyBullet0, enemy1, boss, enterbutton, powerProp;
+IMAGE  startbackground, background, player, playerRight, playerLeft, normalBullets, enemy0, enemyBullet0, enemy1, boss, enterbutton, pausebutton, savebutton,continuebutton, powerProp;
 SOUND bgm;
 
 void loadResources(void) {
@@ -10,7 +10,10 @@ void loadResources(void) {
 	loadimage(&startbackground, _T("sources\\Background\\ui.png"));
 
 	//加载Ui
+	loadimage(&pausebutton, _T("sources\\Ui\\Button\\pause.png"));
 	loadimage(&enterbutton, _T("sources\\Ui\\Button\\button-enter.png"));
+	loadimage(&savebutton, _T("sources\\Ui\\Button\\save.png"));
+	loadimage(&continuebutton, _T("sources\\Ui\\Button\\button-continue.png"));
 
 	//加载道具
 

@@ -1,4 +1,8 @@
-﻿  LoadResources.cpp
-  Prop.cpp
+﻿  DataManager.cpp
+D:\Codes\TouHouInc--\DataManager.cpp(18,14): warning C4477: “fscanf”: 格式字符串“%d”需要类型“int *”的参数，但可变参数 1 拥有了类型“int”
+D:\Codes\TouHouInc--\DataManager.cpp(18,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  GameManager.cpp
+  Operation.cpp
+D:\Codes\TouHouInc--\Operation.cpp(26,10): warning C4101: “hcur”: 未引用的局部变量
   正在生成代码...
   TH.vcxproj -> D:\Codes\TouHouInc--\x64\Debug\TH.exe

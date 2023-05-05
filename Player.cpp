@@ -28,9 +28,9 @@ Player::Player() {
 }
 void Player::update_PlayerPosition(int _cmd, int framebuffer) {
 	//¸üÐÂÅö×²Ìå
-	playerCollider.xl = Struct_PlayerPosition.x + (WIDTH_PLAYER - 8) >> 1;
+	playerCollider.xl = Struct_PlayerPosition.x + ((WIDTH_PLAYER - 8) >> 1);
 	playerCollider.xr = playerCollider.xl + 8;
-	playerCollider.yu = Struct_PlayerPosition.y + (HEIGHT_PLAYER - 8) >> 1;
+	playerCollider.yu = Struct_PlayerPosition.y + ((HEIGHT_PLAYER - 8) >> 1);
 	playerCollider.yd = playerCollider.yu + 8;
 
 
