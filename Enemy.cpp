@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "FrameManager.h"
 #include "Operation.h"
 #include "Map.h"
 #include "Draw.h"
@@ -9,14 +10,14 @@
 #include <math.h>
 #include <random>
 const double MOVE_FACTOR = 0.1;
-EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode, double radian, double speed, EnemyName name, int health, int weaponLevel, Frame frame) {
-	EnemyNode* pNew = new EnemyNode;
+Enemy::EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode, double radian, double speed, Enemy::EnemyName name, int health, int weaponLevel, Frame frame) {
+	Enemy::EnemyNode* pNew = new Enemy::EnemyNode;
 	switch (name)
 	{
-	case ENEMY0:
+	case Enemy::EnemyName::ENEMY0:
 		pNew->type_enemy0 = 1;
 		break;
-	case ENEMY1:
+	case Enemy::EnemyName::ENEMY1:
 		pNew->type_enemy1 = 1;
 		break;
 	}
@@ -37,14 +38,14 @@ EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode
 	pNew->pnext = NULL;
 	return pNew;
 }
-EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode, double speed, EnemyName name, int health, int weaponLevel, Frame frame) {
-	EnemyNode* pNew = new EnemyNode;
+Enemy::EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode, double speed, Enemy::EnemyName name, int health, int weaponLevel, Frame frame) {
+	Enemy::EnemyNode* pNew = new Enemy::EnemyNode;
 	switch (name)
 	{
-	case ENEMY0:
+	case Enemy::EnemyName::ENEMY0:
 		pNew->type_enemy0 = 1;
 		break;
-	case ENEMY1:
+	case Enemy::EnemyName::ENEMY1:
 		pNew->type_enemy1 = 1;
 		break;
 	}
@@ -63,14 +64,14 @@ EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode
 	pNew->pnext = NULL;
 	return pNew;
 }
-EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode, int xo, int yo, double radian, double speed, EnemyName name, int health, int weaponLevel, Frame frame) {
-	EnemyNode* pNew = new EnemyNode;
+Enemy::EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode, int xo, int yo, double radian, double speed, Enemy::EnemyName name, int health, int weaponLevel, Frame frame) {
+	Enemy::EnemyNode* pNew = new Enemy::EnemyNode;
 	switch (name)
 	{
-	case ENEMY0:
+	case Enemy::EnemyName::ENEMY0:
 		pNew->type_enemy0 = 1;
 		break;
-	case ENEMY1:
+	case Enemy::EnemyName::ENEMY1:
 		pNew->type_enemy1 = 1;
 		break;
 	}
@@ -95,7 +96,7 @@ EnemyNode* createEnemy(int FireSwitch, int fire_on, int x0, int y0, int moveMode
 	return pNew;
 }
 
-void Enemy_ListPushHead(EnemyNode** pp_Enemy_List_Node_Head, EnemyNode* newNode) {
+void Enemy::Enemy_ListPushHead(Enemy::EnemyNode** pp_Enemy_List_Node_Head, Enemy::EnemyNode* newNode) {
 	if (*pp_Enemy_List_Node_Head == NULL)//Èç¹ûÁ´±íÎª¿Õ£¬ÄÇÃ´ÐÂÔöµÄ½Úµã¾ÍÊÇµÚÒ»¸ö,Í·½Úµã
 	{
 		*pp_Enemy_List_Node_Head = newNode;
@@ -104,7 +105,7 @@ void Enemy_ListPushHead(EnemyNode** pp_Enemy_List_Node_Head, EnemyNode* newNode)
 	newNode->pnext = (*pp_Enemy_List_Node_Head)->pnext;//ÈÃÐÂÔö½ÚµãÖ¸ÏòÔ­ÏÈÍ·½ÚµãÖ¸ÏòµÄÊý¾Ý
 	(*pp_Enemy_List_Node_Head)->pnext = newNode;//ÈÃÔ­Í·½ÚµãÖ¸ÏòÐÂÔö½Úµã
 }
-void update_EnemyImage(EnemyNode** p_Enemy_List) {
+void Enemy::update_EnemyImage(Enemy::EnemyNode** p_Enemy_List) {
 	for (EnemyNode* cur = *p_Enemy_List; cur != NULL; cur = cur->pnext) {
 		if (cur->type_enemy0 == 1) {
 			transparentimage(NULL, cur->x, cur->y, WIDTH_ENEMY0, HEIGHT_ENEMY0,
@@ -121,7 +122,7 @@ void update_EnemyImage(EnemyNode** p_Enemy_List) {
 	}
 }
 
-void moveLine(EnemyNode* cur) {
+void moveLine(Enemy::EnemyNode* cur) {
 
 	int xnext = cur->x + cur->speed * cos(cur->radian);
 	int ynext = cur->y + cur->speed * sin(cur->radian);
@@ -143,7 +144,7 @@ void moveLine(EnemyNode* cur) {
 		return;
 	}
 }
-void moveCircle(EnemyNode* cur, int framebuffer, int type) {
+void moveCircle(Enemy::EnemyNode* cur, int framebuffer, int type) {
 	int xnext, ynext;
 	if (type == 0) {
 		xnext = cur->x0 + cur->r * sin(cur->radian);
@@ -181,7 +182,7 @@ void moveCircle(EnemyNode* cur, int framebuffer, int type) {
 	}
 
 }
-void moveRand(EnemyNode* cur, int framebuffer) {
+void moveRand(Enemy::EnemyNode* cur, int framebuffer) {
 	srand((unsigned int)time(NULL));
 	int xnext = cur->x + rand() % ((int)cur->speed + 1) - (cur->speed) / 2;
 	int ynext = cur->y + rand() % ((int)cur->speed + 1) - (cur->speed) / 20;
@@ -209,7 +210,7 @@ void moveRand(EnemyNode* cur, int framebuffer) {
 	}
 
 }
-void moveBoss(EnemyNode* cur) {
+void moveBoss(Enemy::EnemyNode* cur) {
 	if (cur->type_boss == 1) {
 		if (cur->y <= HEIGHT_MAP / 3) {
 			cur->y += cur->speed;
@@ -223,9 +224,9 @@ void moveBoss(EnemyNode* cur) {
 		}
 	}
 }
-void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//ÓÃÖ¸Õë±éÀúÃ¿¸ö·É»ú½Úµã£¬¸ù¾Ý·É»úµÄ³õÊ¼Î»ÖÃ,³õÊ¼·½Ïò,Ñ¡Ôñ²»Í¬µÄ¸üÐÂ·½Ê½
+void update_EnemyPosition(Enemy::EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//ÓÃÖ¸Õë±éÀúÃ¿¸ö·É»ú½Úµã£¬¸ù¾Ý·É»úµÄ³õÊ¼Î»ÖÃ,³õÊ¼·½Ïò,Ñ¡Ôñ²»Í¬µÄ¸üÐÂ·½Ê½
 	if (*pp_Enemy_List_Node_Head == NULL) return;
-	EnemyNode* cur = *pp_Enemy_List_Node_Head;
+	Enemy::EnemyNode* cur = *pp_Enemy_List_Node_Head;
 	int framebuffer = frame.f_total - frame.f_pause;
 	while (cur != NULL)
 	{
@@ -253,12 +254,12 @@ void update_EnemyPosition(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {//Ó
 		cur = cur->pnext;
 	}
 }
-void listRemoveNode_Enemy(EnemyNode** pp_Enemy_List_Node_Head)
+void listRemoveNode_Enemy(Enemy::EnemyNode** pp_Enemy_List_Node_Head)
 {
 	if (*pp_Enemy_List_Node_Head == NULL)//Èç¹ûÁ´±íÎª¿Õ£¬¾ÍÃ»ÓÐ¿ÉÉ¾³ýµÄ½ÚµãÁË
 		return;
-	EnemyNode* curP_Enemy = *pp_Enemy_List_Node_Head;//curretÏÈÖ¸ÏòµÚÒ»¸ö½Úµã
-	EnemyNode* prevP_Enemy = NULL;  //previousÖ¸ÏòÉÏÒ»¸ö½ÚµãµÄÖ¸Õë
+	Enemy::EnemyNode* curP_Enemy = *pp_Enemy_List_Node_Head;//curretÏÈÖ¸ÏòµÚÒ»¸ö½Úµã
+	Enemy::EnemyNode* prevP_Enemy = NULL;  //previousÖ¸ÏòÉÏÒ»¸ö½ÚµãµÄÖ¸Õë
 	while (curP_Enemy != NULL)//±éÀúÁ´±í
 	{
 		if (curP_Enemy->isExist == 0)
@@ -284,7 +285,7 @@ void listRemoveNode_Enemy(EnemyNode** pp_Enemy_List_Node_Head)
 	}
 }
 
-void update_Enemy(EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {
+void Enemy::update_Enemy(Enemy::EnemyNode** pp_Enemy_List_Node_Head, Frame frame) {
 	update_EnemyPosition(pp_Enemy_List_Node_Head, frame);
 	listRemoveNode_Enemy(pp_Enemy_List_Node_Head);
 

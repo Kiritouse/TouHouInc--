@@ -7,15 +7,16 @@ public:
 	void paintStartInterface();
 	void paintGameInterface();
 	void paintPauseInterface();
+	struct ButtonState
+	{
+		int enterButtonIsHit;//按下为1，没按下为0
+		int saveButtonIsHit;
+		int continueButtonIsHit;
+
+	};
 
 
 };
-struct ButtonState
-{
-	int enterButtonIsHit;//按下为1，没按下为0
-	int saveButtonIsHit;
-	int continueButtonIsHit;
 
-};
 void update_StartUI();
-extern ButtonState buttonState;
+extern Interface::ButtonState buttonState;

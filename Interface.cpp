@@ -6,7 +6,7 @@
 #include "Operation.h"
 #define WIDTH 500
 #define HEIGHT 720
-ButtonState buttonState;
+Interface::ButtonState buttonState;
 void Interface::InitGraphInterface() {
 	initgraph(WIDTH, HEIGHT);
 }
@@ -47,5 +47,6 @@ void  update_StartUI() {
 	while (gameState.startUI) {//当游戏状态在开始UI状态的时候就
 		OBJ_interface.paintStartInterface();
 		MouseLisenter();
+
 	}
 }

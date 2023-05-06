@@ -95,10 +95,10 @@ void update_BulletImage(BulletNode** pp_Player_Bullet_List) {
 			0, 0, WIDTH_BULLET0, HEIGHT_BULLET0, &normalBullets, 150);
 	}
 }
-void bulletCrashEnemyCheck(EnemyNode** pp_Enemy_List_Head, BulletNode** pp_Player_Bullet_List_Head) {
+void bulletCrashEnemyCheck(Enemy::EnemyNode** pp_Enemy_List_Head, BulletNode** pp_Player_Bullet_List_Head) {
 	BulletNode* curBullet = *pp_Player_Bullet_List_Head;
 	while (curBullet != NULL) {
-		EnemyNode* curEnemy = *pp_Enemy_List_Head;
+		Enemy::EnemyNode* curEnemy = *pp_Enemy_List_Head;
 		while (curEnemy != NULL) {
 			//如果子弹在敌人的图片中
 			int WIDTH, HEIGHT;
@@ -116,7 +116,7 @@ void bulletCrashEnemyCheck(EnemyNode** pp_Enemy_List_Head, BulletNode** pp_Playe
 					//std::cout << curEnemy->health << std::endl;
 					if (curEnemy->health <= 0) {
 						curEnemy->isExist = 0;
-						createFireworks(&curEnemy);
+						//createFireworks(&curEnemy);
 					}
 					else {
 						//std::cout << curBullet->hitpoint << std::endl;
@@ -135,7 +135,7 @@ void bulletCrashEnemyCheck(EnemyNode** pp_Enemy_List_Head, BulletNode** pp_Playe
 		curBullet = curBullet->pnext;
 	}
 }
-void update_Bullet(EnemyNode** pp_Enemy_List_Head, BulletNode** pp_Player_Bullet_List_Head, int command, int frameBuffer, int vx, int vy, int hitpoint) {
+void update_Bullet(Enemy::EnemyNode** pp_Enemy_List_Head, BulletNode** pp_Player_Bullet_List_Head, int command, int frameBuffer, int vx, int vy, int hitpoint) {
 	update_BulletPosition(pp_Player_Bullet_List_Head, command, frameBuffer, vx, vy, hitpoint);
 	bulletCrashEnemyCheck(pp_Enemy_List_Head, pp_Player_Bullet_List_Head);
 	listRemoveNode_Bullet(pp_Player_Bullet_List_Head);//超出视野或者击中飞行器的子弹删除掉

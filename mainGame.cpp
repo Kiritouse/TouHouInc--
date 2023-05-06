@@ -1,5 +1,6 @@
 #include "GameManager.h"
 #include "LoadResources.h"
+#include "Operation.h"
 int main() {
 
 	loadResources();

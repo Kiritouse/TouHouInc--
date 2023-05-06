@@ -15,7 +15,7 @@ void writeData() {
 	//´¢´æÍæ¼Ò
 	else {
 		fwrite(&OBJ_Player, sizeof(OBJ_Player), 1, fp);
-		fscanf(fp, "%d", OBJ_Player.health);
+		fscanf(fp, "%d", &OBJ_Player.health);
 		fclose(fp);
 	}
 }

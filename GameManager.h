@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "GameManager.h"
 #include "FrameManager.h"
+#include "Enemy.h"
 #include <iostream>
 #include <graphics.h>
 #pragma

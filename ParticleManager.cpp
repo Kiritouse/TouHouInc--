@@ -153,12 +153,10 @@ void Fireworks::Move()
 std::list<Fireworks> vec2;
 
 clock_t ct = clock();
-void createFireworks(EnemyNode** pp_curEnemy) {
-	EnemyNode* curEnemy = *pp_curEnemy;
+void createFireworks(Enemy::EnemyNode** pp_curEnemy) {
+	Enemy::EnemyNode(*curEnemy) = *pp_curEnemy;
 	if (curEnemy->health <= 0)
 		vec2.push_back(Fireworks(curEnemy->x, curEnemy->y));//从光线顶部开始爆炸,创建烟花对象
-
-
 }
 void update_Particle() {
 
